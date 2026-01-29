@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import BottomNav from '../../components/BottomNav.astro';
+import RewardBanner from '../../components/RewardBanner.astro';
 import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
 ---
 
@@ -9,9 +11,10 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     <header class="sticky top-0 z-10 bg-[var(--color-surface)]/80 backdrop-blur-lg border-b border-[var(--color-border)] px-4 py-3 safe-top">
       <div class="max-w-lg mx-auto flex items-center justify-between">
         <div>
-          <h1 class="text-lg font-semibold text-[var(--color-text)] tracking-tight">Mulk 30</h1>
+          <h1 class="heading-section tracking-tight">Mulk 30</h1>
           <p class="text-xs text-[var(--color-text-secondary)]">Sfida e Ramazanit</p>
         </div>
+        <!-- (#9) Consolidated theme toggle — uses shared script in Layout -->
         <button id="theme-toggle" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform" aria-label="Ndrysho temën">
           <svg id="icon-moon" class="w-5 h-5 text-[var(--color-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
@@ -27,27 +30,13 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     <main class="flex-1 px-4 py-6">
       <div class="max-w-lg mx-auto space-y-6">
 
-        <!-- Reward Banner -->
-        <div class="card bg-gradient-to-br from-[var(--color-primary)]/5 to-[var(--color-accent)]/10 border-[var(--color-primary)]/20">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center shrink-0">
-              <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-[var(--color-text)] text-sm">Përfundo sfidën — fito një Kuran!</h3>
-              <p class="text-xs text-[var(--color-text-secondary)] mt-1 leading-relaxed">Kush përfundon të 30 ditët merr dhuratë një ekzemplar të Kuranit Famëlartë.</p>
-              <a href="/app/gift" class="group inline-flex items-center gap-1 text-xs font-medium text-[var(--color-primary)] mt-2">
-                Mëso më shumë
-                <svg class="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-              </a>
-            </div>
-          </div>
-        </div>
+        <!-- Reward Banner (shared component #5) -->
+        <RewardBanner variant="compact" />
 
         <!-- Progress Card -->
         <div class="card">
           <div class="flex items-center justify-between mb-4">
-            <h2 class="font-semibold text-[var(--color-text)]">Progresi yt</h2>
+            <h2 class="heading-card">Progresi yt</h2>
             <span class="text-sm text-[var(--color-text-secondary)]" id="progress-text">0/30</span>
           </div>
           <div class="progress-bar">
@@ -77,7 +66,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
               <span class="text-white text-sm font-bold" id="today-day-num">1</span>
             </div>
             <div>
-              <h3 class="font-semibold text-[var(--color-text)]">Ajeti i sotëm</h3>
+              <h3 class="heading-card">Ajeti i sotëm</h3>
               <p class="text-xs text-[var(--color-text-secondary)]" id="today-meta">Al-Mulk • Ajeti 1</p>
             </div>
           </div>
@@ -103,8 +92,8 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
           </div>
         </div>
 
-        <!-- Timeline Link -->
-        <a href="/app/timeline" class="card flex items-center justify-between hover:bg-[var(--color-background)] transition-colors active:scale-[0.98]">
+        <!-- Timeline Link (#19: fixed to /app/timeline which exists) -->
+        <a href="/app/timeline" class="card-interactive flex items-center justify-between hover:bg-[var(--color-background)] active:scale-[0.98]">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
               <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,29 +112,28 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
       </div>
     </main>
 
-    <!-- Bottom Nav -->
-    <nav class="sticky bottom-0 bg-[var(--color-surface)]/80 backdrop-blur-lg border-t border-[var(--color-border)] px-4 py-3 safe-bottom">
-      <div class="max-w-lg mx-auto flex justify-around">
-        <a href="/app" class="nav-item active">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          <span class="text-[10px] font-medium">Kryefaqja</span>
-        </a>
-        <a href="/app/gift" class="nav-item">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
-          <span class="text-[10px]">Dhurata</span>
-        </a>
-        <a href="/app/settings" class="nav-item">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-          <span class="text-[10px]">Cilësimet</span>
-        </a>
-      </div>
-    </nav>
+    <!-- Bottom Nav (shared component #6, #15: text-[11px]) -->
+    <BottomNav active="home" />
   </div>
 </Layout>
 
 <script>
   import { getState, getCurrentDay, getStreak, getProgress, toggleDay, isDayCompleted, getDayProgress, getActiveStep, REQUIRED_COUNT } from '../../lib/challenge';
   import { getVerseByDay, SURAH_INFO } from '../../data/mulk-verses';
+  import { getSession } from '../../lib/supabase';
+
+  // Auth guard (#3)
+  (async () => {
+    try {
+      const { session } = await getSession();
+      if (!session) {
+        window.location.href = '/auth/login';
+        return;
+      }
+    } catch (e) {
+      // Allow offline usage with localStorage
+    }
+  })();
 
   function updateUI() {
     const state = getState();
@@ -155,13 +143,11 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     const progress = getProgress(state);
     const completed = isDayCompleted(day);
 
-    // Progress
     document.getElementById('progress-text')!.textContent = `${state.completedDays.length}/30`;
     (document.getElementById('progress-fill') as HTMLElement).style.width = `${progress}%`;
     document.getElementById('streak-count')!.textContent = `${streak} ditë radhazi`;
     document.getElementById('current-day-label')!.textContent = `Dita ${day}`;
 
-    // Today card
     document.getElementById('today-day-num')!.textContent = String(day);
     document.getElementById('today-meta')!.textContent = `${SURAH_INFO.name} • Ajeti ${verse?.ayahNumber}`;
     document.getElementById('today-arabic')!.textContent = verse?.arabic || '';
@@ -169,7 +155,6 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     document.getElementById('today-albanian')!.textContent = verse?.albanian || '';
     (document.getElementById('today-detail-link') as HTMLAnchorElement).href = `/app/day/${day}`;
 
-    // Mark complete button
     const btn = document.getElementById('mark-complete') as HTMLButtonElement;
     if (completed) {
       btn.classList.add('!bg-[var(--color-primary)]', '!text-white', '!border-[var(--color-primary)]');
@@ -177,16 +162,13 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
       btn.classList.remove('!bg-[var(--color-primary)]', '!text-white', '!border-[var(--color-primary)]');
     }
 
-    // Step progress mini-indicators
     const dayProgress = getDayProgress(day);
-    const activeStep = getActiveStep(dayProgress);
     const stepsHtml = [
       { label: '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M6.5 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2.5l4-4v14l-4-4z"></path></svg>', count: dayProgress.listenCount, color: 'blue' },
       { label: '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>', count: dayProgress.readCount, color: 'emerald' },
       { label: '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>', count: dayProgress.reciteCount, color: 'purple' },
-    ].map((s, i) => {
+    ].map((s) => {
       const done = s.count >= REQUIRED_COUNT;
-      const pct = Math.min(100, (s.count / REQUIRED_COUNT) * 100);
       return `<div class="flex items-center gap-1 text-xs ${done ? `text-${s.color}-500` : 'text-[var(--color-text-secondary)]'}">
         <span>${s.label}</span>
         <span>${Math.min(s.count, REQUIRED_COUNT)}/${REQUIRED_COUNT}</span>
@@ -196,7 +178,6 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     const stepsContainer = document.getElementById('today-steps');
     if (stepsContainer) stepsContainer.innerHTML = stepsHtml;
 
-    // Motivational milestones
     const completedCount = state.completedDays.length;
     const milestoneEl = document.getElementById('milestone-msg');
     const milestoneText = document.getElementById('milestone-text');
@@ -215,7 +196,6 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     }
   }
 
-  // Mark complete
   document.getElementById('mark-complete')?.addEventListener('click', () => {
     const state = getState();
     const day = getCurrentDay(state);
@@ -223,12 +203,12 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     updateUI();
   });
 
-  // Theme toggle
+  // (#9) Consolidated theme toggle
   const toggle = document.getElementById('theme-toggle');
   function updateThemeIcons() {
     const dark = document.documentElement.classList.contains('dark');
-    document.getElementById('icon-moon')!.classList.toggle('hidden', dark);
-    document.getElementById('icon-sun')!.classList.toggle('hidden', !dark);
+    document.getElementById('icon-moon')?.classList.toggle('hidden', dark);
+    document.getElementById('icon-sun')?.classList.toggle('hidden', !dark);
   }
   toggle?.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');

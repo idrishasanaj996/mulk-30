@@ -31,13 +31,31 @@
   --color-border: #2C2C2E;
 }
 
+/* === Typography classes (#8) === */
+.heading-page {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.heading-section {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.heading-card {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 /* Base styles — iOS webapp-konform */
 html {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
   scroll-behavior: smooth;
-  /* Prevent overscroll bounce on iOS */
   overscroll-behavior: none;
-  /* Prevent pull-to-refresh */
   overflow: hidden;
   height: 100%;
 }
@@ -46,16 +64,13 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height for iOS */
+  min-height: 100dvh;
   line-height: 1.6;
   overflow-y: auto;
   overflow-x: hidden;
-  /* Prevent overscroll bounce */
   overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;
-  /* Prevent text size adjust on orientation change */
   -webkit-text-size-adjust: 100%;
-  /* Prevent tap highlight */
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -68,7 +83,6 @@ body {
   padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
 }
 
-/* Standalone mode (Add to Home Screen) adjustments */
 @media (display-mode: standalone) {
   .safe-top {
     padding-top: env(safe-area-inset-top, 2.75rem);
@@ -111,8 +125,8 @@ body {
   transition: font-size 0.15s ease;
 }
 
-/* Smooth transitions — exclude transforms to not interfere with animations */
-*:not(.arabic-zoomable):not(.confetti-piece):not(.animate-bounce-in) {
+/* Targeted transitions on interactive elements only (#21) */
+button, a, .card, .card-interactive, .input, .nav-item, .btn {
   transition-property: color, background-color, border-color, opacity;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
@@ -120,7 +134,7 @@ body {
 
 /* iOS input fixes */
 input, textarea, select {
-  font-size: 16px !important; /* Prevent iOS zoom on focus */
+  font-size: 16px !important;
   -webkit-appearance: none;
   appearance: none;
   border-radius: var(--radius-md);
@@ -162,7 +176,7 @@ button, a, .nav-item, .btn, input, select, textarea {
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   font-weight: 500;
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all 150ms ease;
 }
@@ -180,6 +194,12 @@ button, a, .nav-item, .btn, input, select, textarea {
   background-color: var(--color-primary-dark);
 }
 
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .btn-secondary {
   background-color: var(--color-surface);
   color: var(--color-text);
@@ -191,17 +211,25 @@ button, a, .nav-item, .btn, input, select, textarea {
   background-color: var(--color-background);
 }
 
-/* Card component */
+/* Card component (#14 — split into .card and .card-interactive) */
 .card {
   background-color: var(--color-surface);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-xl);
   border: 1px solid var(--color-border);
   padding: 1.5rem;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
-  transition: all 150ms ease;
 }
 
-.card:hover {
+.card-interactive {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  cursor: pointer;
+}
+
+.card-interactive:hover {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
 }
 
@@ -273,4 +301,47 @@ button, a, .nav-item, .btn, input, select, textarea {
 ::selection {
   background-color: var(--color-primary);
   color: white;
+}
+
+/* Loading spinner for buttons (#1) */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Reset confirmation modal (#11) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fade-in 0.15s ease;
+}
+
+.modal-content {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  max-width: 24rem;
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  animation: modal-in 0.2s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }

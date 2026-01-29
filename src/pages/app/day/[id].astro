@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import BottomNav from '../../../components/BottomNav.astro';
 import { MULK_VERSES, SURAH_INFO, getVerseByDay } from '../../../data/mulk-verses';
 
 export function getStaticPaths() {
@@ -23,14 +24,14 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
     <!-- Header -->
     <header class="sticky top-0 z-10 bg-[var(--color-surface)]/80 backdrop-blur-lg border-b border-[var(--color-border)] px-4 py-3 safe-top">
       <div class="max-w-lg mx-auto flex items-center justify-between">
-        <a href="/app" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform shadow-sm">
+        <a href="/app" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform shadow-sm" aria-label="Kthehu">
           <svg class="w-5 h-5 text-[var(--color-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
         </a>
         <div class="text-center">
           <h1 class="text-lg font-semibold text-[var(--color-text)] tracking-tight">Dita {dayIndex}</h1>
           <p class="text-xs text-[var(--color-text-secondary)]">Ajeti {verse.ayahNumber} • {SURAH_INFO.name}</p>
         </div>
-        <button id="focus-btn" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform shadow-sm" title="Focus Mode">
+        <button id="focus-btn" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform shadow-sm" title="Focus Mode" aria-label="Focus Mode">
           <svg class="w-5 h-5 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
         </button>
       </div>
@@ -46,11 +47,11 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
           </div>
           <!-- Zoom controls -->
           <div class="flex items-center justify-center gap-2 mt-3 pt-2 border-t border-[var(--color-border)] opacity-60">
-            <button id="zoom-out" class="w-6 h-6 rounded-full bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-90 transition-transform">
+            <button id="zoom-out" class="w-6 h-6 rounded-full bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-90 transition-transform" aria-label="Zvogëlo tekstin">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
             </button>
             <span id="zoom-level" class="text-[10px] text-[var(--color-text-secondary)] tabular-nums w-8 text-center">100%</span>
-            <button id="zoom-in" class="w-6 h-6 rounded-full bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-90 transition-transform">
+            <button id="zoom-in" class="w-6 h-6 rounded-full bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-90 transition-transform" aria-label="Zmadho tekstin">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
             </button>
           </div>
@@ -67,8 +68,8 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
           </div>
         </div>
 
-        <!-- Transliteration (shown in read/listen mode) -->
-        <p id="transliteration" class="text-center text-[13px] text-[var(--color-text-secondary)] italic leading-relaxed">{verse.transliteration}</p>
+        <!-- Transliteration (#18: text-[13px] → text-sm for readability) -->
+        <p id="transliteration" class="text-center text-sm text-[var(--color-text-secondary)] italic leading-relaxed">{verse.transliteration}</p>
 
         <!-- Audio Progress Bar (only visible during listen) -->
         <div id="audio-bar-container" class="hidden px-2">
@@ -156,23 +157,8 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
       </div>
     </main>
 
-    <!-- Bottom Nav -->
-    <nav class="sticky bottom-0 bg-[var(--color-surface)]/80 backdrop-blur-lg border-t border-[var(--color-border)] px-4 py-3 safe-bottom">
-      <div class="max-w-lg mx-auto flex justify-around">
-        <a href="/app" class="nav-item">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          <span class="text-[10px]">Kryefaqja</span>
-        </a>
-        <a href="/app/gift" class="nav-item">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
-          <span class="text-[10px]">Dhurata</span>
-        </a>
-        <a href="/app/settings" class="nav-item">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-          <span class="text-[10px]">Cilësimet</span>
-        </a>
-      </div>
-    </nav>
+    <!-- Bottom Nav (shared component #6) -->
+    <BottomNav />
   </div>
 </Layout>
 
@@ -322,6 +308,20 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
 
 <script>
   import { getDayProgress, incrementStep, getActiveStep, REQUIRED_COUNT } from '../../../lib/challenge';
+  import { getSession } from '../../../lib/supabase';
+
+  // Auth guard (#3)
+  (async () => {
+    try {
+      const { session } = await getSession();
+      if (!session) {
+        window.location.href = '/auth/login';
+        return;
+      }
+    } catch (e) {
+      // Allow offline usage
+    }
+  })();
 
   const dayIndex = (window as any).__dayIndex;
   let progress = getDayProgress(dayIndex);
@@ -444,7 +444,9 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
     checkDone();
   }
 
-  // Listen — mock audio playback
+  // (#4) Listen — simulated audio playback with progress bar UX
+  // TODO: Replace simulation with real audio files (e.g., Al-Afasy recitation per verse)
+  // Use <audio> element or Web Audio API for actual playback
   function startAudio() {
     if (audioPlaying) return stopAudio();
 
