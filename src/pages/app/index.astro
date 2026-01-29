@@ -68,7 +68,9 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
           <p class="text-sm text-[var(--color-text-secondary)] italic mb-3" id="today-translit"></p>
           <p class="text-[var(--color-text)] leading-relaxed" id="today-albanian"></p>
 
-          <div class="flex gap-3 mt-6">
+          <div class="flex items-center gap-4 mt-4 py-2 px-3 bg-[var(--color-background)] rounded-lg" id="today-steps"></div>
+
+          <div class="flex gap-3 mt-4">
             <a id="today-detail-link" href="/app/day/1" class="btn btn-primary flex-1">
               Shiko detajet
             </a>
@@ -121,7 +123,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
 </Layout>
 
 <script>
-  import { getState, getCurrentDay, getStreak, getProgress, toggleDay, isDayCompleted } from '../../lib/challenge';
+  import { getState, getCurrentDay, getStreak, getProgress, toggleDay, isDayCompleted, getDayProgress, getActiveStep, REQUIRED_COUNT } from '../../lib/challenge';
   import { getVerseByDay, SURAH_INFO } from '../../data/mulk-verses';
 
   function updateUI() {
@@ -153,6 +155,25 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     } else {
       btn.classList.remove('!bg-[var(--color-primary)]', '!text-white', '!border-[var(--color-primary)]');
     }
+
+    // Step progress mini-indicators
+    const dayProgress = getDayProgress(day);
+    const activeStep = getActiveStep(dayProgress);
+    const stepsHtml = [
+      { label: '🎧', count: dayProgress.listenCount, color: 'blue' },
+      { label: '📖', count: dayProgress.readCount, color: 'emerald' },
+      { label: '🧠', count: dayProgress.reciteCount, color: 'purple' },
+    ].map((s, i) => {
+      const done = s.count >= REQUIRED_COUNT;
+      const pct = Math.min(100, (s.count / REQUIRED_COUNT) * 100);
+      return `<div class="flex items-center gap-1 text-xs ${done ? `text-${s.color}-500` : 'text-[var(--color-text-secondary)]'}">
+        <span>${s.label}</span>
+        <span>${Math.min(s.count, REQUIRED_COUNT)}/${REQUIRED_COUNT}</span>
+      </div>`;
+    }).join('');
+
+    const stepsContainer = document.getElementById('today-steps');
+    if (stepsContainer) stepsContainer.innerHTML = stepsHtml;
   }
 
   // Mark complete
