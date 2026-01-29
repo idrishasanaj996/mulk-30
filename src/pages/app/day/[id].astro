@@ -34,7 +34,7 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
 
         <!-- Arabic Text Card with Zoom -->
         <div id="arabic-card" class="bg-[var(--color-surface)] rounded-3xl p-8 border border-[var(--color-border)] shadow-lg overflow-hidden relative">
-          <div id="arabic-zoom-wrapper" class="arabic-zoomable overflow-y-auto" style="max-height: 280px;">
+          <div id="arabic-zoom-wrapper" class="arabic-zoomable">
             <p class="arabic arabic-xl text-center text-[var(--color-text)]" id="arabic-text">{verse.arabic}</p>
           </div>
           <!-- Zoom controls -->
@@ -50,9 +50,9 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
         </div>
 
         <!-- Hidden text card (for memorize mode) -->
-        <div id="arabic-hidden" class="hidden bg-[var(--color-surface)] rounded-3xl p-8 border border-purple-500/30 shadow-lg text-center">
+        <div id="arabic-hidden" class="hidden bg-[var(--color-surface)] rounded-3xl p-8 border border-violet-500/20 shadow-lg text-center">
           <div id="memorize-hidden" class="space-y-3">
-            <svg class="w-12 h-12 mx-auto text-purple-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>
+            <svg class="w-12 h-12 mx-auto text-violet-400/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>
             <p class="text-[var(--color-text-secondary)] text-sm">Thuaje nga memoria!</p>
           </div>
           <div id="memorize-peek" class="hidden">
@@ -66,14 +66,14 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
         <!-- Audio Progress Bar (only visible during listen) -->
         <div id="audio-bar-container" class="hidden px-2">
           <div class="w-full h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden">
-            <div id="audio-progress" class="h-full bg-blue-500 rounded-full transition-all duration-100" style="width:0%"></div>
+            <div id="audio-progress" class="h-full bg-sky-600 rounded-full transition-all duration-100" style="width:0%"></div>
           </div>
         </div>
 
         <!-- Done Panel (above buttons) -->
         <div id="panel-done" class="hidden text-center space-y-6 py-4">
           <div id="confetti-container" class="relative">
-            <div class="w-20 h-20 mx-auto rounded-full bg-green-500 flex items-center justify-center animate-bounce-in">
+            <div class="w-20 h-20 mx-auto rounded-full bg-[var(--color-primary)] flex items-center justify-center animate-bounce-in">
               <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
             </div>
           </div>
@@ -87,32 +87,32 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
         <div class="flex items-center justify-center gap-8">
           <!-- Listen -->
           <div class="flex flex-col items-center gap-2">
-            <button id="listen-btn" class="action-btn w-16 h-16 rounded-full flex items-center justify-center transition-all active:scale-90 bg-blue-500/10 border-2 border-blue-500/30 text-blue-500 hover:bg-blue-500/20" title="Dëgjo">
+            <button id="listen-btn" class="action-btn w-16 h-16 rounded-full flex items-center justify-center transition-all active:scale-90 bg-sky-600/8 border-2 border-sky-600/20 text-sky-700 hover:bg-sky-600/15" title="Dëgjo">
               <svg id="listen-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M6.5 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2.5l4-4v14l-4-4z"></path></svg>
               <svg id="pause-icon" class="w-7 h-7 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
             </button>
             <span class="text-xs font-medium tabular-nums" id="listen-counter">
-              <span id="listen-count" class="text-blue-500 font-bold">0</span><span class="text-[var(--color-text-secondary)]">/10</span>
+              <span id="listen-count" class="text-sky-700 font-bold">0</span><span class="text-[var(--color-text-secondary)]">/10</span>
             </span>
           </div>
 
           <!-- Read -->
           <div id="read-wrapper" class="flex flex-col items-center gap-2">
-            <button id="read-btn" class="action-btn w-16 h-16 rounded-full flex items-center justify-center transition-all active:scale-90 bg-emerald-500/10 border-2 border-emerald-500/30 text-emerald-500 hover:bg-emerald-500/20" title="Lexo">
+            <button id="read-btn" class="action-btn w-16 h-16 rounded-full flex items-center justify-center transition-all active:scale-90 bg-teal-600/8 border-2 border-teal-600/20 text-teal-700 hover:bg-teal-600/15" title="Lexo">
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             </button>
             <span class="text-xs font-medium tabular-nums" id="read-counter">
-              <span id="read-count" class="text-emerald-500 font-bold">0</span><span class="text-[var(--color-text-secondary)]">/10</span>
+              <span id="read-count" class="text-teal-700 font-bold">0</span><span class="text-[var(--color-text-secondary)]">/10</span>
             </span>
           </div>
 
           <!-- Recite / Memorize -->
           <div id="recite-wrapper" class="flex flex-col items-center gap-2">
-            <button id="recite-btn" class="action-btn w-16 h-16 rounded-full flex items-center justify-center transition-all active:scale-90 bg-purple-500/10 border-2 border-purple-500/30 text-purple-500 hover:bg-purple-500/20" title="Mëso përmendësh">
+            <button id="recite-btn" class="action-btn w-16 h-16 rounded-full flex items-center justify-center transition-all active:scale-90 bg-violet-500/8 border-2 border-violet-500/20 text-violet-600 hover:bg-violet-500/15" title="Mëso përmendësh">
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
             </button>
             <span class="text-xs font-medium tabular-nums" id="recite-counter">
-              <span id="recite-count" class="text-purple-500 font-bold">0</span><span class="text-[var(--color-text-secondary)]">/10</span>
+              <span id="recite-count" class="text-violet-600 font-bold">0</span><span class="text-[var(--color-text-secondary)]">/10</span>
             </span>
           </div>
         </div>
@@ -318,24 +318,24 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
         listenBtn.classList.add('step-pulse');
         setTimeout(() => listenBtn.classList.remove('step-pulse'), 600);
       }
-      listenBtn.classList.add('completed', 'bg-blue-500', 'text-white', 'border-blue-500');
-      listenBtn.classList.remove('bg-blue-500/10', 'text-blue-500', 'border-blue-500/30');
+      listenBtn.classList.add('completed', 'bg-sky-600', 'text-white', 'border-sky-600');
+      listenBtn.classList.remove('bg-sky-600/8', 'text-sky-700', 'border-sky-600/20');
     }
     if (readDone) {
       if (!readBtn.classList.contains('completed')) {
         readBtn.classList.add('step-pulse');
         setTimeout(() => readBtn.classList.remove('step-pulse'), 600);
       }
-      readBtn.classList.add('completed', 'bg-emerald-500', 'text-white', 'border-emerald-500');
-      readBtn.classList.remove('bg-emerald-500/10', 'text-emerald-500', 'border-emerald-500/30');
+      readBtn.classList.add('completed', 'bg-teal-600', 'text-white', 'border-teal-600');
+      readBtn.classList.remove('bg-teal-600/8', 'text-teal-700', 'border-teal-600/20');
     }
     if (reciteDone) {
       if (!reciteBtn.classList.contains('completed')) {
         reciteBtn.classList.add('step-pulse');
         setTimeout(() => reciteBtn.classList.remove('step-pulse'), 600);
       }
-      reciteBtn.classList.add('completed', 'bg-purple-500', 'text-white', 'border-purple-500');
-      reciteBtn.classList.remove('bg-purple-500/10', 'text-purple-500', 'border-purple-500/30');
+      reciteBtn.classList.add('completed', 'bg-violet-500', 'text-white', 'border-violet-500');
+      reciteBtn.classList.remove('bg-violet-500/8', 'text-violet-600', 'border-violet-500/20');
     }
   }
 
@@ -476,6 +476,16 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
     if (text) {
       const baseSizePx = 2.5 * 16; // 2.5rem base (arabic-xl)
       text.style.fontSize = `${baseSizePx * zoomLevel / 100}px`;
+    }
+    // Only constrain height when zoomed in
+    if (zoomWrapper) {
+      if (zoomLevel > 100) {
+        zoomWrapper.style.maxHeight = '320px';
+        zoomWrapper.style.overflowY = 'auto';
+      } else {
+        zoomWrapper.style.maxHeight = '';
+        zoomWrapper.style.overflowY = '';
+      }
     }
     if (zoomLabel) zoomLabel.textContent = `${zoomLevel}%`;
     localStorage.setItem('mulk30_zoom', String(zoomLevel));

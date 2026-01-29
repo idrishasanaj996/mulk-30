@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
-/* Custom CSS Variables for theming */
+/* Custom CSS Variables for theming — Clean & Calm */
 :root {
-  --color-primary: #1B5E20;
-  --color-primary-light: #4CAF50;
-  --color-primary-dark: #0D3311;
-  --color-accent: #FFD54F;
-  --color-background: #FAFAFA;
+  --color-primary: #2D6A4F;
+  --color-primary-light: #52B788;
+  --color-primary-dark: #1B4332;
+  --color-accent: #B7E4C7;
+  --color-background: #F8F9FA;
   --color-surface: #FFFFFF;
-  --color-text: #1A1A1A;
-  --color-text-secondary: #6B7280;
-  --color-border: #E5E7EB;
-  --color-success: #10B981;
-  --color-error: #EF4444;
+  --color-text: #2D3436;
+  --color-text-secondary: #8395A7;
+  --color-border: #E8ECF0;
+  --color-success: #52B788;
+  --color-error: #E17055;
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
@@ -21,14 +21,14 @@
 }
 
 .dark {
-  --color-primary: #4CAF50;
-  --color-primary-light: #81C784;
-  --color-primary-dark: #1B5E20;
-  --color-background: #0F0F0F;
-  --color-surface: #1A1A1A;
-  --color-text: #FAFAFA;
-  --color-text-secondary: #9CA3AF;
-  --color-border: #374151;
+  --color-primary: #52B788;
+  --color-primary-light: #74C69D;
+  --color-primary-dark: #2D6A4F;
+  --color-background: #111111;
+  --color-surface: #1C1C1E;
+  --color-text: #F0F0F0;
+  --color-text-secondary: #8E8E93;
+  --color-border: #2C2C2E;
 }
 
 /* Base styles */
@@ -120,10 +120,11 @@ body {
   background-color: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-border);
+  background-color: var(--color-background);
 }
 
 /* Card component */
