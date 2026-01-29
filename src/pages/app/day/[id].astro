@@ -14,7 +14,12 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
 ---
 
 <Layout title={`Dita ${dayIndex}`}>
-  <div class="min-h-screen flex flex-col bg-[var(--color-background)]">
+  <div id="page-root" class="min-h-screen flex flex-col bg-[var(--color-background)]">
+    <!-- Focus Mode Close Button -->
+    <button id="focus-close" class="hidden fixed z-50 w-10 h-10 rounded-full bg-[var(--color-text)]/10 flex items-center justify-center text-[var(--color-text-secondary)] hover:bg-[var(--color-text)]/20 transition-all" style="top: calc(env(safe-area-inset-top, 0px) + 12px); right: 16px;">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+
     <!-- Header -->
     <header class="sticky top-0 z-10 bg-[var(--color-surface)]/80 backdrop-blur-lg border-b border-[var(--color-border)] px-4 py-3 safe-top">
       <div class="max-w-lg mx-auto flex items-center justify-between">
@@ -25,7 +30,9 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
           <h1 class="text-lg font-semibold text-[var(--color-text)] tracking-tight">Dita {dayIndex}</h1>
           <p class="text-xs text-[var(--color-text-secondary)]">Ajeti {verse.ayahNumber} • {SURAH_INFO.name}</p>
         </div>
-        <div class="w-10 h-10"></div>
+        <button id="focus-btn" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform shadow-sm" title="Focus Mode">
+          <svg class="w-5 h-5 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+        </button>
       </div>
     </header>
 
@@ -217,6 +224,74 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
   .action-btn { position: relative; }
 
   /* Locked state */
+  /* Focus Mode */
+  .focus-mode header,
+  .focus-mode nav,
+  .focus-mode #translation-toggle,
+  .focus-mode #translation-content,
+  .focus-mode .flex.gap-4.pt-2,
+  .focus-mode #transliteration,
+  .focus-mode #audio-bar-container {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    transition: opacity 0.3s ease;
+  }
+  .focus-mode main {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+  .focus-mode main > .max-w-lg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    width: 100%;
+    gap: 2rem;
+  }
+  .focus-mode #arabic-card {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    transform: scale(1.05);
+    transition: transform 0.4s ease, box-shadow 0.3s ease, border 0.3s ease;
+  }
+  .focus-mode #arabic-card .flex.items-center.justify-center.gap-2 {
+    display: none !important;
+  }
+  .focus-mode #arabic-hidden {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  .focus-mode .flex.items-center.justify-center.gap-8 .action-btn {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+  .focus-mode .flex.items-center.justify-center.gap-8 .action-btn svg {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  .focus-mode #panel-done {
+    order: -1;
+  }
+  #page-root {
+    transition: all 0.3s ease;
+  }
+  #focus-close {
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+  }
+  #focus-close.visible {
+    opacity: 1;
+  }
+
   .action-btn.locked {
     opacity: 0.35 !important;
     pointer-events: none !important;
@@ -551,6 +626,50 @@ const nextDay = dayIndex < 30 ? dayIndex + 1 : null;
       applyZoom();
     }
   }, { passive: true });
+
+  // === Focus Mode ===
+  let focusMode = sessionStorage.getItem('mulk30_focus') === '1';
+  const pageRoot = document.getElementById('page-root')!;
+  const focusCloseBtn = document.getElementById('focus-close')!;
+
+  function enterFocusMode() {
+    focusMode = true;
+    sessionStorage.setItem('mulk30_focus', '1');
+    pageRoot.classList.add('focus-mode');
+    focusCloseBtn.classList.remove('hidden');
+    requestAnimationFrame(() => focusCloseBtn.classList.add('visible'));
+    // Try fullscreen
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+  }
+
+  function exitFocusMode() {
+    focusMode = false;
+    sessionStorage.removeItem('mulk30_focus');
+    pageRoot.classList.remove('focus-mode');
+    focusCloseBtn.classList.remove('visible');
+    setTimeout(() => focusCloseBtn.classList.add('hidden'), 300);
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
+  }
+
+  document.getElementById('focus-btn')?.addEventListener('click', enterFocusMode);
+  focusCloseBtn.addEventListener('click', exitFocusMode);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && focusMode) exitFocusMode();
+  });
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement && focusMode) {
+      exitFocusMode();
+    }
+  });
+
+  // Restore focus mode if navigating between days
+  if (focusMode) enterFocusMode();
 
   render();
 </script>
