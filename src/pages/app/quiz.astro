@@ -108,12 +108,12 @@ import { MULK_VERSES } from '../../data/mulk-verses';
               <div class="flex items-center gap-4">
                 <!-- Streak -->
                 <div class="flex items-center gap-1.5" id="streak-container">
-                  <span class="text-lg">🔥</span>
+                  <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-7-2.4-7-7 0-3.1 2.7-6.4 5-9.1V2l2.5 2L15 2v4.9c2.3 2.7 5 6 5 9.1 0 4.6-3.4 7-8 7z"/></svg>
                   <span id="streak-count" class="text-sm font-bold text-orange-500">0</span>
                 </div>
                 <!-- Score -->
                 <div class="flex items-center gap-1.5">
-                  <span class="text-lg">✓</span>
+                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                   <span id="score-count" class="text-sm font-bold text-[var(--color-primary)]">0</span>
                 </div>
               </div>
@@ -161,10 +161,19 @@ import { MULK_VERSES } from '../../data/mulk-verses';
             <!-- Confetti Container -->
             <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
             
-            <!-- Result Emoji -->
+            <!-- Result Icon -->
             <div class="relative">
-              <div id="result-emoji-bg" class="w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in">
-                <span id="result-emoji" class="text-6xl">🎉</span>
+              <div id="result-icon-bg" class="w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-[var(--color-accent)]/20">
+                <!-- Trophy (100%) -->
+                <svg id="icon-trophy" class="w-16 h-16 text-yellow-500 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 4.24 7 7h-2c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c0 2.76 2.24 5 5 5s5-2.24 5-5h2c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2h-2c0-2.76-2.24-5-5-5zM5 11V9h2v2H5zm14 0h-2V9h2v2zm-7 9c-1.1 0-2-.9-2-2h4c0 1.1-.9 2-2 2z"/></svg>
+                <!-- Star (>=90%) -->
+                <svg id="icon-star" class="w-16 h-16 text-[var(--color-primary)] hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <!-- Checkmark (>=70%) -->
+                <svg id="icon-check" class="w-16 h-16 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <!-- Arm/Strength (>=50%) -->
+                <svg id="icon-strength" class="w-16 h-16 text-orange-500 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <!-- Book (<50%) -->
+                <svg id="icon-book" class="w-16 h-16 text-[var(--color-text-secondary)] hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
               </div>
             </div>
             
@@ -507,7 +516,7 @@ import { MULK_VERSES } from '../../data/mulk-verses';
       streakEl.classList.add('pulse-grow');
       setTimeout(() => streakEl.classList.remove('pulse-grow'), 300);
       
-      showFeedback(true, 'Saktë! 🎉');
+      showFeedback(true, 'Saktë!');
     } else {
       streak = 0;
       btn.classList.add('wrong');
@@ -563,32 +572,38 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     document.getElementById('result-streak')!.textContent = String(maxStreak);
     document.getElementById('result-time')!.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     
-    // Emoji and message based on score
-    const emojiEl = document.getElementById('result-emoji')!;
-    const emojiBgEl = document.getElementById('result-emoji-bg')!;
+    // Icon and message based on score
+    const iconBgEl = document.getElementById('result-icon-bg')!;
     const msgEl = document.getElementById('result-message')!;
     
+    // Hide all icons first
+    document.getElementById('icon-trophy')!.classList.add('hidden');
+    document.getElementById('icon-star')!.classList.add('hidden');
+    document.getElementById('icon-check')!.classList.add('hidden');
+    document.getElementById('icon-strength')!.classList.add('hidden');
+    document.getElementById('icon-book')!.classList.add('hidden');
+    
     if (pct === 100) {
-      emojiEl.textContent = '🏆';
-      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-yellow-100';
+      document.getElementById('icon-trophy')!.classList.remove('hidden');
+      iconBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-yellow-100';
       msgEl.textContent = 'Perfekt! E ke mësuar plotësisht!';
       createConfetti();
     } else if (pct >= 80) {
-      emojiEl.textContent = '🎉';
-      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-[var(--color-accent)]/20';
+      document.getElementById('icon-star')!.classList.remove('hidden');
+      iconBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-[var(--color-accent)]/20';
       msgEl.textContent = 'Shkëlqyeshëm! Je shumë afër përsosmërisë!';
       createConfetti();
     } else if (pct >= 60) {
-      emojiEl.textContent = '👍';
-      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-[var(--color-accent)]/20';
+      document.getElementById('icon-check')!.classList.remove('hidden');
+      iconBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-[var(--color-accent)]/20';
       msgEl.textContent = 'Mirë! Vazhdo të ushtroesh!';
     } else if (pct >= 40) {
-      emojiEl.textContent = '💪';
-      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-orange-100';
+      document.getElementById('icon-strength')!.classList.remove('hidden');
+      iconBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-orange-100';
       msgEl.textContent = 'Mos u dorëzo! Ushtrohu edhe pak!';
     } else {
-      emojiEl.textContent = '📖';
-      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-gray-100';
+      document.getElementById('icon-book')!.classList.remove('hidden');
+      iconBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-gray-100';
       msgEl.textContent = 'Dëgjo surenë dhe provo përsëri!';
     }
     

@@ -795,7 +795,7 @@ const arabicWords = verse.arabic.split(/\s+/);
     });
     if (selected === correct) {
       quizScore++;
-      feedbackEl.textContent = 'Saktë! 🎉';
+      feedbackEl.textContent = 'Saktë!';
       feedbackEl.className = 'mt-3 p-2 rounded-xl text-center text-sm font-medium bg-[var(--color-accent)]/20 text-[var(--color-text)]';
     } else {
       feedbackEl.textContent = `Gabim. Përgjigja: ${correct}`;
