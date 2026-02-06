@@ -581,6 +581,8 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
   const speeds = [0.75, 1, 1.25, 1.5, 2];
   let speedIndex = 1;
   let isPeeking = false;
+  let readAudioPlaying = false;
+  let reciteAudioPlaying = false;
 
   // Determine initial step based on progress
   function determineCurrentStep(): 'listen' | 'read' | 'recite' | 'done' {
@@ -880,7 +882,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
   });
   
   // Read audio button - play audio while reading
-  let readAudioPlaying = false;
+  // Note: readAudioPlaying is declared at script top level for handleAudioEnded access
   document.getElementById('read-audio-btn')?.addEventListener('click', () => {
     if (readAudioPlaying) {
       stopAudio();
@@ -899,13 +901,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
         document.getElementById('read-play-icon')?.classList.remove('hidden');
         document.getElementById('read-pause-icon')?.classList.add('hidden');
       });
-      // Stop audio when it ends (don't auto-count in read mode)
-      audio.onended = () => {
-        readAudioPlaying = false;
-        document.getElementById('read-play-icon')?.classList.remove('hidden');
-        document.getElementById('read-pause-icon')?.classList.add('hidden');
-        clearHighlights();
-      };
+      // Audio end is handled by handleAudioEnded()
     }
   });
   
@@ -942,7 +938,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
   }
   
   // Recite audio button - play audio to check recitation
-  let reciteAudioPlaying = false;
+  // Note: reciteAudioPlaying is declared at script top level for handleAudioEnded access
   document.getElementById('recite-audio-btn')?.addEventListener('click', () => {
     if (reciteAudioPlaying) {
       stopAudio();
@@ -961,13 +957,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
         document.getElementById('recite-play-icon')?.classList.remove('hidden');
         document.getElementById('recite-pause-icon')?.classList.add('hidden');
       });
-      // Stop audio when it ends (don't auto-count in recite mode)
-      audio.onended = () => {
-        reciteAudioPlaying = false;
-        document.getElementById('recite-play-icon')?.classList.remove('hidden');
-        document.getElementById('recite-pause-icon')?.classList.add('hidden');
-        clearHighlights();
-      };
+      // Audio end is handled by handleAudioEnded()
     }
   });
   

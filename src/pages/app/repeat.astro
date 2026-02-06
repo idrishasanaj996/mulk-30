@@ -271,15 +271,7 @@ import { MULK_VERSES } from '../../data/mulk-verses';
 </Layout>
 
 <style>
-  /* Card hover enhancement (base styles in global.css) */
-  .card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(0, 80, 134, 0.12), 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
+  /* Card styles now fully in global.css */
 
   /* Selected preset */
   .preset-btn.selected {
@@ -681,6 +673,22 @@ import { MULK_VERSES } from '../../data/mulk-verses';
         arabicEl.classList.remove('hidden');
       }
       if (toggleText) toggleText.textContent = 'Shfaq përkthimin';
+    }
+  });
+  
+  // Keyboard controls
+  document.addEventListener('keydown', (e) => {
+    // Only handle if player is open
+    if (playerOverlay.classList.contains('hidden')) return;
+    
+    if (e.key === 'Escape') {
+      closePlayer();
+    } else if (e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault(); // Prevent page scroll
+      if (!audio) return;
+      if (isPlaying) { audio.pause(); isPlaying = false; }
+      else { audio.play(); isPlaying = true; }
+      updatePlayPauseIcon();
     }
   });
   
