@@ -266,18 +266,27 @@ button, a, .nav-item, .btn, input, select, textarea {
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(188, 108, 37, 0.3), 0 2px 4px rgba(188, 108, 37, 0.2);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-dark);
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  box-shadow: 0 6px 16px rgba(188, 108, 37, 0.4), 0 3px 6px rgba(188, 108, 37, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(188, 108, 37, 0.3);
 }
 
 .btn-primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
@@ -315,40 +324,50 @@ button, a, .nav-item, .btn, input, select, textarea {
   transform: scale(0.95);
 }
 
-/* Step-colored Buttons — Olive/Copper/Forest */
+/* Step-colored Buttons — Olive/Copper/Forest with depth */
 .btn-listen {
-  background-color: var(--color-step-listen);
+  background: linear-gradient(135deg, #7A8450 0%, var(--color-step-listen) 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(96, 108, 56, 0.3);
 }
 
 .btn-listen:hover {
-  background-color: #4A5428; /* Darker Olive */
+  background: linear-gradient(135deg, var(--color-step-listen) 0%, #4A5428 100%);
+  box-shadow: 0 6px 16px rgba(96, 108, 56, 0.4);
+  transform: translateY(-1px);
 }
 
 .btn-read {
-  background-color: var(--color-step-read);
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-step-read) 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(188, 108, 37, 0.3);
 }
 
 .btn-read:hover {
-  background-color: #8B4513; /* Darker Copper */
+  background: linear-gradient(135deg, var(--color-step-read) 0%, #8B4513 100%);
+  box-shadow: 0 6px 16px rgba(188, 108, 37, 0.4);
+  transform: translateY(-1px);
 }
 
 .btn-recite {
-  background-color: var(--color-step-recite);
+  background: linear-gradient(135deg, #3A4528 0%, var(--color-step-recite) 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(40, 54, 24, 0.3);
 }
 
 .btn-recite:hover {
-  background-color: #1A1F12; /* Darker Forest */
+  background: linear-gradient(135deg, var(--color-step-recite) 0%, #1A1F12 100%);
+  box-shadow: 0 6px 16px rgba(40, 54, 24, 0.4);
+  transform: translateY(-1px);
 }
 
-/* Card component — FLAT DESIGN */
+/* Card component — ELEVATED DESIGN with subtle shadows */
 .card {
   background-color: var(--color-surface);
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border);
   padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(40, 54, 24, 0.08), 0 1px 2px rgba(40, 54, 24, 0.04);
 }
 
 .card-interactive {
@@ -357,6 +376,7 @@ button, a, .nav-item, .btn, input, select, textarea {
   border: 1px solid var(--color-border);
   padding: 1.5rem;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(40, 54, 24, 0.08), 0 1px 2px rgba(40, 54, 24, 0.04);
   transition: border-color 0.15s ease;
 }
 
