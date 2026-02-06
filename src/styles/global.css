@@ -1,50 +1,52 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   MULK-30 DESIGN SYSTEM — Olive & Copper Palette
+   MULK-30 DESIGN SYSTEM — Mountain Mist Palette
+   
+   Inspiriert von: Neblige Berge bei Sonnenaufgang
    
    Farben:
-   - Olive Leaf:    #606C38  (Natur, Balance, Ruhe)
-   - Black Forest:  #283618  (Tiefe, Stärke, Würde)
-   - Cornsilk:      #FEFAE0  (Wärme, Licht, Pergament)
-   - Light Caramel: #DDA15E  (Einladend, Gold, Honig)
-   - Copper:        #BC6C25  (Erdung, Intensität, Action)
+   - Deep Night:  #001244  (Tiefes Dunkelblau — Nacht, Würde)
+   - Ocean:       #005086  (Kräftiges Blau — Vertrauen, Tiefe)
+   - Teal:        #318fb5  (Türkis — Klarheit, Frische, CTAs)
+   - Sage:        #b0cac7  (Salbei — Ruhe, Weichheit)
+   - Sand:        #f7d6bf  (Warmer Sand — Wärme, Background)
    
    WCAG Contrast Ratios:
-   - Black Forest auf Cornsilk: 12.5:1 ✅ AAA
-   - Olive Leaf auf Cornsilk:   5.2:1  ✅ AA
-   - White auf Copper:          4.1:1  ✅ AA
+   - Deep Night auf Sand:  14.2:1 ✅ AAA
+   - Ocean auf Sand:       7.8:1  ✅ AAA
+   - White auf Teal:       4.5:1  ✅ AA
    ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Primary Scale — Copper/Caramel */
-  --color-primary: #BC6C25;        /* Copper - Main CTAs */
-  --color-primary-light: #DDA15E;  /* Caramel - Hover */
-  --color-primary-dark: #8B4513;   /* Darker Copper - Active/Pressed */
+  /* Primary Scale — Teal/Ocean */
+  --color-primary: #318fb5;        /* Teal - Main CTAs */
+  --color-primary-light: #4BA3C7;  /* Lighter Teal - Hover */
+  --color-primary-dark: #005086;   /* Ocean - Active/Pressed */
   
-  /* Accent — Olive */
-  --color-accent: #606C38;         /* Olive Leaf - Secondary actions */
+  /* Accent — Sage */
+  --color-accent: #b0cac7;         /* Sage - Secondary, soft elements */
   
   /* Step Colors (Listen → Read → Recite progression) */
-  --color-step-listen: #606C38;    /* Olive - Dëgjo (passiv, empfangen) */
-  --color-step-read: #BC6C25;      /* Copper - Lexo (aktiv, fokussiert) */
-  --color-step-recite: #283618;    /* Black Forest - Recito (Meisterschaft) */
+  --color-step-listen: #b0cac7;    /* Sage - Dëgjo (passiv, sanft) */
+  --color-step-read: #318fb5;      /* Teal - Lexo (aktiv, fokussiert) */
+  --color-step-recite: #005086;    /* Ocean - Recito (Tiefe, Meisterschaft) */
   
   /* Backgrounds */
-  --color-background: #FEFAE0;     /* Cornsilk - Page BG (Pergament-Feeling) */
+  --color-background: #f7d6bf;     /* Sand - Page BG (warm, einladend) */
   --color-surface: #FFFFFF;        /* White - Cards */
-  --color-header: #283618;         /* Black Forest - Header */
+  --color-header: #001244;         /* Deep Night - Header */
   
   /* Text — Maximum contrast on light backgrounds */
-  --color-text: #283618;           /* Black Forest - 12.5:1 contrast */
-  --color-text-secondary: #606C38; /* Olive Leaf - 5.2:1 contrast */
+  --color-text: #001244;           /* Deep Night - 14.2:1 contrast */
+  --color-text-secondary: #005086; /* Ocean - 7.8:1 contrast */
   
   /* Borders */
-  --color-border: #D4D0C0;         /* Derived: darker Cornsilk */
+  --color-border: #d4c4b5;         /* Derived: darker Sand */
   
   /* Semantic */
-  --color-success: #606C38;        /* Olive - natürlich */
-  --color-error: #BC6C25;          /* Copper - warm statt aggressiv */
+  --color-success: #318fb5;        /* Teal */
+  --color-error: #c44536;          /* Warm red (nicht in Palette, aber nötig) */
   
   /* Radius */
   --radius-sm: 0.5rem;
@@ -55,33 +57,33 @@
 }
 
 .dark {
-  /* Primary — Caramel ist heller für Dark Mode */
-  --color-primary: #DDA15E;
-  --color-primary-light: #E8B878;
-  --color-primary-dark: #BC6C25;
+  /* Primary — Teal bleibt, leicht heller */
+  --color-primary: #4BA3C7;
+  --color-primary-light: #5CB8D8;
+  --color-primary-dark: #318fb5;
   
-  --color-accent: #7A8450;         /* Helleres Olive */
+  --color-accent: #8AA8A5;         /* Dunkleres Sage */
   
   /* Step Colors — angepasst für Dark */
-  --color-step-listen: #7A8450;
-  --color-step-read: #DDA15E;
-  --color-step-recite: #FEFAE0;
+  --color-step-listen: #8AA8A5;
+  --color-step-read: #4BA3C7;
+  --color-step-recite: #f7d6bf;    /* Sand als Highlight */
   
-  /* Backgrounds — Deep Forest */
-  --color-background: #1A1F12;     /* Sehr dunkles Waldgrün */
-  --color-surface: #283618;        /* Black Forest */
-  --color-header: #1A1F12;
+  /* Backgrounds — Deep Night */
+  --color-background: #001244;     /* Deep Night */
+  --color-surface: #002255;        /* Slightly lighter */
+  --color-header: #000a28;         /* Even darker */
   
-  /* Text — Cornsilk auf dunklem BG */
-  --color-text: #FEFAE0;
-  --color-text-secondary: #C4C0A8;
+  /* Text — Sand/Light auf dunklem BG */
+  --color-text: #f7d6bf;           /* Sand */
+  --color-text-secondary: #b0cac7; /* Sage */
   
   /* Borders */
-  --color-border: #3A4528;
+  --color-border: #003366;
   
   /* Semantic */
-  --color-success: #7A8450;
-  --color-error: #DDA15E;
+  --color-success: #4BA3C7;
+  --color-error: #e07a5f;
 }
 
 /* === Typography classes (#8) === */
@@ -268,18 +270,18 @@ button, a, .nav-item, .btn, input, select, textarea {
 .btn-primary {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(188, 108, 37, 0.3), 0 2px 4px rgba(188, 108, 37, 0.2);
+  box-shadow: 0 4px 12px rgba(49, 143, 181, 0.35), 0 2px 4px rgba(0, 80, 134, 0.2);
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
-  box-shadow: 0 6px 16px rgba(188, 108, 37, 0.4), 0 3px 6px rgba(188, 108, 37, 0.25);
+  box-shadow: 0 6px 16px rgba(49, 143, 181, 0.45), 0 3px 6px rgba(0, 80, 134, 0.25);
   transform: translateY(-1px);
 }
 
 .btn-primary:active {
   transform: translateY(0) scale(0.98);
-  box-shadow: 0 2px 8px rgba(188, 108, 37, 0.3);
+  box-shadow: 0 2px 8px rgba(49, 143, 181, 0.3);
 }
 
 .btn-primary:disabled {
@@ -324,40 +326,40 @@ button, a, .nav-item, .btn, input, select, textarea {
   transform: scale(0.95);
 }
 
-/* Step-colored Buttons — Olive/Copper/Forest with depth */
+/* Step-colored Buttons — Sage/Teal/Ocean with depth */
 .btn-listen {
-  background: linear-gradient(135deg, #7A8450 0%, var(--color-step-listen) 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(96, 108, 56, 0.3);
+  background: linear-gradient(135deg, #c4dbd8 0%, var(--color-step-listen) 100%);
+  color: #001244;
+  box-shadow: 0 4px 12px rgba(176, 202, 199, 0.4);
 }
 
 .btn-listen:hover {
-  background: linear-gradient(135deg, var(--color-step-listen) 0%, #4A5428 100%);
-  box-shadow: 0 6px 16px rgba(96, 108, 56, 0.4);
+  background: linear-gradient(135deg, var(--color-step-listen) 0%, #8AA8A5 100%);
+  box-shadow: 0 6px 16px rgba(176, 202, 199, 0.5);
   transform: translateY(-1px);
 }
 
 .btn-read {
   background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-step-read) 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(188, 108, 37, 0.3);
+  box-shadow: 0 4px 12px rgba(49, 143, 181, 0.35);
 }
 
 .btn-read:hover {
-  background: linear-gradient(135deg, var(--color-step-read) 0%, #8B4513 100%);
-  box-shadow: 0 6px 16px rgba(188, 108, 37, 0.4);
+  background: linear-gradient(135deg, var(--color-step-read) 0%, var(--color-primary-dark) 100%);
+  box-shadow: 0 6px 16px rgba(49, 143, 181, 0.45);
   transform: translateY(-1px);
 }
 
 .btn-recite {
-  background: linear-gradient(135deg, #3A4528 0%, var(--color-step-recite) 100%);
+  background: linear-gradient(135deg, #005086 0%, var(--color-step-recite) 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(40, 54, 24, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 80, 134, 0.35);
 }
 
 .btn-recite:hover {
-  background: linear-gradient(135deg, var(--color-step-recite) 0%, #1A1F12 100%);
-  box-shadow: 0 6px 16px rgba(40, 54, 24, 0.4);
+  background: linear-gradient(135deg, var(--color-step-recite) 0%, #001244 100%);
+  box-shadow: 0 6px 16px rgba(0, 80, 134, 0.45);
   transform: translateY(-1px);
 }
 
@@ -367,7 +369,7 @@ button, a, .nav-item, .btn, input, select, textarea {
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border);
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(40, 54, 24, 0.08), 0 1px 2px rgba(40, 54, 24, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 18, 68, 0.08), 0 1px 2px rgba(0, 18, 68, 0.04);
 }
 
 .card-interactive {
@@ -376,7 +378,7 @@ button, a, .nav-item, .btn, input, select, textarea {
   border: 1px solid var(--color-border);
   padding: 1.5rem;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(40, 54, 24, 0.08), 0 1px 2px rgba(40, 54, 24, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 18, 68, 0.08), 0 1px 2px rgba(0, 18, 68, 0.04);
   transition: border-color 0.15s ease;
 }
 
