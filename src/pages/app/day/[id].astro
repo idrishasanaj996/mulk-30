@@ -769,7 +769,6 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
         }
       });
       audioElement.addEventListener('ended', () => {
-        stopAudio();
         if (currentStep === 'listen') {
           progress = incrementStep(dayIndex, 'listen');
           bumpCount(document.getElementById('listen-count'));
@@ -777,8 +776,21 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
           updateStepIndicators();
           
           if (progress.listenCount >= REQUIRED_COUNT) {
+            // Done with listen step - stop and move to read
+            stopAudio();
             switchMode('read');
+          } else {
+            // Auto-continue: restart audio after short delay
+            clearHighlights();
+            setTimeout(() => {
+              if (audioPlaying && audioElement) {
+                audioElement.currentTime = 0;
+                audioElement.play().catch(() => stopAudio());
+              }
+            }, 300);
           }
+        } else {
+          stopAudio();
         }
       });
     }
