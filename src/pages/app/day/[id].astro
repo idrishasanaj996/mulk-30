@@ -770,33 +770,54 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
           updateHighlight(audioElement.currentTime, audioElement.duration);
         }
       });
-      audioElement.addEventListener('ended', () => {
-        if (currentStep === 'listen') {
-          progress = incrementStep(dayIndex, 'listen');
-          bumpCount(document.getElementById('listen-count'));
-          updateProgressBars();
-          updateStepIndicators();
-          
-          if (progress.listenCount >= REQUIRED_COUNT) {
-            // Done with listen step - stop and move to read
-            stopAudio();
-            switchMode('read');
-          } else {
-            // Auto-continue: restart audio after short delay
-            clearHighlights();
-            setTimeout(() => {
-              if (audioPlaying && audioElement) {
-                audioElement.currentTime = 0;
-                audioElement.play().catch(() => stopAudio());
-              }
-            }, 300);
-          }
-        } else {
-          stopAudio();
-        }
-      });
+      audioElement.addEventListener('ended', handleAudioEnded);
     }
     return audioElement;
+  }
+  
+  function handleAudioEnded() {
+    if (currentStep === 'listen' && audioPlaying) {
+      progress = incrementStep(dayIndex, 'listen');
+      bumpCount(document.getElementById('listen-count'));
+      updateProgressBars();
+      updateStepIndicators();
+      
+      if (progress.listenCount >= REQUIRED_COUNT) {
+        // Done with listen step - stop and move to read
+        stopAudio();
+        switchMode('read');
+      } else {
+        // Auto-continue: restart audio after short delay
+        clearHighlights();
+        setTimeout(() => {
+          if (audioPlaying && audioElement) {
+            audioElement.currentTime = 0;
+            audioElement.play().catch(() => stopAudio());
+          }
+        }, 300);
+      }
+    } else if (currentStep === 'read' && readAudioPlaying) {
+      // Read mode audio ended
+      readAudioPlaying = false;
+      document.getElementById('read-play-icon')?.classList.remove('hidden');
+      document.getElementById('read-pause-icon')?.classList.add('hidden');
+      clearHighlights();
+      resetAudioProgressBar();
+    } else if (currentStep === 'recite' && reciteAudioPlaying) {
+      // Recite mode audio ended
+      reciteAudioPlaying = false;
+      document.getElementById('recite-play-icon')?.classList.remove('hidden');
+      document.getElementById('recite-pause-icon')?.classList.add('hidden');
+      clearHighlights();
+      resetAudioProgressBar();
+    } else {
+      stopAudio();
+    }
+  }
+  
+  function resetAudioProgressBar() {
+    const bar = document.getElementById('audio-progress');
+    if (bar) bar.style.width = '0%';
   }
 
   function startAudio() {
