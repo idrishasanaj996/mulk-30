@@ -193,7 +193,7 @@ button, a, .nav-item, .btn, input, select, textarea {
   font-weight: 500;
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
 }
 
 .btn:active {
@@ -349,7 +349,7 @@ button, a, .nav-item, .btn, input, select, textarea {
   padding: 1.5rem;
   max-width: 24rem;
   width: 100%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   animation: modal-in 0.2s ease;
 }
 
