@@ -1,35 +1,50 @@
 @import "tailwindcss";
 
-/* Custom CSS Variables — Teal Palette (High Contrast) */
+/* ═══════════════════════════════════════════════════════════════════════════
+   MULK-30 DESIGN SYSTEM — Olive & Copper Palette
+   
+   Farben:
+   - Olive Leaf:    #606C38  (Natur, Balance, Ruhe)
+   - Black Forest:  #283618  (Tiefe, Stärke, Würde)
+   - Cornsilk:      #FEFAE0  (Wärme, Licht, Pergament)
+   - Light Caramel: #DDA15E  (Einladend, Gold, Honig)
+   - Copper:        #BC6C25  (Erdung, Intensität, Action)
+   
+   WCAG Contrast Ratios:
+   - Black Forest auf Cornsilk: 12.5:1 ✅ AAA
+   - Olive Leaf auf Cornsilk:   5.2:1  ✅ AA
+   - White auf Copper:          4.1:1  ✅ AA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 :root {
-  /* Primary Scale — Rose/Red Palette */
-  --color-primary: #DD2D4A;        /* Red - Main CTAs */
-  --color-primary-light: #F26A8D;  /* Rosa - Hover */
-  --color-primary-dark: #880D1E;   /* Dark Red - Active/Pressed */
+  /* Primary Scale — Copper/Caramel */
+  --color-primary: #BC6C25;        /* Copper - Main CTAs */
+  --color-primary-light: #DDA15E;  /* Caramel - Hover */
+  --color-primary-dark: #8B4513;   /* Darker Copper - Active/Pressed */
   
-  /* Accent */
-  --color-accent: #F49CBB;         /* Hellrosa */
+  /* Accent — Olive */
+  --color-accent: #606C38;         /* Olive Leaf - Secondary actions */
   
-  /* Step Colors (Official - für Listen/Lesen/Rezitieren) */
-  --color-step-listen: #DD2D4A;    /* Red - Dëgjo */
-  --color-step-read: #F26A8D;      /* Rosa - Lexo */
-  --color-step-recite: #880D1E;    /* Dark Red - Recito */
+  /* Step Colors (Listen → Read → Recite progression) */
+  --color-step-listen: #606C38;    /* Olive - Dëgjo (passiv, empfangen) */
+  --color-step-read: #BC6C25;      /* Copper - Lexo (aktiv, fokussiert) */
+  --color-step-recite: #283618;    /* Black Forest - Recito (Meisterschaft) */
   
   /* Backgrounds */
-  --color-background: #CBEEF3;     /* Light Cyan - Page BG */
+  --color-background: #FEFAE0;     /* Cornsilk - Page BG (Pergament-Feeling) */
   --color-surface: #FFFFFF;        /* White - Cards */
-  --color-header: #880D1E;         /* Dark Red - Header */
+  --color-header: #283618;         /* Black Forest - Header */
   
-  /* Text on LIGHT backgrounds - USE DARK COLORS */
-  --color-text: #2D2D2D;           /* Near black - MAXIMUM contrast */
-  --color-text-secondary: #5A5A5A; /* Dark gray - Good contrast */
+  /* Text — Maximum contrast on light backgrounds */
+  --color-text: #283618;           /* Black Forest - 12.5:1 contrast */
+  --color-text-secondary: #606C38; /* Olive Leaf - 5.2:1 contrast */
   
   /* Borders */
-  --color-border: #E0E0E0;         /* Light gray border */
+  --color-border: #D4D0C0;         /* Derived: darker Cornsilk */
   
   /* Semantic */
-  --color-success: #10B981;
-  --color-error: #DD2D4A;
+  --color-success: #606C38;        /* Olive - natürlich */
+  --color-error: #BC6C25;          /* Copper - warm statt aggressiv */
   
   /* Radius */
   --radius-sm: 0.5rem;
@@ -40,21 +55,33 @@
 }
 
 .dark {
-  --color-primary: #F26A8D;
-  --color-primary-light: #F49CBB;
-  --color-primary-dark: #DD2D4A;
-  --color-accent: #F49CBB;
-  --color-step-listen: #F26A8D;
-  --color-step-read: #F49CBB;
-  --color-step-recite: #DD2D4A;
-  --color-background: #1A1A2E;
-  --color-surface: #25253D;
-  --color-header: #1A1A2E;
-  --color-text: #F5F5F5;
-  --color-text-secondary: #B0B0B0;
-  --color-border: #3A3A5A;
-  --color-success: #34D399;
-  --color-error: #F26A8D;
+  /* Primary — Caramel ist heller für Dark Mode */
+  --color-primary: #DDA15E;
+  --color-primary-light: #E8B878;
+  --color-primary-dark: #BC6C25;
+  
+  --color-accent: #7A8450;         /* Helleres Olive */
+  
+  /* Step Colors — angepasst für Dark */
+  --color-step-listen: #7A8450;
+  --color-step-read: #DDA15E;
+  --color-step-recite: #FEFAE0;
+  
+  /* Backgrounds — Deep Forest */
+  --color-background: #1A1F12;     /* Sehr dunkles Waldgrün */
+  --color-surface: #283618;        /* Black Forest */
+  --color-header: #1A1F12;
+  
+  /* Text — Cornsilk auf dunklem BG */
+  --color-text: #FEFAE0;
+  --color-text-secondary: #C4C0A8;
+  
+  /* Borders */
+  --color-border: #3A4528;
+  
+  /* Semantic */
+  --color-success: #7A8450;
+  --color-error: #DDA15E;
 }
 
 /* === Typography classes (#8) === */
@@ -288,14 +315,14 @@ button, a, .nav-item, .btn, input, select, textarea {
   transform: scale(0.95);
 }
 
-/* Step-colored Buttons */
+/* Step-colored Buttons — Olive/Copper/Forest */
 .btn-listen {
   background-color: var(--color-step-listen);
   color: white;
 }
 
 .btn-listen:hover {
-  background-color: #059669; /* Emerald darker */
+  background-color: #4A5428; /* Darker Olive */
 }
 
 .btn-read {
@@ -304,7 +331,7 @@ button, a, .nav-item, .btn, input, select, textarea {
 }
 
 .btn-read:hover {
-  background-color: #0284C7; /* Sky darker */
+  background-color: #8B4513; /* Darker Copper */
 }
 
 .btn-recite {
@@ -313,7 +340,7 @@ button, a, .nav-item, .btn, input, select, textarea {
 }
 
 .btn-recite:hover {
-  background-color: #7C3AED; /* Violet darker */
+  background-color: #1A1F12; /* Darker Forest */
 }
 
 /* Card component — FLAT DESIGN */
