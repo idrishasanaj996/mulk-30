@@ -28,7 +28,7 @@
   --color-accent: #b0cac7;         /* Sage - Secondary, soft elements */
   
   /* Step Colors (Listen → Read → Recite progression) */
-  --color-step-listen: #b0cac7;    /* Sage - Dëgjo (passiv, sanft) */
+  --color-step-listen: #318fb5;    /* Teal - Dëgjo (aktiv, klar) */
   --color-step-read: #318fb5;      /* Teal - Lexo (aktiv, fokussiert) */
   --color-step-recite: #005086;    /* Ocean - Recito (Tiefe, Meisterschaft) */
   
@@ -329,13 +329,13 @@ button, a, .nav-item, .btn, input, select, textarea {
 
 /* Step-colored Buttons — Sage/Teal/Ocean with depth */
 .btn-listen {
-  background: linear-gradient(135deg, #c4dbd8 0%, var(--color-step-listen) 100%);
+  background: linear-gradient(135deg, #4BA3C7 0%, var(--color-step-listen) 100%);
   color: #001244;
   box-shadow: 0 4px 12px rgba(176, 202, 199, 0.4);
 }
 
 .btn-listen:hover {
-  background: linear-gradient(135deg, var(--color-step-listen) 0%, #8AA8A5 100%);
+  background: linear-gradient(135deg, var(--color-step-listen) 0%, #005086 100%);
   box-shadow: 0 6px 16px rgba(176, 202, 199, 0.5);
   transform: translateY(-1px);
 }
