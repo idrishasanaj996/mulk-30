@@ -350,9 +350,16 @@ import { MULK_VERSES } from '../../data/mulk-verses';
   const startBtnText = document.getElementById('start-btn-text')!;
   
   function loadStats() {
-    const stats = JSON.parse(localStorage.getItem('mulk30_quiz_stats') || '{"best":0,"total":0}');
-    document.getElementById('best-score-display')!.textContent = stats.best > 0 ? `${stats.best}%` : '-';
-    document.getElementById('total-tests-display')!.textContent = String(stats.total);
+    // Stats display elements are optional - only update if they exist
+    try {
+      const stats = JSON.parse(localStorage.getItem('mulk30_quiz_stats') || '{"best":0,"total":0}');
+      const bestEl = document.getElementById('best-score-display');
+      const totalEl = document.getElementById('total-tests-display');
+      if (bestEl) bestEl.textContent = stats.best > 0 ? `${stats.best}%` : '-';
+      if (totalEl) totalEl.textContent = String(stats.total);
+    } catch (e) {
+      console.error('Failed to load quiz stats:', e);
+    }
   }
   
   function saveStats(scoreVal: number, total: number) {
