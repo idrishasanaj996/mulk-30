@@ -1,6 +1,15 @@
 // LocalStorage-based auth for demo (no backend needed)
 // Replace with Supabase when ready
 
+// Dummy supabase export for compatibility (settings page imports it)
+export const supabase = {
+  from: () => ({
+    select: () => Promise.resolve({ data: [], error: null }),
+    update: () => Promise.resolve({ error: null }),
+    insert: () => Promise.resolve({ error: null }),
+  }),
+};
+
 const STORAGE_KEY = 'mulk30_user';
 
 interface User {
