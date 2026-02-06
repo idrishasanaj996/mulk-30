@@ -1,25 +1,24 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BottomNav from '../../components/BottomNav.astro';
-import RewardBanner from '../../components/RewardBanner.astro';
 import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
 ---
 
 <Layout title="Paneli">
   <div class="min-h-screen flex flex-col bg-[var(--color-background)]">
-    <!-- Header -->
-    <header class="sticky top-0 z-10 bg-[var(--color-surface)]/92 backdrop-blur-xl border-b border-[var(--color-border)] px-4 py-3 safe-top">
+    
+    <!-- Minimal Header -->
+    <header class="bg-[var(--color-header)] text-white px-4 py-3 safe-top">
       <div class="max-w-lg mx-auto flex items-center justify-between">
         <div>
-          <h1 class="heading-section tracking-tight">Mulk 30</h1>
-          <p class="text-xs text-[var(--color-text-secondary)]">Sfida e Ramazanit</p>
+          <h1 class="text-lg font-semibold tracking-tight">Mulk 30</h1>
+          <p class="text-xs text-white/70">Sfida e Ramazanit</p>
         </div>
-        <!-- (#9) Consolidated theme toggle — uses shared script in Layout -->
-        <button id="theme-toggle" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform" aria-label="Ndrysho temën">
-          <svg id="icon-moon" class="w-5 h-5 text-[var(--color-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="theme-toggle" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center active:scale-95 transition-transform" aria-label="Ndrysho temën">
+          <svg id="icon-moon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
           </svg>
-          <svg id="icon-sun" class="w-5 h-5 text-[var(--color-text)] hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="icon-sun" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
           </svg>
         </button>
@@ -27,102 +26,210 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     </header>
 
     <!-- Main Content -->
-    <main class="flex-1 px-4 py-6">
+    <main class="flex-1 px-4 py-6 pb-44">
       <div class="max-w-lg mx-auto space-y-6">
 
-        <!-- Reward Banner (shared component #5) -->
-        <RewardBanner variant="compact" />
-
-        <!-- Progress Card -->
-        <div class="card">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="heading-card">Progresi yt</h2>
-            <span class="text-sm text-[var(--color-text-secondary)]" id="progress-text">0/30</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
-          </div>
-          <div class="flex justify-between mt-3 text-sm">
-            <div class="flex items-center gap-1 text-[var(--color-text-secondary)]">
-              <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 23c-3.6 0-7-2.4-7-7 0-3.1 2.7-6.4 5-9.1V2l2.5 2L15 2v4.9c2.3 2.7 5 6 5 9.1 0 4.6-3.4 7-8 7z"/>
-              </svg>
-              <span id="streak-count">0 ditë radhazi</span>
+        <!-- HERO: Progress Circle + Current Day -->
+        <div class="card text-center py-8">
+          <!-- Circular Progress Ring -->
+          <div class="relative inline-flex items-center justify-center mb-4">
+            <svg class="w-32 h-32 -rotate-90" viewBox="0 0 120 120">
+              <!-- Background circle -->
+              <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-border)" stroke-width="8"/>
+              <!-- Progress circle -->
+              <circle 
+                id="progress-ring" 
+                cx="60" 
+                cy="60" 
+                r="52" 
+                fill="none" 
+                stroke="var(--color-primary)" 
+                stroke-width="8"
+                stroke-linecap="round"
+                stroke-dasharray="326.73"
+                stroke-dashoffset="326.73"
+                class="transition-all duration-700 ease-out"
+              />
+            </svg>
+            <!-- Center content -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span id="current-day-num" class="text-4xl font-bold text-[var(--color-primary)]">1</span>
+              <span class="text-xs text-[var(--color-text-secondary)] uppercase tracking-wider">Dita</span>
             </div>
-            <div class="text-[var(--color-primary)] font-medium" id="current-day-label">
-              Dita 1
-            </div>
           </div>
-          <!-- Motivational milestone -->
-          <div id="milestone-msg" class="hidden mt-3 pt-3 border-t border-[var(--color-border)]">
-            <p class="text-xs text-[var(--color-primary)] font-medium text-center" id="milestone-text"></p>
+          
+          <!-- Progress Text -->
+          <div class="mb-2">
+            <p class="text-lg font-semibold text-[var(--color-text)]" id="progress-label">Fillimi i udhëtimit</p>
+            <p class="text-sm text-[var(--color-text-secondary)]" id="progress-subtitle">Mëso ajetin e parë të Surah Al-Mulk</p>
+          </div>
+          
+          <!-- Streak Badge (if active) -->
+          <div id="streak-badge" class="hidden inline-flex items-center gap-1.5 bg-orange-500/10 text-orange-600 px-3 py-1.5 rounded-full text-sm font-medium mt-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 23c-3.6 0-7-2.4-7-7 0-3.1 2.7-6.4 5-9.1V2l2.5 2L15 2v4.9c2.3 2.7 5 6 5 9.1 0 4.6-3.4 7-8 7z"/>
+            </svg>
+            <span id="streak-text">0 ditë radhazi</span>
           </div>
         </div>
 
-        <!-- Today's Verse Card -->
-        <div class="card border border-[var(--color-primary)]/20" id="today-card">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-primary)] flex items-center justify-center">
-              <span class="text-white text-sm font-bold" id="today-day-num">1</span>
-            </div>
-            <div>
-              <h3 class="heading-card">Ajeti i sotëm</h3>
-              <p class="text-xs text-[var(--color-text-secondary)]" id="today-meta">Al-Mulk • Ajeti 1</p>
-            </div>
+        <!-- PRIMARY CTA: Continue Learning Button - THUMB ZONE -->
+        <a id="continue-btn" href="/app/day/1" class="block w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white text-center font-semibold py-5 px-6 rounded-2xl active:scale-[0.98] transition-all">
+          <div class="flex items-center justify-center gap-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span id="cta-text">Fillo mësimin</span>
           </div>
-
-          <div class="bg-[var(--color-background)] rounded-2xl p-4 mb-4">
-            <p class="arabic arabic-large text-center text-[var(--color-text)] leading-loose" id="today-arabic"></p>
-          </div>
-
-          <p class="text-sm text-[var(--color-text-secondary)] italic mb-3" id="today-translit"></p>
-          <p class="text-[var(--color-text)] leading-relaxed" id="today-albanian"></p>
-
-          <div class="flex items-center gap-4 mt-4 py-2 px-3 bg-[var(--color-background)] rounded-xl" id="today-steps"></div>
-
-          <div class="flex gap-3 mt-4">
-            <a id="today-detail-link" href="/app/day/1" class="btn btn-primary flex-1">
-              Shiko detajet
-            </a>
-            <button id="mark-complete" class="btn btn-secondary" aria-label="Shëno si të përfunduar">
-              <svg id="check-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Timeline Link (#19: fixed to /app/timeline which exists) -->
-        <a href="/app/timeline" class="card-interactive flex items-center justify-between hover:bg-[var(--color-background)] active:scale-[0.98]">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
-              <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-[var(--color-text)]">Kalendari i sfidës</h3>
-              <p class="text-sm text-[var(--color-text-secondary)]">Shiko të gjitha 30 ditët</p>
-            </div>
-          </div>
-          <svg class="w-5 h-5 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
         </a>
+
+        <!-- Today's Step Status (Compact) -->
+        <div id="today-steps-card" class="card">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-medium text-[var(--color-text)]">Progresi i ditës</span>
+            <span class="text-xs text-[var(--color-text-secondary)]" id="today-progress-text">0/3 hapa</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <!-- Listen -->
+            <div id="step-listen" class="flex-1 text-center p-3 rounded-xl bg-[var(--color-background)] border border-transparent">
+              <div class="w-8 h-8 mx-auto mb-1 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6.5 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2.5l4-4v14l-4-4z"></path>
+                </svg>
+              </div>
+              <span class="text-xs text-[var(--color-text-secondary)]" id="listen-status">0/10</span>
+            </div>
+            <!-- Read -->
+            <div id="step-read" class="flex-1 text-center p-3 rounded-xl bg-[var(--color-background)] border border-transparent">
+              <div class="w-8 h-8 mx-auto mb-1 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+              <span class="text-xs text-[var(--color-text-secondary)]" id="read-status">0/10</span>
+            </div>
+            <!-- Recite -->
+            <div id="step-recite" class="flex-1 text-center p-3 rounded-xl bg-[var(--color-background)] border border-transparent">
+              <div class="w-8 h-8 mx-auto mb-1 rounded-full bg-[var(--color-text)]/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-[var(--color-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+              </div>
+              <span class="text-xs text-[var(--color-text-secondary)]" id="recite-status">0/10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 30 Day Grid (Collapsible - Progressive Disclosure) -->
+        <div class="card">
+          <button id="toggle-grid" class="w-full flex items-center justify-between py-1">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium text-[var(--color-text)]">30 ditët</span>
+              <span class="text-xs text-[var(--color-text-secondary)]" id="grid-progress">0/30</span>
+            </div>
+            <svg id="grid-chevron" class="w-5 h-5 text-[var(--color-text-secondary)] transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          
+          <!-- Grid (collapsed by default) -->
+          <div id="days-grid" class="hidden mt-4">
+            <div class="grid grid-cols-6 gap-2">
+              {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => (
+                <a 
+                  href={`/app/day/${day}`} 
+                  class="day-cell aspect-square rounded-lg bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-sm font-medium text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] active:scale-95 transition-all"
+                  data-day={day}
+                >
+                  {day}
+                </a>
+              ))}
+            </div>
+            <!-- Legend -->
+            <div class="flex items-center justify-center gap-4 mt-3 text-xs text-[var(--color-text-secondary)]">
+              <div class="flex items-center gap-1">
+                <div class="w-3 h-3 rounded bg-[var(--color-primary)]"></div>
+                <span>Përfunduar</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <div class="w-3 h-3 rounded border-2 border-[var(--color-primary)] bg-transparent"></div>
+                <span>Sot</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <div class="w-3 h-3 rounded bg-[var(--color-border)]"></div>
+                <span>Mbetur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motivation Quote (changes based on progress) -->
+        <div id="motivation-card" class="text-center py-4">
+          <p class="text-sm text-[var(--color-text-secondary)] italic" id="motivation-text">
+            "Kush lexon Surah Al-Mulk çdo natë, do të mbrohet nga dënimi i varrit."
+          </p>
+          <p class="text-xs text-[var(--color-text-secondary)] mt-1">— Hadith</p>
+        </div>
+
       </div>
     </main>
 
-    <!-- Bottom Nav (shared component #6, #15: text-[11px]) -->
+    <!-- Bottom Nav -->
     <BottomNav active="home" />
   </div>
 </Layout>
 
+<style>
+  /* Day cell states */
+  .day-cell.completed {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+  
+  .day-cell.current {
+    border-color: var(--color-primary);
+    border-width: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  
+  .day-cell.locked {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* Step completed state */
+  .step-done {
+    border-color: var(--color-primary) !important;
+  }
+  
+  .step-done svg {
+    color: var(--color-primary) !important;
+  }
+
+  /* Grid animation */
+  #days-grid {
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Progress ring glow effect */
+  #progress-ring {
+    filter: drop-shadow(0 0 6px var(--color-primary));
+  }
+</style>
+
 <script>
-  import { getState, getCurrentDay, getStreak, getProgress, toggleDay, isDayCompleted, getDayProgress, getActiveStep, REQUIRED_COUNT } from '../../lib/challenge';
-  import { getVerseByDay, SURAH_INFO } from '../../data/mulk-verses';
+  import { getState, getCurrentDay, getStreak, getProgress, isDayCompleted, getDayProgress, REQUIRED_COUNT } from '../../lib/challenge';
   import { getSession } from '../../lib/supabase';
 
-  // Auth guard (#3)
+  // Auth guard
   (async () => {
     try {
       const { session } = await getSession();
@@ -131,79 +238,141 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
         return;
       }
     } catch (e) {
-      // Allow offline usage with localStorage
+      // Allow offline usage
     }
   })();
 
   function updateUI() {
     const state = getState();
     const day = getCurrentDay(state);
-    const verse = getVerseByDay(day);
     const streak = getStreak(state);
     const progress = getProgress(state);
-    const completed = isDayCompleted(day);
+    const completedCount = state.completedDays.length;
+    const dayProgress = getDayProgress(day);
+    const dayCompleted = isDayCompleted(day);
 
-    document.getElementById('progress-text')!.textContent = `${state.completedDays.length}/30`;
-    (document.getElementById('progress-fill') as HTMLElement).style.width = `${progress}%`;
-    document.getElementById('streak-count')!.textContent = `${streak} ditë radhazi`;
-    document.getElementById('current-day-label')!.textContent = `Dita ${day}`;
+    // Update circular progress ring
+    const ring = document.getElementById('progress-ring') as SVGCircleElement;
+    const circumference = 326.73; // 2 * π * 52
+    const offset = circumference - (progress / 100) * circumference;
+    ring.style.strokeDashoffset = String(offset);
 
-    document.getElementById('today-day-num')!.textContent = String(day);
-    document.getElementById('today-meta')!.textContent = `${SURAH_INFO.name} • Ajeti ${verse?.ayahNumber}`;
-    document.getElementById('today-arabic')!.textContent = verse?.arabic || '';
-    document.getElementById('today-translit')!.textContent = verse?.transliteration || '';
-    document.getElementById('today-albanian')!.textContent = verse?.albanian || '';
-    (document.getElementById('today-detail-link') as HTMLAnchorElement).href = `/app/day/${day}`;
+    // Update current day number
+    document.getElementById('current-day-num')!.textContent = String(day);
 
-    const btn = document.getElementById('mark-complete') as HTMLButtonElement;
-    if (completed) {
-      btn.classList.add('!bg-[var(--color-primary)]', '!text-white', '!border-[var(--color-primary)]');
+    // Update progress label based on completion
+    const progressLabel = document.getElementById('progress-label')!;
+    const progressSubtitle = document.getElementById('progress-subtitle')!;
+    
+    if (completedCount === 0) {
+      progressLabel.textContent = 'Fillimi i udhëtimit';
+      progressSubtitle.textContent = 'Mëso ajetin e parë të Surah Al-Mulk';
+    } else if (completedCount < 7) {
+      progressLabel.textContent = `${completedCount} ajete të memorizuara`;
+      progressSubtitle.textContent = 'Java e parë — vazhdo kështu!';
+    } else if (completedCount < 15) {
+      progressLabel.textContent = `${completedCount} ajete të memorizuara`;
+      progressSubtitle.textContent = 'Po ndërton një zakon të mirë!';
+    } else if (completedCount < 22) {
+      progressLabel.textContent = `${completedCount} ajete të memorizuara`;
+      progressSubtitle.textContent = 'Mbi gjysmën! Mos u ndal!';
+    } else if (completedCount < 30) {
+      progressLabel.textContent = `${completedCount} ajete të memorizuara`;
+      progressSubtitle.textContent = 'Fundi po afron! Vetëm pak ditë!';
     } else {
-      btn.classList.remove('!bg-[var(--color-primary)]', '!text-white', '!border-[var(--color-primary)]');
+      progressLabel.textContent = 'Masha\'Allah!';
+      progressSubtitle.textContent = 'E përfundove Surah Al-Mulk!';
     }
 
-    const dayProgress = getDayProgress(day);
-    const stepsHtml = [
-      { label: '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M6.5 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2.5l4-4v14l-4-4z"></path></svg>', count: dayProgress.listenCount, color: 'blue' },
-      { label: '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>', count: dayProgress.readCount, color: 'emerald' },
-      { label: '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>', count: dayProgress.reciteCount, color: 'purple' },
-    ].map((s) => {
-      const done = s.count >= REQUIRED_COUNT;
-      return `<div class="flex items-center gap-1 text-xs ${done ? `text-${s.color}-500` : 'text-[var(--color-text-secondary)]'}">
-        <span>${s.label}</span>
-        <span>${Math.min(s.count, REQUIRED_COUNT)}/${REQUIRED_COUNT}</span>
-      </div>`;
-    }).join('');
+    // Streak badge
+    const streakBadge = document.getElementById('streak-badge')!;
+    const streakText = document.getElementById('streak-text')!;
+    if (streak > 0) {
+      streakBadge.classList.remove('hidden');
+      streakText.textContent = `${streak} ditë radhazi 🔥`;
+    } else {
+      streakBadge.classList.add('hidden');
+    }
 
-    const stepsContainer = document.getElementById('today-steps');
-    if (stepsContainer) stepsContainer.innerHTML = stepsHtml;
+    // Update CTA button
+    const continueBtn = document.getElementById('continue-btn') as HTMLAnchorElement;
+    const ctaText = document.getElementById('cta-text')!;
+    continueBtn.href = `/app/day/${day}`;
+    
+    if (completedCount === 0) {
+      ctaText.textContent = 'Fillo mësimin';
+    } else if (dayCompleted) {
+      if (day < 30) {
+        ctaText.textContent = `Vazhdo me Ditën ${day + 1}`;
+        continueBtn.href = `/app/day/${day + 1}`;
+      } else {
+        ctaText.textContent = 'Rishiko sfidat';
+      }
+    } else {
+      ctaText.textContent = `Vazhdo Ditën ${day}`;
+    }
 
-    const completedCount = state.completedDays.length;
-    const milestoneEl = document.getElementById('milestone-msg');
-    const milestoneText = document.getElementById('milestone-text');
-    if (milestoneEl && milestoneText) {
-      let msg = '';
-      if (completedCount === 0) msg = 'Fillo sot — çdo ditë të afron më shumë!';
-      else if (completedCount < 5) msg = `${completedCount}/30 — Fillimi i mirë, vazhdo kështu!`;
-      else if (completedCount < 10) msg = `${completedCount}/30 — Po ndërton një zakon të bukur!`;
-      else if (completedCount < 15) msg = `${completedCount}/30 — Gjysma e rrugës! Mos u ndal!`;
-      else if (completedCount < 20) msg = `${completedCount}/30 — Mbi gjysmën! Kurani të pret!`;
-      else if (completedCount < 25) msg = `${completedCount}/30 — Pothuajse! Vetëm pak ditë mbeten!`;
-      else if (completedCount < 30) msg = `${completedCount}/30 — Fundi po afron! Mos hiq dorë!`;
-      else msg = 'Masha\'Allah! E përfundove sfidën! Kurani yt të pret!';
-      milestoneText.textContent = msg;
-      milestoneEl.classList.remove('hidden');
+    // Update today's steps
+    document.getElementById('listen-status')!.textContent = `${Math.min(dayProgress.listenCount, REQUIRED_COUNT)}/${REQUIRED_COUNT}`;
+    document.getElementById('read-status')!.textContent = `${Math.min(dayProgress.readCount, REQUIRED_COUNT)}/${REQUIRED_COUNT}`;
+    document.getElementById('recite-status')!.textContent = `${Math.min(dayProgress.reciteCount, REQUIRED_COUNT)}/${REQUIRED_COUNT}`;
+
+    // Calculate completed steps
+    const stepsCompleted = 
+      (dayProgress.listenCount >= REQUIRED_COUNT ? 1 : 0) +
+      (dayProgress.readCount >= REQUIRED_COUNT ? 1 : 0) +
+      (dayProgress.reciteCount >= REQUIRED_COUNT ? 1 : 0);
+    document.getElementById('today-progress-text')!.textContent = `${stepsCompleted}/3 hapa`;
+
+    // Style completed steps
+    if (dayProgress.listenCount >= REQUIRED_COUNT) {
+      document.getElementById('step-listen')!.classList.add('step-done');
+    }
+    if (dayProgress.readCount >= REQUIRED_COUNT) {
+      document.getElementById('step-read')!.classList.add('step-done');
+    }
+    if (dayProgress.reciteCount >= REQUIRED_COUNT) {
+      document.getElementById('step-recite')!.classList.add('step-done');
+    }
+
+    // Update grid progress
+    document.getElementById('grid-progress')!.textContent = `${completedCount}/30`;
+
+    // Update day cells
+    document.querySelectorAll('.day-cell').forEach((cell) => {
+      const cellDay = parseInt(cell.getAttribute('data-day') || '0');
+      cell.classList.remove('completed', 'current', 'locked');
+      
+      if (state.completedDays.includes(cellDay)) {
+        cell.classList.add('completed');
+      } else if (cellDay === day) {
+        cell.classList.add('current');
+      } else if (cellDay > day && !state.completedDays.includes(cellDay - 1)) {
+        // Future days are accessible but styled differently
+      }
+    });
+
+    // Hide today's steps card if challenge complete
+    if (completedCount === 30) {
+      document.getElementById('today-steps-card')!.classList.add('hidden');
     }
   }
 
-  document.getElementById('mark-complete')?.addEventListener('click', () => {
-    const state = getState();
-    const day = getCurrentDay(state);
-    toggleDay(day);
-    updateUI();
+  // Toggle grid visibility
+  document.getElementById('toggle-grid')?.addEventListener('click', () => {
+    const grid = document.getElementById('days-grid')!;
+    const chevron = document.getElementById('grid-chevron')!;
+    
+    if (grid.classList.contains('hidden')) {
+      grid.classList.remove('hidden');
+      chevron.style.transform = 'rotate(180deg)';
+    } else {
+      grid.classList.add('hidden');
+      chevron.style.transform = 'rotate(0deg)';
+    }
   });
 
-  // (#9) Consolidated theme toggle
+  // Theme toggle
   const toggle = document.getElementById('theme-toggle');
   function updateThemeIcons() {
     const dark = document.documentElement.classList.contains('dark');
@@ -216,6 +385,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     updateThemeIcons();
   });
 
+  // Initialize
   updateUI();
   updateThemeIcons();
 </script>

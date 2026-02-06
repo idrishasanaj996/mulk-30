@@ -5,12 +5,12 @@ import HowItWorks from '../../components/HowItWorks.astro';
 ---
 
 <Layout title="Dhurata">
-  <div class="min-h-screen flex flex-col bg-[var(--color-background)]">
+  <div class="min-h-screen flex flex-col bg-white/10">
     <!-- Header -->
-    <header class="sticky top-0 z-10 bg-[var(--color-surface)]/92 backdrop-blur-xl border-b border-[var(--color-border)] px-4 py-3 safe-top">
+    <header class="sticky top-0 z-10 bg-[var(--color-header)] text-white backdrop-blur-xl  px-4 py-3 safe-top">
       <div class="max-w-lg mx-auto flex items-center gap-3">
-        <a href="/app" class="w-10 h-10 rounded-full bg-[var(--color-background)] flex items-center justify-center active:scale-95 transition-transform shadow-sm" aria-label="Kthehu">
-          <svg class="w-5 h-5 text-[var(--color-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        <a href="/app" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center active:scale-95 transition-transform" aria-label="Kthehu">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
         </a>
         <h1 class="heading-section tracking-tight">Dhurata e sfidës</h1>
       </div>
@@ -25,19 +25,19 @@ import HowItWorks from '../../components/HowItWorks.astro';
             <svg class="w-8 h-8 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
           </div>
           <h2 class="heading-page tracking-tight">Fito një Kuran falas!</h2>
-          <p class="text-sm text-[var(--color-text-secondary)] mt-2 leading-relaxed max-w-xs mx-auto">Përfundo 30 ditët e sfidës dhe merr dhuratë një ekzemplar të Kuranit Famëlartë me dërgim falas.</p>
+          <p class="text-sm text-white/70 mt-2 leading-relaxed max-w-xs mx-auto">Përfundo 30 ditët e sfidës dhe merr dhuratë një ekzemplar të Kuranit Famëlartë me dërgim falas.</p>
         </div>
 
         <!-- What you get -->
         <div class="card">
           <h2 class="heading-card mb-4">Çfarë fiton?</h2>
-          <div class="flex items-center gap-4 bg-[var(--color-background)] rounded-2xl p-4 border border-[var(--color-border)]">
+          <div class="flex items-center gap-4 bg-white/10 rounded-2xl p-4 border border-[var(--color-border)]">
             <div class="w-12 h-12 rounded-full bg-teal-600/10 flex items-center justify-center shrink-0">
               <svg class="w-6 h-6 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             </div>
             <div>
-              <p class="font-semibold text-[var(--color-text)]">Një ekzemplar i Kuranit Famëlartë</p>
-              <p class="text-xs text-[var(--color-text-secondary)] mt-0.5">Dërgim falas pas përfundimit të sfidës</p>
+              <p class="font-semibold text-white">Një ekzemplar i Kuranit Famëlartë</p>
+              <p class="text-xs text-white/70 mt-0.5">Dërgim falas pas përfundimit të sfidës</p>
             </div>
           </div>
         </div>
@@ -51,47 +51,47 @@ import HowItWorks from '../../components/HowItWorks.astro';
           <div class="space-y-2" id="faq-list">
             <div class="faq-item">
               <button class="faq-toggle w-full flex items-center justify-between py-3 text-left" aria-label="Kur fillon sfida?">
-                <span class="text-sm font-medium text-[var(--color-text)]">Kur fillon sfida?</span>
-                <svg class="w-4 h-4 text-[var(--color-text-secondary)] transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <span class="text-sm font-medium text-white">Kur fillon sfida?</span>
+                <svg class="w-4 h-4 text-white/70 transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
               <div class="faq-answer hidden pb-3">
-                <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">Sfida fillon me Ramazan (28 Shkurt 2026).</p>
+                <p class="text-sm text-white/70 leading-relaxed">Sfida fillon me Ramazan (28 Shkurt 2026).</p>
               </div>
             </div>
             <div class="faq-item border-t border-[var(--color-border)]">
               <button class="faq-toggle w-full flex items-center justify-between py-3 text-left" aria-label="Sa zgjat sfida?">
-                <span class="text-sm font-medium text-[var(--color-text)]">Sa zgjat sfida?</span>
-                <svg class="w-4 h-4 text-[var(--color-text-secondary)] transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <span class="text-sm font-medium text-white">Sa zgjat sfida?</span>
+                <svg class="w-4 h-4 text-white/70 transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
               <div class="faq-answer hidden pb-3">
-                <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">30 ditë, një ajet çdo ditë nga Surja Al-Mulk.</p>
+                <p class="text-sm text-white/70 leading-relaxed">30 ditë, një ajet çdo ditë nga Surja Al-Mulk.</p>
               </div>
             </div>
             <div class="faq-item border-t border-[var(--color-border)]">
               <button class="faq-toggle w-full flex items-center justify-between py-3 text-left" aria-label="Çfarë duhet të bëj çdo ditë?">
-                <span class="text-sm font-medium text-[var(--color-text)]">Çfarë duhet të bëj çdo ditë?</span>
-                <svg class="w-4 h-4 text-[var(--color-text-secondary)] transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <span class="text-sm font-medium text-white">Çfarë duhet të bëj çdo ditë?</span>
+                <svg class="w-4 h-4 text-white/70 transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
               <div class="faq-answer hidden pb-3">
-                <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">Dëgjo 10 herë, Lexo 10 herë, Mëso përmendësh 10 herë.</p>
+                <p class="text-sm text-white/70 leading-relaxed">Dëgjo 10 herë, Lexo 10 herë, Mëso përmendësh 10 herë.</p>
               </div>
             </div>
             <div class="faq-item border-t border-[var(--color-border)]">
               <button class="faq-toggle w-full flex items-center justify-between py-3 text-left" aria-label="Kur e marr Kuranin?">
-                <span class="text-sm font-medium text-[var(--color-text)]">Kur e marr Kuranin?</span>
-                <svg class="w-4 h-4 text-[var(--color-text-secondary)] transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <span class="text-sm font-medium text-white">Kur e marr Kuranin?</span>
+                <svg class="w-4 h-4 text-white/70 transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
               <div class="faq-answer hidden pb-3">
-                <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">Pas përfundimit të sfidës, plotëso formularin e dërgesës më poshtë dhe do ta marrësh me postë.</p>
+                <p class="text-sm text-white/70 leading-relaxed">Pas përfundimit të sfidës, plotëso formularin e dërgesës më poshtë dhe do ta marrësh me postë.</p>
               </div>
             </div>
             <div class="faq-item border-t border-[var(--color-border)]">
               <button class="faq-toggle w-full flex items-center justify-between py-3 text-left" aria-label="A mund të filloj më vonë?">
-                <span class="text-sm font-medium text-[var(--color-text)]">A mund të filloj më vonë?</span>
-                <svg class="w-4 h-4 text-[var(--color-text-secondary)] transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <span class="text-sm font-medium text-white">A mund të filloj më vonë?</span>
+                <svg class="w-4 h-4 text-white/70 transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
               <div class="faq-answer hidden pb-3">
-                <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">Po, mund ta nisësh kur të duash. Sfida është personale dhe çdo ditë llogaritet sipas fillimit tënd.</p>
+                <p class="text-sm text-white/70 leading-relaxed">Po, mund ta nisësh kur të duash. Sfida është personale dhe çdo ditë llogaritet sipas fillimit tënd.</p>
               </div>
             </div>
           </div>
@@ -102,12 +102,12 @@ import HowItWorks from '../../components/HowItWorks.astro';
           <!-- Locked state -->
           <div id="delivery-locked" class="text-center py-6">
             <div class="w-18 h-18 mx-auto rounded-full bg-[var(--color-border)]/30 flex items-center justify-center mb-4" style="width:4.5rem;height:4.5rem">
-              <svg class="w-9 h-9 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              <svg class="w-9 h-9 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
             </div>
             <h3 class="heading-card">Përfundo sfidën për të hapur formularin</h3>
-            <p class="text-sm text-[var(--color-text-secondary)] mt-2">Plotëso të 30 ditët për të kërkuar Kuranin tënd.</p>
+            <p class="text-sm text-white/70 mt-2">Plotëso të 30 ditët për të kërkuar Kuranin tënd.</p>
             <div class="mt-4">
-              <div class="flex items-center justify-between text-xs text-[var(--color-text-secondary)] mb-1">
+              <div class="flex items-center justify-between text-xs text-white/70 mb-1">
                 <span>Progresi</span>
                 <span id="locked-progress-text">0/30</span>
               </div>
@@ -125,7 +125,7 @@ import HowItWorks from '../../components/HowItWorks.astro';
               </div>
               <div>
                 <h3 class="heading-card">Formulari i dërgesës</h3>
-                <p class="text-xs text-[var(--color-text-secondary)]">Plotëso të dhënat për ta marrë Kuranin</p>
+                <p class="text-xs text-white/70">Plotëso të dhënat për ta marrë Kuranin</p>
               </div>
             </div>
             <!-- (#2) Note about localStorage-only saving -->
@@ -136,29 +136,29 @@ import HowItWorks from '../../components/HowItWorks.astro';
             </div>
             <form id="delivery-form" class="space-y-4">
               <div>
-                <label class="text-sm text-[var(--color-text-secondary)] mb-1 block">Emri i plotë *</label>
+                <label class="text-sm text-white/70 mb-1 block">Emri i plotë *</label>
                 <input type="text" name="fullName" required class="input" placeholder="Emri dhe mbiemri" />
               </div>
               <div>
-                <label class="text-sm text-[var(--color-text-secondary)] mb-1 block">Adresa *</label>
+                <label class="text-sm text-white/70 mb-1 block">Adresa *</label>
                 <input type="text" name="address" required class="input" placeholder="Rruga, numri" />
               </div>
               <div class="grid grid-cols-2 gap-3">
                 <div>
-                  <label class="text-sm text-[var(--color-text-secondary)] mb-1 block">Qyteti *</label>
+                  <label class="text-sm text-white/70 mb-1 block">Qyteti *</label>
                   <input type="text" name="city" required class="input" placeholder="Qyteti" />
                 </div>
                 <div>
-                  <label class="text-sm text-[var(--color-text-secondary)] mb-1 block">Kodi postar *</label>
+                  <label class="text-sm text-white/70 mb-1 block">Kodi postar *</label>
                   <input type="text" name="postalCode" required class="input" placeholder="12345" />
                 </div>
               </div>
               <div>
-                <label class="text-sm text-[var(--color-text-secondary)] mb-1 block">Numri i telefonit *</label>
+                <label class="text-sm text-white/70 mb-1 block">Numri i telefonit *</label>
                 <input type="tel" name="phone" required class="input" placeholder="+49 123 456789" />
               </div>
               <div>
-                <label class="text-sm text-[var(--color-text-secondary)] mb-1 block">Shënim (opsional)</label>
+                <label class="text-sm text-white/70 mb-1 block">Shënim (opsional)</label>
                 <textarea name="note" class="input" rows="2" placeholder="Ndonjë shënim shtesë..."></textarea>
               </div>
               <button type="submit" class="btn btn-primary w-full">
@@ -173,7 +173,7 @@ import HowItWorks from '../../components/HowItWorks.astro';
               <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
             </div>
             <h3 class="heading-card">Kërkesa u ruajt!</h3>
-            <p class="text-sm text-[var(--color-text-secondary)] mt-2">Do të kontaktohesh kur Kurani të jetë gati për dërgim.</p>
+            <p class="text-sm text-white/70 mt-2">Do të kontaktohesh kur Kurani të jetë gati për dërgim.</p>
           </div>
         </div>
 

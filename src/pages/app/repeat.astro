@@ -1,0 +1,773 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BottomNav from '../../components/BottomNav.astro';
+import { MULK_VERSES } from '../../data/mulk-verses';
+---
+
+<Layout title="Përsëritje">
+  <div class="min-h-screen flex flex-col bg-[var(--color-surface)]">
+    
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-[var(--color-header)] text-white backdrop-blur-xl  px-4 py-3 safe-top">
+      <div class="max-w-lg mx-auto flex items-center justify-between">
+        <a href="/app" class="w-10 h-10 rounded-full flex items-center justify-center text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </a>
+        <h1 class="text-lg font-semibold text-[var(--color-text)]">Përsëritje</h1>
+        <div class="w-10"></div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-4 py-6 pb-28 overflow-y-auto">
+      <div class="max-w-lg mx-auto">
+        
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-16">
+          <div class="w-20 h-20 rounded-full bg-[var(--color-surface)] border-2 border-dashed border-[var(--color-border)] flex items-center justify-center mx-auto mb-5">
+            <svg class="w-10 h-10 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-[var(--color-text)] mb-2">Asnjë ajet i përfunduar</h2>
+          <p class="text-sm text-[var(--color-text-secondary)] max-w-xs mx-auto mb-8">Mëso të paktën një ajet për të hapur përsëritjen.</p>
+          <a href="/app" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[var(--color-primary)] text-white font-semibold text-base active:scale-[0.98] transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Fillo mësimin
+          </a>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="space-y-6">
+          
+          <!-- Step 1: Ayah Selection -->
+          <section id="step-selection">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-8 h-8 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white text-sm font-bold">1</div>
+              <h2 class="text-base font-semibold text-[var(--color-text)]">Zgjidh ajetet</h2>
+            </div>
+            
+            <!-- Mode Toggle - Bigger Touch Targets -->
+            <div class="flex p-1.5 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] mb-5">
+              <button id="mode-single" class="mode-tab flex-1 py-3.5 rounded-xl text-sm font-semibold transition-all active">
+                Një ajet
+              </button>
+              <button id="mode-range" class="mode-tab flex-1 py-3.5 rounded-xl text-sm font-semibold transition-all">
+                Disa ajete
+              </button>
+            </div>
+            
+            <!-- Single Ayah Panel - Cleaner Grid, Only Unlocked Visible -->
+            <div id="single-panel">
+              <p class="text-sm text-[var(--color-text-secondary)] text-center mb-4">Zgjidh ajetin që dëshiron ta përsëritësh</p>
+              
+              <!-- Scrollable Grid Container for unlocked ayahs only -->
+              <div id="ayah-grid-container" class="bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] p-4">
+                <div id="ayah-grid" class="grid grid-cols-5 gap-3">
+                  <!-- Populated by JS - only unlocked ayahs -->
+                </div>
+              </div>
+              
+              <!-- Selection Summary -->
+              <div id="selection-summary" class="mt-4 text-center hidden">
+                <p class="text-sm text-[var(--color-primary)] font-medium">
+                  Ajet <span id="selected-ayah-num">1</span> i zgjedhur
+                </p>
+              </div>
+            </div>
+            
+            <!-- Range Panel -->
+            <div id="range-panel" class="hidden">
+              <p class="text-sm text-[var(--color-text-secondary)] text-center mb-5">Zgjidh diapazonin e ajeteve</p>
+              
+              <div class="bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] p-6">
+                <div class="flex items-center justify-center gap-6">
+                  <div class="text-center">
+                    <label class="text-xs text-[var(--color-text-secondary)] mb-2 block font-medium uppercase tracking-wide">Nga</label>
+                    <select id="range-start" class="appearance-none w-20 h-16 bg-[var(--color-surface)] border-2 border-[var(--color-border)] rounded-2xl text-center text-2xl font-bold text-[var(--color-text)] cursor-pointer focus:border-[var(--color-primary)] focus:outline-none transition-colors">
+                    </select>
+                  </div>
+                  
+                  <div class="flex flex-col items-center gap-1">
+                    <svg class="w-6 h-6 text-[var(--color-text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    <span id="range-count" class="text-xs text-[var(--color-text-secondary)] font-medium">1 ajet</span>
+                  </div>
+                  
+                  <div class="text-center">
+                    <label class="text-xs text-[var(--color-text-secondary)] mb-2 block font-medium uppercase tracking-wide">Deri</label>
+                    <select id="range-end" class="appearance-none w-20 h-16 bg-[var(--color-surface)] border-2 border-[var(--color-border)] rounded-2xl text-center text-2xl font-bold text-[var(--color-text)] cursor-pointer focus:border-[var(--color-primary)] focus:outline-none transition-colors">
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Step 2: Settings (Collapsed by default - Progressive Disclosure) -->
+          <section id="step-settings">
+            <button id="settings-toggle" class="w-full flex items-center justify-between py-3">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] text-sm font-bold">2</div>
+                <h2 class="text-base font-semibold text-[var(--color-text)]">Cilësimet</h2>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="settings-preview" class="text-sm text-[var(--color-text-secondary)]">3x, 1.0x</span>
+                <svg id="settings-chevron" class="w-5 h-5 text-[var(--color-text-secondary)] transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            
+            <div id="settings-content" class="hidden mt-2">
+              <div class="bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] p-5 space-y-5">
+                
+                <!-- Repeat Count - Big Touch Targets -->
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm font-semibold text-[var(--color-text)]">Përsëritje</p>
+                    <p class="text-xs text-[var(--color-text-secondary)]">Sa herë për ajet</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button id="repeat-minus" class="w-12 h-12 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] active:scale-95 transition-transform">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 12H4"/></svg>
+                    </button>
+                    <span id="repeat-count" class="text-2xl font-bold text-[var(--color-text)] w-10 text-center">3</span>
+                    <button id="repeat-plus" class="w-12 h-12 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] active:scale-95 transition-transform">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="h-px bg-[var(--color-border)]"></div>
+                
+                <!-- Speed - Bigger Buttons -->
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm font-semibold text-[var(--color-text)]">Shpejtësia</p>
+                    <p class="text-xs text-[var(--color-text-secondary)]">Ritmi i recitimit</p>
+                  </div>
+                  <div class="flex gap-2">
+                    <button class="speed-btn w-14 h-11 rounded-xl text-sm font-semibold transition-all" data-speed="0.75">0.75x</button>
+                    <button class="speed-btn active w-14 h-11 rounded-xl text-sm font-semibold transition-all" data-speed="1">1x</button>
+                    <button class="speed-btn w-14 h-11 rounded-xl text-sm font-semibold transition-all" data-speed="1.25">1.25x</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+        </div>
+      </div>
+    </main>
+
+    <!-- Floating CTA - Thumb Zone -->
+    <div id="cta-container" class="fixed bottom-20 left-0 right-0 px-4 pb-4 safe-bottom z-20 hidden">
+      <div class="max-w-lg mx-auto">
+        <button id="start-btn" class="w-full py-5 rounded-2xl bg-[var(--color-primary)] text-[var(--color-text)] font-bold text-lg flex items-center justify-center gap-3 active:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed ">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span id="start-btn-text">Dëgjo</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Overlay - Full Screen Immersive -->
+    <div id="player-overlay" class="fixed inset-0 bg-[var(--color-surface)] z-50 hidden">
+      <div class="h-full flex flex-col">
+        
+        <!-- Player Header -->
+        <header class="px-4 py-3 safe-top flex items-center justify-between">
+          <button id="player-close" class="w-12 h-12 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] active:scale-95 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <div class="text-center">
+            <p class="text-sm font-semibold text-[var(--color-text)]">Përsëritje</p>
+            <p class="text-xs text-[var(--color-text-secondary)]">
+              Rrotullim <span id="player-repeat-current">1</span>/<span id="player-repeat-total">3</span>
+            </p>
+          </div>
+          <div class="w-12"></div>
+        </header>
+
+        <!-- Player Content -->
+        <div class="flex-1 flex flex-col items-center justify-center px-6 overflow-hidden">
+          
+          <!-- Ayah Number Badge -->
+          <div class="w-16 h-16 rounded-full bg-[var(--color-primary)] flex items-center justify-center mb-6">
+            <span id="player-ayah-num" class="text-2xl font-bold text-[var(--color-text)]">1</span>
+          </div>
+
+          <!-- Arabic Text Container -->
+          <div class="w-full max-w-md mb-8 max-h-48 overflow-y-auto">
+            <p id="player-arabic" class="arabic text-[1.6rem] text-center leading-[2.4] text-white" dir="rtl"></p>
+          </div>
+
+          <!-- Progress Ring - Large & Central -->
+          <div class="relative w-52 h-52 mb-6">
+            <svg class="w-full h-full -rotate-90">
+              <circle cx="104" cy="104" r="96" stroke="var(--color-border)" stroke-width="10" fill="none"/>
+              <circle id="progress-ring" cx="104" cy="104" r="96" stroke="var(--color-primary)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="603" stroke-dashoffset="603" class="transition-all duration-100"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span id="player-time" class="text-4xl font-bold text-white">0:00</span>
+              <span class="text-sm text-[var(--color-text-secondary)]">/ <span id="player-duration">0:00</span></span>
+            </div>
+          </div>
+
+          <!-- Controls - Big Touch Targets -->
+          <div class="flex items-center gap-8">
+            <button id="player-prev" class="w-14 h-14 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] active:scale-95 transition-transform disabled:opacity-30">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+            </button>
+            <button id="player-toggle" class="w-20 h-20 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-[var(--color-text)] active:scale-95 transition-transform">
+              <svg id="icon-pause" class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              <svg id="icon-play" class="w-10 h-10 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button id="player-next" class="w-14 h-14 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] active:scale-95 transition-transform disabled:opacity-30">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Queue Preview - Thumb Zone -->
+        <div class="px-4 pb-6 safe-bottom">
+          <div id="queue-preview" class="flex gap-2 justify-center overflow-x-auto py-3 scrollbar-hide">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <BottomNav active="repeat" />
+  </div>
+</Layout>
+
+<style>
+  /* Mode Tab Styles */
+  .mode-tab {
+    color: var(--color-text-secondary);
+  }
+  .mode-tab.active {
+    background: var(--color-background);
+    color: var(--color-text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  
+  /* Ayah Button - Large Touch Targets (min 48px) */
+  .ayah-btn {
+    width: 100%;
+    aspect-ratio: 1;
+    min-height: 48px;
+    border-radius: 14px;
+    border: 2px solid var(--color-border);
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    cursor: pointer;
+  }
+  
+  .ayah-btn:hover {
+    border-color: var(--color-primary);
+    background: rgba(45, 106, 79, 0.08);
+  }
+  
+  .ayah-btn.selected {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+    transform: scale(1.05);
+  }
+  
+  .ayah-btn:active {
+    transform: scale(0.95);
+  }
+  .ayah-btn.selected:active {
+    transform: scale(1);
+  }
+  
+  /* Speed Button */
+  .speed-btn {
+    background: var(--color-background);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text-secondary);
+  }
+  .speed-btn:active {
+    transform: scale(0.95);
+  }
+  .speed-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+  
+  /* Queue Item */
+  .queue-item {
+    min-width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .queue-item.current {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+  }
+  .queue-item.done {
+    background: rgba(45, 106, 79, 0.15);
+    border-color: rgba(45, 106, 79, 0.3);
+    color: var(--color-primary);
+  }
+  
+  /* Settings chevron rotation */
+  #settings-chevron.open {
+    transform: rotate(180deg);
+  }
+  
+  /* Hide scrollbar but keep scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Slide up animation for settings */
+  #settings-content {
+    animation: slideUp 0.2s ease-out;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* CTA fade in */
+  #cta-container {
+    animation: fadeUp 0.3s ease-out;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  import { MULK_VERSES } from '../../data/mulk-verses';
+  import { getState } from '../../lib/challenge';
+  
+  // State
+  const state = getState();
+  const completedDays = state.completedDays || [];
+  
+  // Elements
+  const emptyState = document.getElementById('empty-state')!;
+  const mainContent = document.getElementById('main-content')!;
+  const ctaContainer = document.getElementById('cta-container')!;
+  const startBtn = document.getElementById('start-btn') as HTMLButtonElement;
+  const startBtnText = document.getElementById('start-btn-text')!;
+  const playerOverlay = document.getElementById('player-overlay')!;
+  const progressRing = document.getElementById('progress-ring') as SVGCircleElement;
+  const queuePreview = document.getElementById('queue-preview')!;
+  const rangeStart = document.getElementById('range-start') as HTMLSelectElement;
+  const rangeEnd = document.getElementById('range-end') as HTMLSelectElement;
+  const ayahGrid = document.getElementById('ayah-grid')!;
+  const selectionSummary = document.getElementById('selection-summary')!;
+  const settingsToggle = document.getElementById('settings-toggle')!;
+  const settingsContent = document.getElementById('settings-content')!;
+  const settingsChevron = document.getElementById('settings-chevron')!;
+  const settingsPreview = document.getElementById('settings-preview')!;
+  const rangeCountEl = document.getElementById('range-count')!;
+  
+  // App State
+  let mode: 'single' | 'range' = 'single';
+  let selectedAyah: number | null = null;
+  let repeatCount = 3;
+  let speed = 1;
+  let ayahQueue: number[] = [];
+  let queueIndex = 0;
+  let audio: HTMLAudioElement | null = null;
+  let isPlaying = false;
+  let settingsOpen = false;
+  
+  // Show empty or main content
+  if (completedDays.length === 0) {
+    emptyState.classList.remove('hidden');
+    mainContent.classList.add('hidden');
+    ctaContainer.classList.add('hidden');
+  } else {
+    emptyState.classList.add('hidden');
+    mainContent.classList.remove('hidden');
+    buildAyahGrid();
+    populateRangeDropdowns();
+  }
+  
+  // Build Grid with ONLY unlocked ayahs (Miller's Law - reduce cognitive load)
+  function buildAyahGrid() {
+    ayahGrid.innerHTML = '';
+    
+    // Sort completed days for visual consistency
+    const sortedDays = [...completedDays].sort((a, b) => a - b);
+    
+    sortedDays.forEach(day => {
+      const btn = document.createElement('button');
+      btn.className = 'ayah-btn';
+      btn.dataset.ayah = String(day);
+      btn.textContent = String(day);
+      btn.addEventListener('click', () => selectSingleAyah(day, btn));
+      ayahGrid.appendChild(btn);
+    });
+  }
+  
+  function selectSingleAyah(day: number, btn: HTMLButtonElement) {
+    // Deselect all
+    document.querySelectorAll('.ayah-btn').forEach(b => b.classList.remove('selected'));
+    // Select this one
+    btn.classList.add('selected');
+    selectedAyah = day;
+    
+    // Show summary
+    selectionSummary.classList.remove('hidden');
+    document.getElementById('selected-ayah-num')!.textContent = String(day);
+    
+    // Show and update CTA
+    showCTA();
+    updateStartButton();
+  }
+  
+  function populateRangeDropdowns() {
+    rangeStart.innerHTML = '';
+    rangeEnd.innerHTML = '';
+    
+    const sortedDays = [...completedDays].sort((a, b) => a - b);
+    
+    sortedDays.forEach((day, i) => {
+      const optStart = document.createElement('option');
+      optStart.value = String(day);
+      optStart.textContent = String(day);
+      rangeStart.appendChild(optStart);
+      
+      const optEnd = document.createElement('option');
+      optEnd.value = String(day);
+      optEnd.textContent = String(day);
+      if (i === sortedDays.length - 1) optEnd.selected = true;
+      rangeEnd.appendChild(optEnd);
+    });
+    
+    updateRangeCount();
+  }
+  
+  function updateRangeCount() {
+    const start = parseInt(rangeStart.value) || 1;
+    const end = parseInt(rangeEnd.value) || 1;
+    const count = getAyahsInRange(start, end).length;
+    rangeCountEl.textContent = count === 1 ? '1 ajet' : `${count} ajete`;
+  }
+  
+  function getAyahsInRange(start: number, end: number): number[] {
+    const min = Math.min(start, end);
+    const max = Math.max(start, end);
+    return completedDays.filter(d => d >= min && d <= max).sort((a, b) => a - b);
+  }
+  
+  function showCTA() {
+    ctaContainer.classList.remove('hidden');
+  }
+  
+  function updateStartButton() {
+    if (mode === 'single') {
+      if (selectedAyah) {
+        startBtnText.textContent = `Dëgjo ajetin ${selectedAyah}`;
+        startBtn.disabled = false;
+      } else {
+        startBtnText.textContent = 'Zgjidh një ajet';
+        startBtn.disabled = true;
+      }
+    } else {
+      const start = parseInt(rangeStart.value);
+      const end = parseInt(rangeEnd.value);
+      const ayahs = getAyahsInRange(start, end);
+      
+      if (ayahs.length === 0) {
+        startBtnText.textContent = 'Asnjë ajet i zgjedhur';
+        startBtn.disabled = true;
+      } else if (ayahs.length === 1) {
+        startBtnText.textContent = `Dëgjo ajetin ${ayahs[0]}`;
+        startBtn.disabled = false;
+      } else {
+        startBtnText.textContent = `Dëgjo ${ayahs.length} ajete`;
+        startBtn.disabled = false;
+      }
+    }
+  }
+  
+  function updateSettingsPreview() {
+    settingsPreview.textContent = `${repeatCount}x, ${speed}x`;
+  }
+  
+  // Mode Toggle
+  document.getElementById('mode-single')?.addEventListener('click', () => {
+    mode = 'single';
+    document.getElementById('mode-single')!.classList.add('active');
+    document.getElementById('mode-range')!.classList.remove('active');
+    document.getElementById('single-panel')!.classList.remove('hidden');
+    document.getElementById('range-panel')!.classList.add('hidden');
+    
+    // Reset selection
+    selectedAyah = null;
+    document.querySelectorAll('.ayah-btn').forEach(b => b.classList.remove('selected'));
+    selectionSummary.classList.add('hidden');
+    ctaContainer.classList.add('hidden');
+    updateStartButton();
+  });
+  
+  document.getElementById('mode-range')?.addEventListener('click', () => {
+    mode = 'range';
+    document.getElementById('mode-range')!.classList.add('active');
+    document.getElementById('mode-single')!.classList.remove('active');
+    document.getElementById('single-panel')!.classList.add('hidden');
+    document.getElementById('range-panel')!.classList.remove('hidden');
+    
+    showCTA();
+    updateStartButton();
+  });
+  
+  // Settings Toggle (Progressive Disclosure)
+  settingsToggle.addEventListener('click', () => {
+    settingsOpen = !settingsOpen;
+    if (settingsOpen) {
+      settingsContent.classList.remove('hidden');
+      settingsChevron.classList.add('open');
+    } else {
+      settingsContent.classList.add('hidden');
+      settingsChevron.classList.remove('open');
+    }
+  });
+  
+  // Repeat Count
+  document.getElementById('repeat-minus')?.addEventListener('click', () => {
+    if (repeatCount > 1) {
+      repeatCount--;
+      document.getElementById('repeat-count')!.textContent = String(repeatCount);
+      updateSettingsPreview();
+    }
+  });
+  
+  document.getElementById('repeat-plus')?.addEventListener('click', () => {
+    if (repeatCount < 10) {
+      repeatCount++;
+      document.getElementById('repeat-count')!.textContent = String(repeatCount);
+      updateSettingsPreview();
+    }
+  });
+  
+  // Speed Buttons
+  document.querySelectorAll('.speed-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      speed = parseFloat((btn as HTMLElement).dataset.speed || '1');
+      if (audio) audio.playbackRate = speed;
+      updateSettingsPreview();
+    });
+  });
+  
+  // Range Dropdowns
+  rangeStart?.addEventListener('change', () => {
+    updateRangeCount();
+    updateStartButton();
+  });
+  rangeEnd?.addEventListener('change', () => {
+    updateRangeCount();
+    updateStartButton();
+  });
+  
+  // Start Button
+  startBtn.addEventListener('click', () => {
+    if (startBtn.disabled) return;
+    
+    let ayahs: number[] = [];
+    if (mode === 'single') {
+      if (!selectedAyah) return;
+      ayahs = [selectedAyah];
+    } else {
+      const start = parseInt(rangeStart.value);
+      const end = parseInt(rangeEnd.value);
+      ayahs = getAyahsInRange(start, end);
+    }
+    
+    if (ayahs.length === 0) return;
+    
+    // Build queue - ayahs repeated X times
+    ayahQueue = [];
+    for (let r = 0; r < repeatCount; r++) {
+      ayahQueue.push(...ayahs);
+    }
+    queueIndex = 0;
+    
+    document.getElementById('player-repeat-total')!.textContent = String(repeatCount);
+    openPlayer();
+    playCurrentInQueue();
+  });
+  
+  function openPlayer() {
+    playerOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    renderQueuePreview();
+  }
+  
+  function closePlayer() {
+    playerOverlay.classList.add('hidden');
+    document.body.style.overflow = '';
+    if (audio) {
+      audio.pause();
+      audio = null;
+    }
+    isPlaying = false;
+  }
+  
+  function renderQueuePreview() {
+    const uniqueAyahs = [...new Set(ayahQueue)].sort((a, b) => a - b);
+    const currentAyah = ayahQueue[queueIndex];
+    
+    queuePreview.innerHTML = uniqueAyahs.map((ayah) => {
+      const firstIndex = ayahQueue.indexOf(ayah);
+      const isDone = firstIndex < queueIndex && ayah !== currentAyah;
+      const isCurrent = ayah === currentAyah;
+      return `<div class="queue-item ${isCurrent ? 'current' : isDone ? 'done' : ''}">${ayah}</div>`;
+    }).join('');
+  }
+  
+  function playCurrentInQueue() {
+    if (queueIndex >= ayahQueue.length) {
+      // All done!
+      closePlayer();
+      return;
+    }
+    
+    const currentAyah = ayahQueue[queueIndex];
+    const verse = MULK_VERSES.find(v => v.dayIndex === currentAyah);
+    
+    // Update UI
+    document.getElementById('player-ayah-num')!.textContent = String(currentAyah);
+    document.getElementById('player-arabic')!.textContent = verse?.arabic || '';
+    
+    // Calculate current repeat round
+    const ayahsPerRepeat = ayahQueue.length / repeatCount;
+    const currentRepeat = Math.floor(queueIndex / ayahsPerRepeat) + 1;
+    document.getElementById('player-repeat-current')!.textContent = String(currentRepeat);
+    
+    renderQueuePreview();
+    
+    // Update prev/next button states
+    const prevBtn = document.getElementById('player-prev') as HTMLButtonElement;
+    const nextBtn = document.getElementById('player-next') as HTMLButtonElement;
+    prevBtn.disabled = queueIndex === 0;
+    nextBtn.disabled = queueIndex >= ayahQueue.length - 1;
+    
+    // Load audio
+    if (audio) {
+      audio.pause();
+    }
+    audio = new Audio(`/audio/ayah-${currentAyah}.mp3`);
+    audio.playbackRate = speed;
+    
+    audio.addEventListener('loadedmetadata', () => {
+      document.getElementById('player-duration')!.textContent = formatTime(audio!.duration);
+    });
+    
+    audio.addEventListener('timeupdate', () => {
+      if (!audio) return;
+      document.getElementById('player-time')!.textContent = formatTime(audio.currentTime);
+      
+      const progress = audio.currentTime / audio.duration;
+      const circumference = 2 * Math.PI * 96;
+      progressRing.style.strokeDashoffset = String(circumference * (1 - progress));
+    });
+    
+    audio.addEventListener('ended', () => {
+      queueIndex++;
+      playCurrentInQueue();
+    });
+    
+    audio.addEventListener('error', () => {
+      // Skip to next if audio fails
+      queueIndex++;
+      playCurrentInQueue();
+    });
+    
+    isPlaying = true;
+    updatePlayPauseIcon();
+    audio.play().catch(() => {
+      // Auto-play blocked, user needs to tap play
+      isPlaying = false;
+      updatePlayPauseIcon();
+    });
+  }
+  
+  function formatTime(seconds: number): string {
+    if (!isFinite(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+  
+  function updatePlayPauseIcon() {
+    const pauseIcon = document.getElementById('icon-pause')!;
+    const playIcon = document.getElementById('icon-play')!;
+    if (isPlaying) {
+      pauseIcon.classList.remove('hidden');
+      playIcon.classList.add('hidden');
+    } else {
+      pauseIcon.classList.add('hidden');
+      playIcon.classList.remove('hidden');
+    }
+  }
+  
+  // Player Controls
+  document.getElementById('player-close')?.addEventListener('click', closePlayer);
+  
+  document.getElementById('player-toggle')?.addEventListener('click', () => {
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      isPlaying = false;
+    } else {
+      audio.play();
+      isPlaying = true;
+    }
+    updatePlayPauseIcon();
+  });
+  
+  document.getElementById('player-prev')?.addEventListener('click', () => {
+    if (queueIndex > 0) {
+      queueIndex--;
+      playCurrentInQueue();
+    }
+  });
+  
+  document.getElementById('player-next')?.addEventListener('click', () => {
+    if (queueIndex < ayahQueue.length - 1) {
+      queueIndex++;
+      playCurrentInQueue();
+    }
+  });
+  
+  // Initialize
+  updateSettingsPreview();
+</script>
+</Layout>

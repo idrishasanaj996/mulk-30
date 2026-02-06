@@ -1,0 +1,689 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BottomNav from '../../components/BottomNav.astro';
+import { MULK_VERSES } from '../../data/mulk-verses';
+---
+
+<Layout title="Testi">
+  <div class="min-h-screen flex flex-col bg-white/10">
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-[var(--color-header)] text-white backdrop-blur-xl  px-4 py-3 safe-top">
+      <div class="max-w-lg mx-auto flex items-center justify-between">
+        <button id="back-to-select" class="w-10 h-10 flex items-center justify-center -ml-2 text-white/70 hover:text-white transition-colors hidden">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <h1 class="text-lg font-semibold text-white flex-1 text-center">Testi i Memorizimit</h1>
+        <div class="w-10"></div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-4 py-6 pb-24">
+      <div class="max-w-lg mx-auto">
+        
+        <!-- ==================== SELECTION VIEW ==================== -->
+        <div id="view-select" class="space-y-6">
+          
+          <!-- Hero Stats Card -->
+          <div class="card bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 rounded-2xl p-6 border border-[var(--color-primary)]/20">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-2xl bg-[var(--color-primary)]/20 flex items-center justify-center">
+                <span class="text-3xl">🎯</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-[var(--color-text-secondary)] mb-1">Rezultati më i mirë</p>
+                <p class="text-3xl font-bold text-[var(--color-primary)]" id="best-score-display">-</p>
+              </div>
+              <div class="text-right">
+                <p class="text-sm text-[var(--color-text-secondary)] mb-1">Teste</p>
+                <p class="text-2xl font-bold text-[var(--color-text)]" id="total-tests-display">0</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ayah Selection Card -->
+          <div class="card bg-[var(--color-surface)] rounded-2xl p-6 border border-[var(--color-border)]">
+            <h2 class="text-lg font-semibold text-[var(--color-text)] mb-1">Zgjidh ajetet</h2>
+            <p class="text-sm text-[var(--color-text-secondary)] mb-4">Zgjidh një ose më shumë ajete për të testuar.</p>
+            
+            <!-- Range Selector -->
+            <div class="flex items-center gap-3 mb-4 p-3 bg-white/10 rounded-xl">
+              <div class="flex-1">
+                <label class="text-xs text-[var(--color-text-secondary)] mb-1 block">Nga</label>
+                <select id="range-start" class="w-full p-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] text-sm">
+                  {MULK_VERSES.map((verse) => (
+                    <option value={verse.dayIndex}>{verse.dayIndex}</option>
+                  ))}
+                </select>
+              </div>
+              <div class="text-[var(--color-text-secondary)] pt-5">→</div>
+              <div class="flex-1">
+                <label class="text-xs text-[var(--color-text-secondary)] mb-1 block">Deri</label>
+                <select id="range-end" class="w-full p-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] text-sm">
+                  {MULK_VERSES.map((verse) => (
+                    <option value={verse.dayIndex} selected={verse.dayIndex === 30}>{verse.dayIndex}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            
+            <!-- Quick Select Buttons -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <button class="quick-range px-3 py-1.5 text-xs font-medium rounded-full bg-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] transition-all" data-start="1" data-end="10">1-10</button>
+              <button class="quick-range px-3 py-1.5 text-xs font-medium rounded-full bg-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] transition-all" data-start="11" data-end="20">11-20</button>
+              <button class="quick-range px-3 py-1.5 text-xs font-medium rounded-full bg-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] transition-all" data-start="21" data-end="30">21-30</button>
+              <button class="quick-range px-3 py-1.5 text-xs font-medium rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold" data-start="1" data-end="30">Të gjitha</button>
+            </div>
+            
+            <!-- Ayah Grid for Visual Selection -->
+            <div class="grid grid-cols-10 gap-1.5 mb-5">
+              {MULK_VERSES.map((verse) => (
+                <button 
+                  class="ayah-chip w-full aspect-square rounded-lg text-xs font-medium text-white/70 bg-white/10 hover:bg-[var(--color-primary)]/20 transition-all flex items-center justify-center"
+                  data-ayah={verse.dayIndex}
+                >
+                  {verse.dayIndex}
+                </button>
+              ))}
+            </div>
+            
+            <!-- Start Quiz Button -->
+            <button id="start-quiz-btn" class="w-full btn btn-primary py-4 text-base font-semibold rounded-xl">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Fillo Testin
+            </button>
+          </div>
+          
+        </div>
+        
+        <!-- ==================== QUIZ VIEW ==================== -->
+        <div id="view-quiz" class="hidden space-y-4">
+          
+          <!-- Progress Header -->
+          <div class="card bg-[var(--color-surface)] rounded-2xl p-4 border border-[var(--color-border)]">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-white">Pyetja <span id="q-current" class="text-[var(--color-primary)]">1</span>/<span id="q-total">10</span></span>
+              </div>
+              <div class="flex items-center gap-4">
+                <!-- Streak -->
+                <div class="flex items-center gap-1.5" id="streak-container">
+                  <span class="text-lg">🔥</span>
+                  <span id="streak-count" class="text-sm font-bold text-orange-500">0</span>
+                </div>
+                <!-- Score -->
+                <div class="flex items-center gap-1.5">
+                  <span class="text-lg">✓</span>
+                  <span id="score-count" class="text-sm font-bold text-[var(--color-primary)]">0</span>
+                </div>
+              </div>
+            </div>
+            <!-- Progress Bar -->
+            <div class="h-2 bg-[var(--color-border)] rounded-full overflow-hidden">
+              <div id="progress-bar" class="h-full bg-[var(--color-primary)] rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+            </div>
+          </div>
+          
+          <!-- Question Card -->
+          <div class="card bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] overflow-hidden">
+            <!-- Ayah Badge -->
+            <div class="bg-[var(--color-primary)]/10 px-4 py-2 ">
+              <span class="text-sm font-medium text-[var(--color-primary)]">Ajeti <span id="q-ayah">1</span></span>
+            </div>
+            
+            <!-- Question Text (Hero) -->
+            <div class="p-6">
+              <p class="text-xs text-white/70 mb-3 uppercase tracking-wide">Plotëso fjalën që mungon</p>
+              <div id="q-text" class="arabic text-2xl leading-[2.5] text-center p-4 bg-white/10 rounded-xl min-h-[120px] flex items-center justify-center" dir="rtl">
+              </div>
+            </div>
+            
+            <!-- Answer Options (Full Width, Stacked) -->
+            <div id="q-options" class="p-4 pt-0 space-y-3">
+              <!-- Options will be inserted here -->
+            </div>
+            
+            <!-- Feedback Area -->
+            <div id="q-feedback" class="hidden mx-4 mb-4 p-4 rounded-xl text-center">
+              <p id="feedback-text" class="font-semibold text-base mb-1"></p>
+              <p id="feedback-answer" class="text-sm opacity-80"></p>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- ==================== RESULTS VIEW ==================== -->
+        <div id="view-results" class="hidden">
+          
+          <!-- Celebration Card -->
+          <div class="card bg-[var(--color-surface)] rounded-2xl p-8 border border-[var(--color-border)] text-center relative overflow-hidden">
+            
+            <!-- Confetti Container -->
+            <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
+            
+            <!-- Result Emoji -->
+            <div class="relative">
+              <div id="result-emoji-bg" class="w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in">
+                <span id="result-emoji" class="text-6xl">🎉</span>
+              </div>
+            </div>
+            
+            <!-- Score Display -->
+            <h2 class="text-2xl font-bold text-white mb-2">Rezultati yt</h2>
+            <div class="flex items-center justify-center gap-1 mb-2">
+              <span id="result-score" class="text-5xl font-bold text-[var(--color-primary)]">8</span>
+              <span class="text-3xl text-white/70">/</span>
+              <span id="result-total" class="text-3xl text-white/70">10</span>
+            </div>
+            <p id="result-percent" class="text-lg text-[var(--color-primary)] font-semibold mb-4">80%</p>
+            
+            <!-- Message -->
+            <p id="result-message" class="text-white/70 mb-6">Shkëlqyeshëm! Je shumë afër përsosmërisë!</p>
+            
+            <!-- Stats Row -->
+            <div class="flex justify-center gap-6 mb-6 py-4 border-y border-[var(--color-border)]">
+              <div class="text-center">
+                <p class="text-2xl font-bold text-orange-500" id="result-streak">5</p>
+                <p class="text-xs text-white/70">Seria më e gjatë</p>
+              </div>
+              <div class="text-center">
+                <p class="text-2xl font-bold text-[var(--color-text)]" id="result-time">1:24</p>
+                <p class="text-xs text-white/70">Koha</p>
+              </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="space-y-3">
+              <button id="retry-btn" class="w-full btn btn-primary py-4 text-base font-semibold rounded-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                Provo përsëri
+              </button>
+              <button id="new-quiz-btn" class="w-full btn py-4 text-base font-medium rounded-xl border-2 border-[var(--color-border)] text-white hover:bg-white/10">
+                Zgjidh ajete të tjera
+              </button>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </main>
+
+    <BottomNav active="quiz" />
+  </div>
+</Layout>
+
+<style>
+  /* Bounce in animation for result emoji */
+  @keyframes bounce-in {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+  
+  .animate-bounce-in {
+    animation: bounce-in 0.6s ease-out;
+  }
+  
+  /* Option button states */
+  .option-btn {
+    min-height: 56px;
+    transition: all 0.15s ease;
+  }
+  
+  .option-btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  
+  .option-btn.correct {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+    border-color: rgb(34, 197, 94) !important;
+    color: rgb(22, 163, 74) !important;
+  }
+  
+  .option-btn.wrong {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    border-color: rgb(239, 68, 68) !important;
+    color: rgb(220, 38, 38) !important;
+  }
+  
+  .option-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Selected ayah chips */
+  .ayah-chip.selected {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+  }
+  
+  /* Feedback states */
+  .feedback-correct {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: rgb(22, 163, 74);
+  }
+  
+  .feedback-wrong {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: rgb(220, 38, 38);
+  }
+  
+  /* Confetti particle */
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+  }
+  
+  @keyframes confetti-fall {
+    0% {
+      transform: translateY(-100%) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(400px) rotate(720deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Shake animation for wrong answer */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+  }
+  
+  .shake {
+    animation: shake 0.4s ease;
+  }
+  
+  /* Pulse animation for streak */
+  @keyframes pulse-grow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  .pulse-grow {
+    animation: pulse-grow 0.3s ease;
+  }
+</style>
+
+<script>
+  import { MULK_VERSES } from '../../data/mulk-verses';
+  
+  // ==================== STATE ====================
+  interface Question {
+    ayah: number;
+    hiddenIndex: number;
+    options: string[];
+    correct: string;
+  }
+  
+  let questions: Question[] = [];
+  let currentIndex = 0;
+  let score = 0;
+  let streak = 0;
+  let maxStreak = 0;
+  let startTime = 0;
+  let rangeStart = 1;
+  let rangeEnd = 30;
+  let answered = false;
+  
+  // ==================== ELEMENTS ====================
+  const viewSelect = document.getElementById('view-select')!;
+  const viewQuiz = document.getElementById('view-quiz')!;
+  const viewResults = document.getElementById('view-results')!;
+  const backBtn = document.getElementById('back-to-select')!;
+  const rangeStartSelect = document.getElementById('range-start') as HTMLSelectElement;
+  const rangeEndSelect = document.getElementById('range-end') as HTMLSelectElement;
+  
+  // ==================== HELPERS ====================
+  function loadStats() {
+    const stats = JSON.parse(localStorage.getItem('mulk30_quiz_stats') || '{"best":0,"total":0}');
+    document.getElementById('best-score-display')!.textContent = stats.best > 0 ? `${stats.best}%` : '-';
+    document.getElementById('total-tests-display')!.textContent = String(stats.total);
+  }
+  
+  function saveStats(scoreVal: number, total: number) {
+    const pct = Math.round((scoreVal / total) * 100);
+    const stats = JSON.parse(localStorage.getItem('mulk30_quiz_stats') || '{"best":0,"total":0}');
+    stats.total++;
+    if (pct > stats.best) stats.best = pct;
+    localStorage.setItem('mulk30_quiz_stats', JSON.stringify(stats));
+  }
+  
+  function updateAyahChips() {
+    document.querySelectorAll('.ayah-chip').forEach(chip => {
+      const ayah = parseInt((chip as HTMLElement).dataset.ayah || '0');
+      if (ayah >= rangeStart && ayah <= rangeEnd) {
+        chip.classList.add('selected');
+      } else {
+        chip.classList.remove('selected');
+      }
+    });
+  }
+  
+  function showView(view: 'select' | 'quiz' | 'results') {
+    viewSelect.classList.toggle('hidden', view !== 'select');
+    viewQuiz.classList.toggle('hidden', view !== 'quiz');
+    viewResults.classList.toggle('hidden', view !== 'results');
+    backBtn.classList.toggle('hidden', view === 'select');
+  }
+  
+  // ==================== QUESTION GENERATION ====================
+  function generateQuestions(): Question[] {
+    const generated: Question[] = [];
+    
+    for (let ayahNum = rangeStart; ayahNum <= rangeEnd; ayahNum++) {
+      const verse = MULK_VERSES.find(v => v.dayIndex === ayahNum);
+      if (!verse) continue;
+      
+      const words = verse.arabic.split(/\s+/).filter(w => w.length > 0);
+      if (words.length === 0) continue;
+      
+      // Pick a random word to hide
+      const hiddenIdx = Math.floor(Math.random() * words.length);
+      const correct = words[hiddenIdx];
+      
+      // Generate wrong options from other verses
+      const allWords = MULK_VERSES.flatMap(v => v.arabic.split(/\s+/).filter(w => w.length > 0));
+      const options = [correct];
+      
+      // Get 3 unique wrong answers (Miller's Law: max 4 options)
+      while (options.length < 4 && allWords.length > options.length) {
+        const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
+        if (!options.includes(randomWord)) {
+          options.push(randomWord);
+        }
+      }
+      
+      // Shuffle options
+      options.sort(() => Math.random() - 0.5);
+      
+      generated.push({
+        ayah: ayahNum,
+        hiddenIndex: hiddenIdx,
+        options,
+        correct
+      });
+    }
+    
+    // Shuffle questions
+    return generated.sort(() => Math.random() - 0.5);
+  }
+  
+  // ==================== QUIZ FLOW ====================
+  function startQuiz() {
+    questions = generateQuestions();
+    if (questions.length === 0) return;
+    
+    currentIndex = 0;
+    score = 0;
+    streak = 0;
+    maxStreak = 0;
+    answered = false;
+    startTime = Date.now();
+    
+    document.getElementById('q-total')!.textContent = String(questions.length);
+    document.getElementById('score-count')!.textContent = '0';
+    document.getElementById('streak-count')!.textContent = '0';
+    document.getElementById('progress-bar')!.style.width = '0%';
+    
+    showView('quiz');
+    renderQuestion();
+  }
+  
+  function renderQuestion() {
+    const q = questions[currentIndex];
+    const verse = MULK_VERSES.find(v => v.dayIndex === q.ayah);
+    if (!verse) return;
+    
+    answered = false;
+    
+    // Update header
+    document.getElementById('q-current')!.textContent = String(currentIndex + 1);
+    document.getElementById('q-ayah')!.textContent = String(q.ayah);
+    
+    // Build question text with blank
+    const words = verse.arabic.split(/\s+/);
+    const questionHtml = words.map((w, i) => 
+      i === q.hiddenIndex 
+        ? '<span class="inline-block min-w-[60px] border-b-2 border-[var(--color-primary)] text-[var(--color-primary)]">؟</span>'
+        : w
+    ).join(' ');
+    document.getElementById('q-text')!.innerHTML = questionHtml;
+    
+    // Build options (full width, stacked - Fitts's Law)
+    const optionsHtml = q.options.map((opt, i) => `
+      <button class="option-btn w-full p-4 rounded-xl border-2 border-[var(--color-border)] bg-white/10 hover:bg-[var(--color-surface)] hover:border-[var(--color-primary)]/50 text-lg arabic text-center" data-idx="${i}">
+        ${opt}
+      </button>
+    `).join('');
+    document.getElementById('q-options')!.innerHTML = optionsHtml;
+    
+    // Attach click handlers
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', () => handleAnswer(btn as HTMLButtonElement));
+    });
+    
+    // Hide feedback
+    document.getElementById('q-feedback')!.classList.add('hidden');
+  }
+  
+  function handleAnswer(btn: HTMLButtonElement) {
+    if (answered) return;
+    answered = true;
+    
+    const q = questions[currentIndex];
+    const selectedIdx = parseInt(btn.dataset.idx || '0');
+    const selected = q.options[selectedIdx];
+    const isCorrect = selected === q.correct;
+    
+    // Disable all buttons
+    document.querySelectorAll('.option-btn').forEach(b => {
+      (b as HTMLButtonElement).disabled = true;
+      const btnText = b.textContent?.trim();
+      if (btnText === q.correct) {
+        b.classList.add('correct');
+      }
+    });
+    
+    if (isCorrect) {
+      score++;
+      streak++;
+      if (streak > maxStreak) maxStreak = streak;
+      
+      btn.classList.add('correct');
+      
+      // Update displays with animation
+      const scoreEl = document.getElementById('score-count')!;
+      const streakEl = document.getElementById('streak-count')!;
+      scoreEl.textContent = String(score);
+      streakEl.textContent = String(streak);
+      streakEl.classList.add('pulse-grow');
+      setTimeout(() => streakEl.classList.remove('pulse-grow'), 300);
+      
+      showFeedback(true, 'Saktë! 🎉');
+    } else {
+      streak = 0;
+      btn.classList.add('wrong');
+      document.getElementById('streak-count')!.textContent = '0';
+      
+      // Shake animation
+      btn.classList.add('shake');
+      setTimeout(() => btn.classList.remove('shake'), 400);
+      
+      showFeedback(false, 'Gabim', `Përgjigja: ${q.correct}`);
+    }
+    
+    // Update progress bar
+    const progress = ((currentIndex + 1) / questions.length) * 100;
+    document.getElementById('progress-bar')!.style.width = `${progress}%`;
+    
+    // Move to next question or results
+    setTimeout(() => {
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }, 1500);
+  }
+  
+  function showFeedback(correct: boolean, text: string, answer?: string) {
+    const feedbackEl = document.getElementById('q-feedback')!;
+    const textEl = document.getElementById('feedback-text')!;
+    const answerEl = document.getElementById('feedback-answer')!;
+    
+    feedbackEl.classList.remove('hidden', 'feedback-correct', 'feedback-wrong');
+    feedbackEl.classList.add(correct ? 'feedback-correct' : 'feedback-wrong');
+    
+    textEl.textContent = text;
+    answerEl.textContent = answer || '';
+    answerEl.classList.toggle('hidden', !answer);
+  }
+  
+  // ==================== RESULTS ====================
+  function showResults() {
+    const total = questions.length;
+    const pct = Math.round((score / total) * 100);
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = Math.floor(elapsed / 60);
+    const seconds = elapsed % 60;
+    
+    // Update displays
+    document.getElementById('result-score')!.textContent = String(score);
+    document.getElementById('result-total')!.textContent = String(total);
+    document.getElementById('result-percent')!.textContent = `${pct}%`;
+    document.getElementById('result-streak')!.textContent = String(maxStreak);
+    document.getElementById('result-time')!.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    // Emoji and message based on score
+    const emojiEl = document.getElementById('result-emoji')!;
+    const emojiBgEl = document.getElementById('result-emoji-bg')!;
+    const msgEl = document.getElementById('result-message')!;
+    
+    if (pct === 100) {
+      emojiEl.textContent = '🏆';
+      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-yellow-100';
+      msgEl.textContent = 'Perfekt! E ke mësuar plotësisht!';
+      createConfetti();
+    } else if (pct >= 80) {
+      emojiEl.textContent = '🎉';
+      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-[var(--color-accent)]/20';
+      msgEl.textContent = 'Shkëlqyeshëm! Je shumë afër përsosmërisë!';
+      createConfetti();
+    } else if (pct >= 60) {
+      emojiEl.textContent = '👍';
+      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-[var(--color-accent)]/20';
+      msgEl.textContent = 'Mirë! Vazhdo të ushtroesh!';
+    } else if (pct >= 40) {
+      emojiEl.textContent = '💪';
+      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-orange-100';
+      msgEl.textContent = 'Mos u dorëzo! Ushtrohu edhe pak!';
+    } else {
+      emojiEl.textContent = '📖';
+      emojiBgEl.className = 'w-28 h-28 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce-in bg-gray-100';
+      msgEl.textContent = 'Dëgjo surenë dhe provo përsëri!';
+    }
+    
+    // Save stats
+    saveStats(score, total);
+    loadStats();
+    
+    showView('results');
+  }
+  
+  function createConfetti() {
+    const container = document.getElementById('confetti-container')!;
+    container.innerHTML = '';
+    
+    const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
+    
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = `${Math.random() * 100}%`;
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+      confetti.style.animation = `confetti-fall ${1.5 + Math.random()}s ease-out forwards`;
+      confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+      container.appendChild(confetti);
+    }
+    
+    // Clean up after animation
+    setTimeout(() => {
+      container.innerHTML = '';
+    }, 3000);
+  }
+  
+  // ==================== EVENT LISTENERS ====================
+  
+  // Range selectors
+  rangeStartSelect.addEventListener('change', () => {
+    rangeStart = parseInt(rangeStartSelect.value);
+    if (rangeEnd < rangeStart) {
+      rangeEnd = rangeStart;
+      rangeEndSelect.value = String(rangeEnd);
+    }
+    updateAyahChips();
+  });
+  
+  rangeEndSelect.addEventListener('change', () => {
+    rangeEnd = parseInt(rangeEndSelect.value);
+    if (rangeStart > rangeEnd) {
+      rangeStart = rangeEnd;
+      rangeStartSelect.value = String(rangeStart);
+    }
+    updateAyahChips();
+  });
+  
+  // Quick range buttons
+  document.querySelectorAll('.quick-range').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = btn as HTMLElement;
+      rangeStart = parseInt(el.dataset.start || '1');
+      rangeEnd = parseInt(el.dataset.end || '30');
+      rangeStartSelect.value = String(rangeStart);
+      rangeEndSelect.value = String(rangeEnd);
+      updateAyahChips();
+    });
+  });
+  
+  // Ayah chips (tap to select single ayah)
+  document.querySelectorAll('.ayah-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const ayah = parseInt((chip as HTMLElement).dataset.ayah || '1');
+      rangeStart = ayah;
+      rangeEnd = ayah;
+      rangeStartSelect.value = String(ayah);
+      rangeEndSelect.value = String(ayah);
+      updateAyahChips();
+    });
+  });
+  
+  // Start quiz
+  document.getElementById('start-quiz-btn')?.addEventListener('click', startQuiz);
+  
+  // Back button
+  backBtn.addEventListener('click', () => {
+    showView('select');
+  });
+  
+  // Retry
+  document.getElementById('retry-btn')?.addEventListener('click', startQuiz);
+  
+  // New quiz
+  document.getElementById('new-quiz-btn')?.addEventListener('click', () => {
+    showView('select');
+  });
+  
+  // ==================== INIT ====================
+  loadStats();
+  updateAyahChips();
+</script>

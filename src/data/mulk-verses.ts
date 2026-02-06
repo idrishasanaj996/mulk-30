@@ -17,7 +17,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 1,
     arabic: "تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
     albanian: "I Lartësuar është Ai, në dorën e të Cilit është sundimi dhe Ai ka fuqi për çdo gjë.",
-    transliteration: "Tabārakal-ladhī biyadihil-mulku wa huwa 'alā kulli shay'in qadīr"
+    transliteration: "Tebeerakel-ledhii bijedihil-mulku we huwe 'alee kul-li shej-in kadiir"
   },
   {
     dayIndex: 2,
@@ -25,7 +25,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 2,
     arabic: "الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ الْعَزِيزُ الْغَفُورُ",
     albanian: "Ai i cili krijoi vdekjen dhe jetën, për t'ju provuar se cili prej jush do të bëjë vepra më të mira. Ai është i Plotfuqishmi, Falësi.",
-    transliteration: "Alladhī khalaqal-mawta wal-ḥayāta liyabluwakum ayyukum aḥsanu 'amalā. Wa huwal-'azīzul-ghafūr"
+    transliteration: "El-ledhii halakal-meute wel-hajeete lijeb-luwekum ejjukum ahsenu 'amelee. We huwel-aziizul-gafuur."
   },
   {
     dayIndex: 3,
@@ -33,7 +33,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 3,
     arabic: "الَّذِي خَلَقَ سَبْعَ سَمَاوَاتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِي خَلْقِ الرَّحْمَٰنِ مِن تَفَاوُتٍ ۖ فَارْجِعِ الْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ",
     albanian: "Ai i cili krijoi shtatë qiej njërin mbi tjetrin. Nuk sheh asnjë mospërputhje në krijimin e të Gjithëmëshirshmit. Ktheje shikimin, a sheh ndonjë të çarë?",
-    transliteration: "Alladhī khalaqa sab'a samāwātin ṭibāqā. Mā tarā fī khalqir-raḥmāni min tafāwut. Farji'il-baṣara hal tarā min fuṭūr"
+    transliteration: "El-ledhii halaka seb'a semeeweetin tibeekaa. Mee teraa fii halkirr-rrahmeeni min tefeewut. Ferxhi'il-besara hel-teraa min futuur"
   },
   {
     dayIndex: 4,
@@ -41,7 +41,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 4,
     arabic: "ثُمَّ ارْجِعِ الْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ الْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ",
     albanian: "Pastaj ktheje shikimin edhe dy herë, shikimi do të të kthehet i poshtëruar dhe i lodhur.",
-    transliteration: "Thummarji'il-baṣara karratayni yanqalib ilaykal-baṣaru khāsi'aw wa huwa ḥasīr"
+    transliteration: "Thummerxhi'il basara kerratejni jennkalib' ilejkel basaru haasi-an ue huve hasiir."
   },
   {
     dayIndex: 5,
@@ -49,7 +49,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 5,
     arabic: "وَلَقَدْ زَيَّنَّا السَّمَاءَ الدُّنْيَا بِمَصَابِيحَ وَجَعَلْنَاهَا رُجُومًا لِّلشَّيَاطِينِ ۖ وَأَعْتَدْنَا لَهُمْ عَذَابَ السَّعِيرِ",
     albanian: "Ne e kemi stolisur qiellin më të afërt me yje dhe i kemi bërë ata gjuajtje kundër djajve, të cilëve u kemi përgatitur dënimin e zjarrit flakërues.",
-    transliteration: "Wa laqad zayyannās-samā'ad-dunyā bimaṣābīḥa wa ja'alnāhā rujūmal-lish-shayāṭīn. Wa a'tadnā lahum 'adhābas-sa'īr"
+    transliteration: "We lekad zejjennes-semee e-ddunjee bimesaabiihe wexhe'al-neehee ruxhuu mel-lish-shejeetiin. We e'ated nee lehum 'adheebes-se'iir."
   },
   {
     dayIndex: 6,
@@ -57,7 +57,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 6,
     arabic: "وَلِلَّذِينَ كَفَرُوا بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ۖ وَبِئْسَ الْمَصِيرُ",
     albanian: "Për ata që mohojnë Zotin e tyre ka dënim të Xhehenemit. Eh, sa vendbanim i keq që është ai!",
-    transliteration: "Wa lilladhīna kafarū birabbihim 'adhābu jahannam. Wa bi'sal-maṣīr"
+    transliteration: "We lil-ledhiine keferuu birabbihim adheebu xhehenneme we bi'selmesiir"
   },
   {
     dayIndex: 7,
@@ -65,7 +65,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 7,
     arabic: "إِذَا أُلْقُوا فِيهَا سَمِعُوا لَهَا شَهِيقًا وَهِيَ تَفُورُ",
     albanian: "Kur hidhen në të, dëgjojnë zhurmën e tij teksa vlon.",
-    transliteration: "Idhā ulqū fīhā sami'ū lahā shahīqaw wa hiya tafūr"
+    transliteration: "Idhee ulkuu fiihee semiuulehe shehiikaw-wehije tefuur"
   },
   {
     dayIndex: 8,
@@ -73,7 +73,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 8,
     arabic: "تَكَادُ تَمَيَّزُ مِنَ الْغَيْظِ ۖ كُلَّمَا أُلْقِيَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَا أَلَمْ يَأْتِكُمْ نَذِيرٌ",
     albanian: "Gati copëtohet nga tërbimi. Sa herë që hidhet në të një grup, rojtarët e tij i pyesin: \"A nuk ju erdhi paralajmërues?\"",
-    transliteration: "Takādu tamayyazu minal-ghayẓ. Kullamā ulqiya fīhā fawjun sa'alahum khazanatuhā alam ya'tikum nadhīr"
+    transliteration: "Tekee du temejjezu minel-gajdh. kul-lemee ul-kije fihee feuxhun se elehum hazenetuhee elem je'tikum nedhiir"
   },
   {
     dayIndex: 9,
@@ -81,7 +81,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 9,
     arabic: "قَالُوا بَلَىٰ قَدْ جَاءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ اللَّهُ مِن شَيْءٍ إِنْ أَنتُمْ إِلَّا فِي ضَلَالٍ كَبِيرٍ",
     albanian: "Ata do të thonë: \"Po, na erdhi paralajmërues, por ne e përgënjeshtruam dhe thamë: 'Allahu nuk ka zbritur asgjë. Ju jeni vetëm në një humbje të madhe.'\"",
-    transliteration: "Qālū balā qad jā'anā nadhīrun fakadhdhabnā wa qulnā mā nazzalal-lāhu min shay'. In antum illā fī ḍalālin kabīr"
+    transliteration: "Kaluu belee kad xhee enee nedhiirun fekedh-dhebnee wekulnee mee nezzelAllahu min shej'in in entum il-la fii daleelin kebiir"
   },
   {
     dayIndex: 10,
@@ -89,7 +89,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 10,
     arabic: "وَقَالُوا لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِي أَصْحَابِ السَّعِيرِ",
     albanian: "Dhe do të thonë: \"Sikur të kishim dëgjuar apo kuptuar, nuk do të ishim ndër banorët e zjarrit flakërues.\"",
-    transliteration: "Wa qālū law kunnā nasma'u aw na'qilu mā kunnā fī aṣḥābis-sa'īr"
+    transliteration: "Wekaaluu leu kunnee nesme'u ew na'kilu mee kunnee fii as-heebis-se'iir"
   },
   {
     dayIndex: 11,
@@ -97,7 +97,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 11,
     arabic: "فَاعْتَرَفُوا بِذَنبِهِمْ فَسُحْقًا لِّأَصْحَابِ السَّعِيرِ",
     albanian: "Kështu ata pranojnë mëkatin e tyre, prandaj largim për banorët e zjarrit flakërues!",
-    transliteration: "Fa'tarafū bidhanbihim fasuḥqal-li'aṣḥābis-sa'īr"
+    transliteration: "Fe'tera fuu bidhembihim fesuhkal-li as-hebis-se'iir"
   },
   {
     dayIndex: 12,
@@ -105,7 +105,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 12,
     arabic: "إِنَّ الَّذِينَ يَخْشَوْنَ رَبَّهُم بِالْغَيْبِ لَهُم مَّغْفِرَةٌ وَأَجْرٌ كَبِيرٌ",
     albanian: "Vërtet, ata që i frikësohen Zotit të tyre pa e parë, për ta ka falje dhe shpërblim të madh.",
-    transliteration: "Innal-ladhīna yakhshawna rabbahum bil-ghaybi lahum maghfiratuw wa ajrun kabīr"
+    transliteration: "In-nel-ledhiine jah-sheune rabbehum-bil-gajbi lehum-meg'firatun we exhrun kebiir."
   },
   {
     dayIndex: 13,
@@ -113,7 +113,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 13,
     arabic: "وَأَسِرُّوا قَوْلَكُمْ أَوِ اجْهَرُوا بِهِ ۖ إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ",
     albanian: "Fshiheni fjalën tuaj ose shpalleni haptazi, Ai di çdo gjë që ka në zemra.",
-    transliteration: "Wa asirrū qawlakum awijharū bih. Innahu 'alīmum bidhātis-ṣudūr"
+    transliteration: "We esirruu kaulekum ewixh heruu bih, innehuu 'aliimun-bi-dheetis-suduur"
   },
   {
     dayIndex: 14,
@@ -121,7 +121,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 14,
     arabic: "أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ اللَّطِيفُ الْخَبِيرُ",
     albanian: "A nuk di Ai që ka krijuar? Ai është i Buti, i Gjithëdituri.",
-    transliteration: "Alā ya'lamu man khalaq. Wa huwal-laṭīful-khabīr"
+    transliteration: "Elee ja'lemu men haleka we huwel-latiful habiir"
   },
   {
     dayIndex: 15,
@@ -129,7 +129,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 15,
     arabic: "هُوَ الَّذِي جَعَلَ لَكُمُ الْأَرْضَ ذَلُولًا فَامْشُوا فِي مَنَاكِبِهَا وَكُلُوا مِن رِّزْقِهِ ۖ وَإِلَيْهِ النُّشُورُ",
     albanian: "Ai është që jua bëri tokën të përshtatshme, ecni nëpër anët e saj dhe hani nga furnizimi i Tij. Tek Ai do të ringjalleni.",
-    transliteration: "Huwal-ladhī ja'ala lakumul-arḍa dhalūlan famshū fī manākibihā wa kulū mir-rizqih. Wa ilayhin-nushūr"
+    transliteration: "Huwel-ledhii xhe'ale lekumul-erda dheluulen femshuu fii meneekibihee wekuluu mir-rizkihi we-ilejhin-nushuur"
   },
   {
     dayIndex: 16,
@@ -137,7 +137,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 16,
     arabic: "أَأَمِنتُم مَّن فِي السَّمَاءِ أَن يَخْسِفَ بِكُمُ الْأَرْضَ فَإِذَا هِيَ تَمُورُ",
     albanian: "A jeni të sigurt që Ai që është në qiell nuk do t'ju fundosë në tokë, kur ajo të dridhet?",
-    transliteration: "A'amintum man fis-samā'i ay-yakhsifa bikumul-arḍa fa'idhā hiya tamūr"
+    transliteration: "E emintum-men fissamaa-i ej-jeksife bikumul-erda fe-idhee hije temuur"
   },
   {
     dayIndex: 17,
@@ -145,7 +145,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 17,
     arabic: "أَمْ أَمِنتُم مَّن فِي السَّمَاءِ أَن يُرْسِلَ عَلَيْكُمْ حَاصِبًا ۖ فَسَتَعْلَمُونَ كَيْفَ نَذِيرِ",
     albanian: "Apo jeni të sigurt që Ai që është në qiell nuk do t'ju dërgojë stuhi gurësh? Atëherë do ta dini si është paralajmërimi Im.",
-    transliteration: "Am amintum man fis-samā'i ay-yursila 'alaykum ḥāṣibā. Fasata'lamūna kayfa nadhīr"
+    transliteration: "Em emintum-men-fissemee i ej-jursile alejkum haasibee fesetea'lemuune kejfe nedhiir"
   },
   {
     dayIndex: 18,
@@ -153,7 +153,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 18,
     arabic: "وَلَقَدْ كَذَّبَ الَّذِينَ مِن قَبْلِهِمْ فَكَيْفَ كَانَ نَكِيرِ",
     albanian: "Vërtet, ata para tyre gjithashtu përgënjeshtruan, por si ishte dënimi Im!",
-    transliteration: "Wa laqad kadhdhabal-ladhīna min qablihim fakayfa kāna nakīr"
+    transliteration: "We lekad kedheb-bel-ledhine min kablihim fekejfe keene nekiir"
   },
   {
     dayIndex: 19,
@@ -161,7 +161,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 19,
     arabic: "أَوَلَمْ يَرَوْا إِلَى الطَّيْرِ فَوْقَهُمْ صَافَّاتٍ وَيَقْبِضْنَ ۚ مَا يُمْسِكُهُنَّ إِلَّا الرَّحْمَٰنُ ۚ إِنَّهُ بِكُلِّ شَيْءٍ بَصِيرٌ",
     albanian: "A nuk i shohin zogjtë sipër tyre, duke i shtrirë krahët dhe duke i mbledhur? Nuk i mban ata askush veç të Gjithëmëshirshmit. Vërtet, Ai i sheh të gjitha.",
-    transliteration: "Awalam yaraw ilat-ṭayri fawqahum ṣāffātiw wa yaqbiḍn. Mā yumsikuhunna illar-raḥmān. Innahu bikulli shay'im baṣīr"
+    transliteration: "Ewe lem jerau ilet-tajri feukahum seeffetin- we jekbidn, mee jumsikuhunne il-larrahmeenu innehu bikuli shej'in besiir"
   },
   {
     dayIndex: 20,
@@ -169,7 +169,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 20,
     arabic: "أَمَّنْ هَٰذَا الَّذِي هُوَ جُندٌ لَّكُمْ يَنصُرُكُم مِّن دُونِ الرَّحْمَٰنِ ۚ إِنِ الْكَافِرُونَ إِلَّا فِي غُرُورٍ",
     albanian: "Kush është ai që si ushtri do t'ju ndihmojë kundër të Gjithëmëshirshmit? Mohuesit janë vetëm në mashtrim.",
-    transliteration: "Amman hādhal-ladhī huwa jundul-lakum yanṣurukum min dūnir-raḥmān. Inil-kāfirūna illā fī ghurūr"
+    transliteration: "Emmen heedhel-ledhii huwe xhundul-lekum jensurukum-min duunirrahmaan inil-keefiruune ilaa fii guruur"
   },
   {
     dayIndex: 21,
@@ -177,7 +177,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 21,
     arabic: "أَمَّنْ هَٰذَا الَّذِي يَرْزُقُكُمْ إِنْ أَمْسَكَ رِزْقَهُ ۚ بَل لَّجُّوا فِي عُتُوٍّ وَنُفُورٍ",
     albanian: "Kush është ai që do t'ju furnizojë nëse Ai ndalon furnizimin e Tij? Por ata vazhdojnë në arrogancë dhe largim.",
-    transliteration: "Amman hādhal-ladhī yarzuqukum in amsaka rizqah. Bal-lajjū fī 'utuwwiw wa nufūr"
+    transliteration: "Emmen heedhel-ledhii jerzukukum in emseka rizkah, bel-lexhuu fii 'utuwwin wanufuur"
   },
   {
     dayIndex: 22,
@@ -185,7 +185,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 22,
     arabic: "أَفَمَن يَمْشِي مُكِبًّا عَلَىٰ وَجْهِهِ أَهْدَىٰ أَمَّن يَمْشِي سَوِيًّا عَلَىٰ صِرَاطٍ مُّسْتَقِيمٍ",
     albanian: "A është më i udhëzuar ai që ecën me fytyrën përmbys apo ai që ecën drejt në rrugën e drejtë?",
-    transliteration: "Afamay-yamshī mukibban 'alā wajhihī ahdā ammay-yamshī sawiyyan 'alā ṣirāṭim-mustaqīm"
+    transliteration: "Efemen jemshii mukibben 'alee wexhhihi ehdee emmej jemshii sewijjen 'aale siraatim-mustekiim"
   },
   {
     dayIndex: 23,
@@ -193,7 +193,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 23,
     arabic: "قُلْ هُوَ الَّذِي أَنشَأَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ",
     albanian: "Thuaj: \"Ai është që ju krijoi dhe ju dha dëgjimin, shikimin dhe zemrat. Sa pak falënderoni!\"",
-    transliteration: "Qul huwal-ladhī ansha'akum wa ja'ala lakumus-sam'a wal-abṣāra wal-af'idah. Qalīlam mā tashkurūn"
+    transliteration: "Kul huwel-ledhii enshe-ekum wexhe'ale lekumus-sem'e wel-ebsaara wel-ef-idate kaliilem-mee teshkuruun"
   },
   {
     dayIndex: 24,
@@ -201,7 +201,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 24,
     arabic: "قُلْ هُوَ الَّذِي ذَرَأَكُمْ فِي الْأَرْضِ وَإِلَيْهِ تُحْشَرُونَ",
     albanian: "Thuaj: \"Ai është që ju shpërndau në tokë dhe tek Ai do të tuboheni.\"",
-    transliteration: "Qul huwal-ladhī dhara'akum fil-arḍi wa ilayhi tuḥsharūn"
+    transliteration: "Kul huwel-ledhii dhera-ekum fil-erdi we-ilejhi tuhsheruun"
   },
   {
     dayIndex: 25,
@@ -209,7 +209,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 25,
     arabic: "وَيَقُولُونَ مَتَىٰ هَٰذَا الْوَعْدُ إِن كُنتُمْ صَادِقِينَ",
     albanian: "Dhe thonë: \"Kur do të vijë ky premtim, nëse jeni të sinqertë?\"",
-    transliteration: "Wa yaqūlūna matā hādhal-wa'du in kuntum ṣādiqīn"
+    transliteration: "Wejekuuluune metee heedhel wa'du in kuntum saadikiin"
   },
   {
     dayIndex: 26,
@@ -217,7 +217,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 26,
     arabic: "قُلْ إِنَّمَا الْعِلْمُ عِندَ اللَّهِ وَإِنَّمَا أَنَا نَذِيرٌ مُّبِينٌ",
     albanian: "Thuaj: \"Dituria është vetëm tek Allahu dhe unë jam vetëm paralajmërues i qartë.\"",
-    transliteration: "Qul innamal-'ilmu 'indal-lāhi wa innamā ana nadhīrum-mubīn"
+    transliteration: "Kul innemel 'ilmu 'indallahi we-innemee ene nedhiirun mubiin"
   },
   {
     dayIndex: 27,
@@ -225,7 +225,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 27,
     arabic: "فَلَمَّا رَأَوْهُ زُلْفَةً سِيئَتْ وُجُوهُ الَّذِينَ كَفَرُوا وَقِيلَ هَٰذَا الَّذِي كُنتُم بِهِ تَدَّعُونَ",
     albanian: "Por kur ta shohin afër, fytyrat e mohuesve do të trishtohën dhe do t'u thuhet: \"Kjo është ajo që e kërkonit.\"",
-    transliteration: "Falammā ra'awhu zulfatan sī'at wujūhul-ladhīna kafarū wa qīla hādhal-ladhī kuntum bihī tadda'ūn"
+    transliteration: "Felemmee ra ewhu zulfeten sii-et wuxhuuhul-ledhiine keferuu wekiile heedhel-ledhii kuntum bihii tedde'uun"
   },
   {
     dayIndex: 28,
@@ -233,7 +233,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 28,
     arabic: "قُلْ أَرَأَيْتُمْ إِنْ أَهْلَكَنِيَ اللَّهُ وَمَن مَّعِيَ أَوْ رَحِمَنَا فَمَن يُجِيرُ الْكَافِرِينَ مِنْ عَذَابٍ أَلِيمٍ",
     albanian: "Thuaj: \"A e keni parë, nëse Allahu më shkatërron mua dhe ata që janë me mua, ose na mëshiron, kush do t'i mbrojë mohuesit nga dënimi i dhimbshëm?\"",
-    transliteration: "Qul ara'aytum in ahlakaniyallāhu wa mam-ma'iya aw raḥimanā famay-yujīrul-kāfirīna min 'adhābin alīm"
+    transliteration: "Kul era ejtum in ahlaknijAllahu wemen me'je ew rahimenee femen juxhiirul- keefiriine min 'adheebin alim"
   },
   {
     dayIndex: 29,
@@ -241,7 +241,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 29,
     arabic: "قُلْ هُوَ الرَّحْمَٰنُ آمَنَّا بِهِ وَعَلَيْهِ تَوَكَّلْنَا ۖ فَسَتَعْلَمُونَ مَنْ هُوَ فِي ضَلَالٍ مُّبِينٍ",
     albanian: "Thuaj: \"Ai është i Gjithëmëshirshmi, ne besojmë në Të dhe tek Ai mbështetemi. Së shpejti do ta dini kush është në humbje të qartë.\"",
-    transliteration: "Qul huwar-raḥmānu āmannā bihī wa 'alayhi tawakkalnā. Fasata'lamūna man huwa fī ḍalālim-mubīn"
+    transliteration: "Kul huwerrahmeenu eemennee bihi we'alejhi tewekkelnee fesetea'lemuune men huwe fii daleelin mubiin"
   },
   {
     dayIndex: 30,
@@ -249,7 +249,7 @@ export const MULK_VERSES: Verse[] = [
     ayahNumber: 30,
     arabic: "قُلْ أَرَأَيْتُمْ إِنْ أَصْبَحَ مَاؤُكُمْ غَوْرًا فَمَن يَأْتِيكُم بِمَاءٍ مَّعِينٍ",
     albanian: "Thuaj: \"A e keni parë, nëse uji juaj zhduket në tokë, kush do t'ju sjellë ujë të rrjedhshëm?\"",
-    transliteration: "Qul ara'aytum in aṣbaḥa mā'ukum ghawran famay-ya'tīkum bimā'im-ma'īn"
+    transliteration: "Kul era ejtum in asbaha mee ukum ghawran femen je-tikum bimee-in me'iin"
   }
 ];
 

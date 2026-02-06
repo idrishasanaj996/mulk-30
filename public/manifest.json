@@ -4,8 +4,8 @@
   "description": "Sfida 30-ditore e Ramazanit - Mëso Suren El-Mulk",
   "start_url": "/app",
   "display": "standalone",
-  "background_color": "#F8F9FA",
-  "theme_color": "#2D6A4F",
+  "background_color": "#EBF4F6",
+  "theme_color": "#09637E",
   "orientation": "portrait",
   "icons": [
     {
