@@ -10,6 +10,11 @@
   /* Accent */
   --color-accent: #7AB2B2;         /* Light Teal */
   
+  /* Step Colors (Official - für Listen/Lesen/Rezitieren) */
+  --color-step-listen: #10B981;    /* Emerald - Dëgjo */
+  --color-step-read: #0EA5E9;      /* Sky - Lexo */
+  --color-step-recite: #8B5CF6;    /* Violet - Recito */
+  
   /* Backgrounds */
   --color-background: #EBF4F6;     /* Ice Blue - Page BG */
   --color-surface: #FFFFFF;        /* White - Cards */
@@ -23,8 +28,8 @@
   --color-border: #B8D4D8;         /* Visible border */
   
   /* Semantic */
-  --color-success: #088395;
-  --color-error: #D64545;
+  --color-success: #10B981;
+  --color-error: #EF4444;
   
   /* Radius */
   --radius-sm: 0.5rem;
@@ -39,12 +44,17 @@
   --color-primary-light: #3DBDCD;
   --color-primary-dark: #088395;
   --color-accent: #7AB2B2;
+  --color-step-listen: #34D399;    /* Emerald Light */
+  --color-step-read: #38BDF8;      /* Sky Light */
+  --color-step-recite: #A78BFA;    /* Violet Light */
   --color-background: #051E26;
   --color-surface: #0A323D;
   --color-header: #051E26;
   --color-text: #EBF4F6;
   --color-text-secondary: #A0D0D0;
   --color-border: #1A5A6A;
+  --color-success: #34D399;
+  --color-error: #F87171;
 }
 
 /* === Typography classes (#8) === */
@@ -225,6 +235,59 @@ button, a, .nav-item, .btn, input, select, textarea {
   background-color: var(--color-background);
 }
 
+/* Icon-only Button (Pill) */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.btn-icon:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-icon:active {
+  transform: scale(0.95);
+}
+
+/* Step-colored Buttons */
+.btn-listen {
+  background-color: var(--color-step-listen);
+  color: white;
+}
+
+.btn-listen:hover {
+  background-color: #059669; /* Emerald darker */
+}
+
+.btn-read {
+  background-color: var(--color-step-read);
+  color: white;
+}
+
+.btn-read:hover {
+  background-color: #0284C7; /* Sky darker */
+}
+
+.btn-recite {
+  background-color: var(--color-step-recite);
+  color: white;
+}
+
+.btn-recite:hover {
+  background-color: #7C3AED; /* Violet darker */
+}
+
 /* Card component — FLAT DESIGN */
 .card {
   background-color: var(--color-surface);
@@ -244,6 +307,15 @@ button, a, .nav-item, .btn, input, select, textarea {
 
 .card-interactive:hover {
   border-color: var(--color-primary);
+}
+
+/* Hero Card — Prominente Cards (z.B. Arabic Text) */
+.card-hero {
+  background-color: var(--color-surface);
+  border-radius: 1.5rem; /* 24px - größer als normale Cards */
+  border: 1px solid var(--color-border);
+  padding: 0;
+  overflow: hidden;
 }
 
 /* Input styles */
