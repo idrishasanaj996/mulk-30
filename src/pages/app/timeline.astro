@@ -44,6 +44,32 @@ import { MULK_VERSES, SURAH_INFO } from '../../data/mulk-verses';
   </div>
 </Layout>
 
+<style>
+  /* Timeline item states - prefer CSS classes over inline styles */
+  .timeline-item.completed {
+    border-left: 3px solid var(--color-primary);
+  }
+  
+  .timeline-dot.completed {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+  
+  .timeline-dot.today {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  
+  .timeline-dot.missed {
+    opacity: 0.5;
+  }
+  
+  .timeline-dot.future {
+    opacity: 0.4;
+  }
+</style>
+
 <script>
   import { getState, getCurrentDay, getDayStatus } from '../../lib/challenge';
   import { getSession } from '../../lib/supabase';
@@ -71,18 +97,16 @@ import { MULK_VERSES, SURAH_INFO } from '../../data/mulk-verses';
     const statusEl = el.querySelector('.timeline-status') as HTMLElement;
 
     if (status === 'completed') {
-      dot.classList.remove('border-[var(--color-border)]', 'text-white/70');
-      dot.classList.add('bg-[var(--color-primary)]', 'text-white', 'border-[var(--color-primary)]');
-      (el as HTMLElement).style.borderLeft = '3px solid var(--color-primary)';
+      el.classList.add('completed');
+      dot.classList.add('completed');
       statusEl.innerHTML = '<svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
     } else if (status === 'today') {
-      dot.classList.remove('border-[var(--color-border)]', 'text-white/70');
-      dot.classList.add('border-[var(--color-primary)]', 'text-[var(--color-primary)]');
+      dot.classList.add('today');
       (el as HTMLElement).classList.add('ring-2', 'ring-[var(--color-primary)]/20');
     } else if (status === 'missed') {
-      dot.classList.add('opacity-50');
+      dot.classList.add('missed');
     } else {
-      dot.classList.add('opacity-40');
+      dot.classList.add('future');
     }
   });
 
