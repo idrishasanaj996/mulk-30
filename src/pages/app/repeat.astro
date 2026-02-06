@@ -402,33 +402,33 @@ import { MULK_VERSES } from '../../data/mulk-verses';
   let isPlaying = false;
   let settingsOpen = false;
   
-  // Show empty or main content
-  if (completedDays.length === 0) {
-    emptyState.classList.remove('hidden');
-    mainContent.classList.add('hidden');
-    ctaContainer.classList.add('hidden');
-  } else {
-    emptyState.classList.add('hidden');
-    mainContent.classList.remove('hidden');
-    buildAyahGrid();
-    populateRangeDropdowns();
+  // Always show main content (no locking)
+  emptyState.classList.add('hidden');
+  mainContent.classList.remove('hidden');
+  buildAyahGrid();
+  populateRangeDropdowns();
+  
+  // Legacy check removed - all 30 verses always available
+  if (false) {
+    // Empty state disabled
   }
   
-  // Build Grid with ONLY unlocked ayahs (Miller's Law - reduce cognitive load)
+  // Build Grid with ALL 30 ayahs (no locking)
   function buildAyahGrid() {
     ayahGrid.innerHTML = '';
     
-    // Sort completed days for visual consistency
-    const sortedDays = [...completedDays].sort((a, b) => a - b);
-    
-    sortedDays.forEach(day => {
+    // Show all 30 verses
+    for (let day = 1; day <= 30; day++) {
       const btn = document.createElement('button');
       btn.className = 'ayah-btn';
+      if (completedDays.includes(day)) {
+        btn.classList.add('completed');
+      }
       btn.dataset.ayah = String(day);
       btn.textContent = String(day);
       btn.addEventListener('click', () => selectSingleAyah(day, btn));
       ayahGrid.appendChild(btn);
-    });
+    }
   }
   
   function selectSingleAyah(day: number, btn: HTMLButtonElement) {
@@ -451,9 +451,8 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     rangeStart.innerHTML = '';
     rangeEnd.innerHTML = '';
     
-    const sortedDays = [...completedDays].sort((a, b) => a - b);
-    
-    sortedDays.forEach((day, i) => {
+    // All 30 verses available
+    for (let day = 1; day <= 30; day++) {
       const optStart = document.createElement('option');
       optStart.value = String(day);
       optStart.textContent = String(day);
@@ -462,9 +461,9 @@ import { MULK_VERSES } from '../../data/mulk-verses';
       const optEnd = document.createElement('option');
       optEnd.value = String(day);
       optEnd.textContent = String(day);
-      if (i === sortedDays.length - 1) optEnd.selected = true;
+      if (day === 30) optEnd.selected = true;
       rangeEnd.appendChild(optEnd);
-    });
+    }
     
     updateRangeCount();
   }
@@ -479,7 +478,12 @@ import { MULK_VERSES } from '../../data/mulk-verses';
   function getAyahsInRange(start: number, end: number): number[] {
     const min = Math.min(start, end);
     const max = Math.max(start, end);
-    return completedDays.filter(d => d >= min && d <= max).sort((a, b) => a - b);
+    // Return all in range, no filtering
+    const result: number[] = [];
+    for (let d = min; d <= max; d++) {
+      result.push(d);
+    }
+    return result;
   }
   
   function showCTA() {
