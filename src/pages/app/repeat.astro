@@ -482,6 +482,12 @@ import { MULK_VERSES } from '../../data/mulk-verses';
   setupPresetButtons();
   populateRangeDropdowns();
   
+  // Auto-select first preset (Surah e plotë) on load
+  const firstPreset = document.querySelector('.preset-btn') as HTMLElement;
+  if (firstPreset) {
+    selectPreset(1, 30, firstPreset);
+  }
+  
   // Setup Preset Buttons
   function setupPresetButtons() {
     document.querySelectorAll('.preset-btn').forEach(btn => {
