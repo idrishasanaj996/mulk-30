@@ -20,7 +20,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
 ---
 
 <Layout title={`Dita ${dayIndex}`}>
-  <div id="page-root" class="min-h-screen flex flex-col bg-[var(--color-background)]">
+  <div id="page-root" class="h-screen flex flex-col bg-[var(--color-background)] overflow-hidden">
     
     <!-- Header with gradient - extends down -->
     <header class="bg-gradient-to-b from-[#005086] via-[#318fb5] to-[#b0cac7] text-white px-4 pt-3 pb-24 safe-top">
@@ -88,8 +88,8 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
     </div>
 
     <!-- Main Content Area - Hero Arabic Text -->
-    <main class="flex-1 flex flex-col px-4 pt-4 pb-[180px]">
-      <div class="max-w-lg mx-auto w-full flex-1 flex flex-col">
+    <main class="flex-1 flex flex-col px-4 pt-4 pb-[180px] min-h-0 overflow-hidden">
+      <div class="max-w-lg mx-auto w-full flex-1 flex flex-col min-h-0">
         
         <!-- Arabic Text Card - FILLS AVAILABLE SPACE -->
         <div id="arabic-card" class="flex-1 flex flex-col bg-white rounded-2xl shadow-lg shadow-[#005086]/10 border border-[var(--color-border)]/50 overflow-hidden">
