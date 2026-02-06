@@ -14,7 +14,9 @@ export interface ChallengeState {
 }
 
 const STORAGE_KEY = 'mulk30_challenge';
-const DEFAULT_START_DATE = '2026-02-28';
+// Default to Feb 19, 2026 - the second option in Settings
+// (First day of Ramadan 2026 depends on moon sighting)
+const DEFAULT_START_DATE = '2026-02-19';
 const REQUIRED_COUNT = 10;
 
 export function getState(): ChallengeState {
