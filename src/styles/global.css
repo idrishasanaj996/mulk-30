@@ -2,34 +2,34 @@
 
 /* Custom CSS Variables — Teal Palette (High Contrast) */
 :root {
-  /* Primary Scale */
-  --color-primary: #088395;        /* Teal - Main CTAs */
-  --color-primary-light: #0A9DAD;  /* Brighter Teal - Hover */
-  --color-primary-dark: #09637E;   /* Dark Teal - Active/Pressed */
+  /* Primary Scale — Rose/Red Palette */
+  --color-primary: #DD2D4A;        /* Red - Main CTAs */
+  --color-primary-light: #F26A8D;  /* Rosa - Hover */
+  --color-primary-dark: #880D1E;   /* Dark Red - Active/Pressed */
   
   /* Accent */
-  --color-accent: #7AB2B2;         /* Light Teal */
+  --color-accent: #F49CBB;         /* Hellrosa */
   
   /* Step Colors (Official - für Listen/Lesen/Rezitieren) */
-  --color-step-listen: #10B981;    /* Emerald - Dëgjo */
-  --color-step-read: #0EA5E9;      /* Sky - Lexo */
-  --color-step-recite: #8B5CF6;    /* Violet - Recito */
+  --color-step-listen: #DD2D4A;    /* Red - Dëgjo */
+  --color-step-read: #F26A8D;      /* Rosa - Lexo */
+  --color-step-recite: #880D1E;    /* Dark Red - Recito */
   
   /* Backgrounds */
-  --color-background: #EBF4F6;     /* Ice Blue - Page BG */
+  --color-background: #CBEEF3;     /* Light Cyan - Page BG */
   --color-surface: #FFFFFF;        /* White - Cards */
-  --color-header: #09637E;         /* Dark Teal - Header */
+  --color-header: #880D1E;         /* Dark Red - Header */
   
   /* Text on LIGHT backgrounds - USE DARK COLORS */
-  --color-text: #1A3C40;           /* Almost black-teal - MAXIMUM contrast */
-  --color-text-secondary: #3D6A70; /* Dark teal - Good contrast */
+  --color-text: #2D2D2D;           /* Near black - MAXIMUM contrast */
+  --color-text-secondary: #5A5A5A; /* Dark gray - Good contrast */
   
   /* Borders */
-  --color-border: #B8D4D8;         /* Visible border */
+  --color-border: #E0E0E0;         /* Light gray border */
   
   /* Semantic */
   --color-success: #10B981;
-  --color-error: #EF4444;
+  --color-error: #DD2D4A;
   
   /* Radius */
   --radius-sm: 0.5rem;
@@ -40,21 +40,21 @@
 }
 
 .dark {
-  --color-primary: #0A9DAD;
-  --color-primary-light: #3DBDCD;
-  --color-primary-dark: #088395;
-  --color-accent: #7AB2B2;
-  --color-step-listen: #34D399;    /* Emerald Light */
-  --color-step-read: #38BDF8;      /* Sky Light */
-  --color-step-recite: #A78BFA;    /* Violet Light */
-  --color-background: #051E26;
-  --color-surface: #0A323D;
-  --color-header: #051E26;
-  --color-text: #EBF4F6;
-  --color-text-secondary: #A0D0D0;
-  --color-border: #1A5A6A;
+  --color-primary: #F26A8D;
+  --color-primary-light: #F49CBB;
+  --color-primary-dark: #DD2D4A;
+  --color-accent: #F49CBB;
+  --color-step-listen: #F26A8D;
+  --color-step-read: #F49CBB;
+  --color-step-recite: #DD2D4A;
+  --color-background: #1A1A2E;
+  --color-surface: #25253D;
+  --color-header: #1A1A2E;
+  --color-text: #F5F5F5;
+  --color-text-secondary: #B0B0B0;
+  --color-border: #3A3A5A;
   --color-success: #34D399;
-  --color-error: #F87171;
+  --color-error: #F26A8D;
 }
 
 /* === Typography classes (#8) === */
