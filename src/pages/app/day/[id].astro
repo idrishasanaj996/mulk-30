@@ -38,52 +38,43 @@ const arabicWords = verse.arabic.split(/\s+/);
     <!-- Step Progress Indicator -->
     <div class="bg-[var(--color-surface)] border-b border-[var(--color-border)] px-4 py-3">
       <div class="max-w-lg mx-auto">
-        <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center">
           <!-- Step 1: Listen -->
-          <div id="step-listen" class="step-indicator flex-1" data-step="listen">
-            <div class="flex items-center gap-2">
-              <div class="step-circle w-8 h-8 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white text-xs font-bold">
+          <div id="step-listen" class="step-indicator" data-step="listen">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-10 h-10 rounded-full bg-[var(--color-step-listen)] flex items-center justify-center text-white text-sm font-bold">
                 <span class="step-number">1</span>
-                <svg class="step-check w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                <svg class="step-check w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
               </div>
-              <div class="hidden sm:block">
-                <span class="text-xs font-medium text-[var(--color-text)]">Dëgjo</span>
-                <span id="listen-progress" class="text-xs text-[var(--color-text-secondary)] ml-1">0/10</span>
-              </div>
+              <span id="listen-progress" class="text-xs text-[var(--color-text-secondary)] mt-1">0/10</span>
             </div>
           </div>
           
-          <!-- Connector -->
-          <div class="step-connector flex-1 h-0.5 bg-[var(--color-border)] mx-1"></div>
+          <!-- Connector 1 -->
+          <div class="step-connector flex-1 h-0.5 bg-[var(--color-border)] mx-2"></div>
           
           <!-- Step 2: Read -->
-          <div id="step-read" class="step-indicator flex-1 opacity-40" data-step="read">
-            <div class="flex items-center gap-2">
-              <div class="step-circle w-8 h-8 rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] text-xs font-bold">
+          <div id="step-read" class="step-indicator opacity-40" data-step="read">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-10 h-10 rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] text-sm font-bold">
                 <span class="step-number">2</span>
-                <svg class="step-check w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                <svg class="step-check w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
               </div>
-              <div class="hidden sm:block">
-                <span class="text-xs font-medium text-[var(--color-text)]">Lexo</span>
-                <span id="read-progress" class="text-xs text-[var(--color-text-secondary)] ml-1">0/10</span>
-              </div>
+              <span id="read-progress" class="text-xs text-[var(--color-text-secondary)] mt-1">0/10</span>
             </div>
           </div>
           
-          <!-- Connector -->
-          <div class="step-connector flex-1 h-0.5 bg-[var(--color-border)] mx-1"></div>
+          <!-- Connector 2 -->
+          <div class="step-connector flex-1 h-0.5 bg-[var(--color-border)] mx-2"></div>
           
           <!-- Step 3: Recite -->
-          <div id="step-recite" class="step-indicator flex-1 opacity-40" data-step="recite">
-            <div class="flex items-center gap-2">
-              <div class="step-circle w-8 h-8 rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] text-xs font-bold">
+          <div id="step-recite" class="step-indicator opacity-40" data-step="recite">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-10 h-10 rounded-full bg-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] text-sm font-bold">
                 <span class="step-number">3</span>
-                <svg class="step-check w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                <svg class="step-check w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
               </div>
-              <div class="hidden sm:block">
-                <span class="text-xs font-medium text-[var(--color-text)]">Recito</span>
-                <span id="recite-progress" class="text-xs text-[var(--color-text-secondary)] ml-1">0/10</span>
-              </div>
+              <span id="recite-progress" class="text-xs text-[var(--color-text-secondary)] mt-1">0/10</span>
             </div>
           </div>
         </div>
@@ -307,14 +298,24 @@ const arabicWords = verse.arabic.split(/\s+/);
     opacity: 1;
   }
   
-  .step-indicator.active .step-circle {
-    background-color: var(--color-primary);
+  /* Step 1: Listen - Emerald */
+  #step-listen.active .step-circle,
+  #step-listen.completed .step-circle {
+    background-color: var(--color-step-listen);
     color: white;
-    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
   }
   
-  .step-indicator.completed .step-circle {
-    background-color: var(--color-primary);
+  /* Step 2: Read - Sky */
+  #step-read.active .step-circle,
+  #step-read.completed .step-circle {
+    background-color: var(--color-step-read);
+    color: white;
+  }
+  
+  /* Step 3: Recite - Violet */
+  #step-recite.active .step-circle,
+  #step-recite.completed .step-circle {
+    background-color: var(--color-step-recite);
     color: white;
   }
   
@@ -327,7 +328,7 @@ const arabicWords = verse.arabic.split(/\s+/);
   }
   
   .step-connector.active {
-    background-color: var(--color-primary);
+    background-color: var(--color-step-listen);
   }
 
   /* Bounce animation for success */
