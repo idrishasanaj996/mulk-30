@@ -251,8 +251,8 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
               </div>
             </div>
             
-            <!-- Audio Helper - Check icon (outline style) -->
-            <button id="read-audio-btn" class="w-12 h-12 rounded-xl bg-white border-2 border-[var(--color-step-listen)] flex items-center justify-center text-[var(--color-step-listen)]">
+            <!-- Complete Button - Tap to count read repetition -->
+            <button id="read-complete-btn" class="w-12 h-12 rounded-xl bg-white border-2 border-[var(--color-step-listen)] flex items-center justify-center text-[var(--color-step-listen)] active:scale-95 transition-all">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
             </button>
           </div>
@@ -856,8 +856,17 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
     }
   });
   
-  // Read audio helper
-  document.getElementById('read-audio-btn')?.addEventListener('click', playAudioOnce);
+  // Read complete button - same function as tap button
+  document.getElementById('read-complete-btn')?.addEventListener('click', () => {
+    progress = incrementStep(dayIndex, 'read');
+    bumpCount(document.getElementById('read-count'));
+    updateProgressBars();
+    updateStepIndicators();
+    
+    if (progress.readCount >= REQUIRED_COUNT) {
+      switchMode('recite');
+    }
+  });
   
   // Recite tap button
   document.getElementById('recite-tap-btn')?.addEventListener('click', () => {
