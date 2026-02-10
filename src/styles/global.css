@@ -454,18 +454,6 @@ button, a, .nav-item, .btn, input, select, textarea {
   color: var(--color-primary);
 }
 
-.nav-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-}
-
 /* Selection */
 ::selection {
   background-color: var(--color-primary);
@@ -529,11 +517,9 @@ button, a, .nav-item, .btn, input, select, textarea {
 
 .arabic-word {
   position: relative;
-  padding: 6px 0;
+  padding: 4px 0;
   background-color: transparent;
-  transition: background-color 0.35s ease-out;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  transition: background-color 0.12s ease-out;
 }
 
 .arabic-word.past {

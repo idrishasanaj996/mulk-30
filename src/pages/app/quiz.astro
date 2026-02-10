@@ -21,9 +21,9 @@ import { MULK_VERSES } from '../../data/mulk-verses';
       </div>
     </header>
 
-    <!-- Main Content - pulls up into header gradient -->
-    <main class="flex-1 px-4 pb-44 -mt-12">
-      <div class="max-w-lg mx-auto space-y-4">
+    <!-- Main Content - pulls up into header gradient (kein Player = Card füllt bis BottomNav) -->
+    <main class="flex-1 flex flex-col px-4 pb-20 -mt-12 overflow-hidden">
+      <div class="max-w-lg mx-auto w-full flex-1 flex flex-col space-y-4">
         
         <!-- ==================== SELECTION VIEW ==================== -->
         <div id="view-select" class="space-y-4">
@@ -148,19 +148,21 @@ import { MULK_VERSES } from '../../data/mulk-verses';
         </div>
         
         <!-- ==================== QUIZ VIEW ==================== -->
-        <div id="view-quiz" class="hidden space-y-4">
+        <div id="view-quiz" class="hidden flex-1 flex flex-col space-y-4">
           
           <!-- Progress Header -->
-          <div class="card">
+          <div class="card shrink-0">
             <div class="flex items-center justify-between mb-3">
               <span class="text-sm font-medium text-[var(--color-text)]">Pyetja <span id="q-current" class="text-[var(--color-primary)]">1</span>/<span id="q-total">10</span></span>
               <div class="flex items-center gap-4">
+                <!-- Falsch (X) -->
                 <div class="flex items-center gap-1.5">
-                  <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-7-2.4-7-7 0-3.1 2.7-6.4 5-9.1V2l2.5 2L15 2v4.9c2.3 2.7 5 6 5 9.1 0 4.6-3.4 7-8 7z"/></svg>
-                  <span id="streak-count" class="text-sm font-bold text-orange-500">0</span>
+                  <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                  <span id="wrong-count" class="text-sm font-bold text-red-500">0</span>
                 </div>
+                <!-- Richtig (Check) -->
                 <div class="flex items-center gap-1.5">
-                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                   <span id="score-count" class="text-sm font-bold text-[var(--color-primary)]">0</span>
                 </div>
               </div>
@@ -170,18 +172,18 @@ import { MULK_VERSES } from '../../data/mulk-verses';
             </div>
           </div>
           
-          <!-- Question Card -->
-          <div class="card">
-            <div class="bg-[var(--color-primary)]/10 -mx-4 -mt-4 px-4 py-2 mb-4 rounded-t-2xl">
+          <!-- Question Card - füllt den restlichen Platz -->
+          <div class="card flex-1 flex flex-col">
+            <div class="bg-[var(--color-primary)]/10 -mx-4 -mt-4 px-4 py-2 mb-4 rounded-t-2xl shrink-0">
               <span class="text-sm font-medium text-[var(--color-primary)]">Ajeti <span id="q-ayah">1</span></span>
             </div>
             
-            <p class="text-xs text-[var(--color-text-secondary)] mb-3">Plotëso fjalën që mungon</p>
-            <div id="q-text" class="arabic text-2xl leading-[2.5] text-center p-4 bg-[var(--color-background)] rounded-xl min-h-[100px] flex items-center justify-center mb-4" dir="rtl"></div>
+            <p class="text-xs text-[var(--color-text-secondary)] mb-3 shrink-0">Plotëso fjalën që mungon</p>
+            <div id="q-text" class="arabic text-2xl leading-[2.5] text-center p-4 bg-[var(--color-background)] rounded-xl flex-1 flex items-center justify-center mb-4" dir="rtl"></div>
             
-            <div id="q-options" class="space-y-2"></div>
+            <div id="q-options" class="space-y-2 shrink-0"></div>
             
-            <div id="q-feedback" class="hidden mt-4 p-3 rounded-xl text-center">
+            <div id="q-feedback" class="hidden mt-4 p-3 rounded-xl text-center shrink-0">
               <p id="feedback-text" class="font-semibold"></p>
               <p id="feedback-answer" class="text-sm opacity-80 mt-1"></p>
             </div>
@@ -239,8 +241,8 @@ import { MULK_VERSES } from '../../data/mulk-verses';
       </div>
     </main>
 
-    <!-- Floating CTA -->
-    <div id="cta-container" class="fixed bottom-20 left-0 right-0 px-4 pb-4 safe-bottom z-20">
+    <!-- Floating CTA (direkt über BottomNav: bottom-[92px] wie beim Day-Page Player) -->
+    <div id="cta-container" class="fixed bottom-[92px] left-0 right-0 px-4 z-20">
       <div class="max-w-lg mx-auto">
         <button id="start-quiz-btn" class="w-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white font-semibold py-5 rounded-2xl active:scale-[0.98] transition-all shadow-lg shadow-[#318fb5]/35">
           <div class="flex items-center justify-center gap-3">
@@ -326,6 +328,7 @@ import { MULK_VERSES } from '../../data/mulk-verses';
   let questions: Question[] = [];
   let currentIndex = 0;
   let score = 0;
+  let wrongCount = 0;
   let streak = 0;
   let maxStreak = 0;
   let startTime = 0;
@@ -416,13 +419,14 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     if (questions.length === 0) return;
     currentIndex = 0;
     score = 0;
+    wrongCount = 0;
     streak = 0;
     maxStreak = 0;
     answered = false;
     startTime = Date.now();
     document.getElementById('q-total')!.textContent = String(questions.length);
     document.getElementById('score-count')!.textContent = '0';
-    document.getElementById('streak-count')!.textContent = '0';
+    document.getElementById('wrong-count')!.textContent = '0';
     document.getElementById('progress-bar')!.style.width = '0%';
     showView('quiz');
     renderQuestion();
@@ -469,16 +473,18 @@ import { MULK_VERSES } from '../../data/mulk-verses';
       if (streak > maxStreak) maxStreak = streak;
       btn.classList.add('correct');
       const scoreEl = document.getElementById('score-count')!;
-      const streakEl = document.getElementById('streak-count')!;
       scoreEl.textContent = String(score);
-      streakEl.textContent = String(streak);
-      streakEl.classList.add('pulse-grow');
-      setTimeout(() => streakEl.classList.remove('pulse-grow'), 300);
+      scoreEl.classList.add('pulse-grow');
+      setTimeout(() => scoreEl.classList.remove('pulse-grow'), 300);
       showFeedback(true, 'Saktë!');
     } else {
+      wrongCount++;
       streak = 0;
       btn.classList.add('wrong');
-      document.getElementById('streak-count')!.textContent = '0';
+      const wrongEl = document.getElementById('wrong-count')!;
+      wrongEl.textContent = String(wrongCount);
+      wrongEl.classList.add('pulse-grow');
+      setTimeout(() => wrongEl.classList.remove('pulse-grow'), 300);
       btn.classList.add('shake');
       setTimeout(() => btn.classList.remove('shake'), 400);
       showFeedback(false, 'Gabim', `Përgjigja: ${q.correct}`);

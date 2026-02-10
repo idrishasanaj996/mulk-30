@@ -88,23 +88,23 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
     </div>
 
     <!-- Main Content Area - Hero Arabic Text -->
-    <main class="flex-1 flex flex-col px-4 pt-4 pb-[168px] min-h-0 overflow-hidden">
-      <div class="max-w-lg mx-auto w-full flex-1 flex flex-col min-h-0">
+    <main class="flex-1 flex flex-col px-4 pt-4 pb-44 overflow-hidden">
+      <div class="max-w-lg mx-auto w-full flex-1 flex flex-col mb-5">
         
-        <!-- Arabic Text Card - Fills available space -->
+        <!-- Arabic Text Card - fills space between step indicator and player -->
         <div id="arabic-card" class="flex-1 flex flex-col bg-white rounded-2xl shadow-lg shadow-[#005086]/10 border border-[var(--color-border)]/50 overflow-hidden">
           
           <!-- Card Content Area -->
-          <div class="flex-1 overflow-hidden flex flex-col min-h-0">
+          <div class="flex-1 flex flex-col relative">
             
             <!-- FRONT: Arabic Text -->
-            <div id="card-front" class="flex-1 flex flex-col min-h-0">
+            <div id="card-front" class="flex-1 flex flex-col">
               <!-- Arabic Text -->
-              <div id="arabic-content" class="flex-1 flex items-center justify-center p-5 overflow-auto min-h-0">
-                <p class="arabic text-center text-[var(--color-text)] leading-[2.2]" id="arabic-text" dir="rtl" style="word-spacing: 0.3em; font-size: 2.1rem;">
+              <div id="arabic-content" class="flex-1 flex items-center justify-center p-5">
+                <p class="arabic text-center text-[var(--color-text)] leading-[2.4]" id="arabic-text" dir="rtl" style="word-spacing: 0.35em; font-size: 2.1rem;">
                   {verseWordByWord.map((wordData, i) => (
                     <span 
-                      class="arabic-word cursor-pointer relative inline-block border-b-2 border-transparent hover:border-[#318fb5]/40 transition-colors duration-150 mx-1" 
+                      class="arabic-word cursor-pointer relative inline-block border-b-2 border-transparent hover:border-[#318fb5]/40" 
                       data-word-index={i}
                       data-albanian={wordData.albanian}
                       data-arabic={wordData.arabic}
@@ -120,12 +120,12 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
             </div>
             
             <!-- BACK: Translation (hidden by default) -->
-            <div id="card-back" class="flex-1 hidden flex items-center justify-center p-6 min-h-0">
+            <div id="card-back" class="flex-1 hidden flex items-center justify-center p-6">
               <p class="text-[var(--color-text)] leading-relaxed text-lg text-center">{verse.albanian}</p>
             </div>
             
             <!-- Hidden State for Recite Mode -->
-            <div id="hidden-content" class="flex-1 hidden flex flex-col items-center justify-center p-6 text-center bg-white min-h-0">
+            <div id="hidden-content" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-white">
               <div class="w-20 h-20 rounded-xl bg-[var(--color-text)]/10 flex items-center justify-center mb-4">
                 <svg class="w-10 h-10 text-[var(--color-text)]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>
               </div>
@@ -149,25 +149,16 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
           </button>
         </div>
         
-        <!-- Done Panel -->
-        <div id="panel-done" class="hidden mt-6 text-center space-y-4 py-6 bg-[var(--color-surface)] rounded-3xl border border-[var(--color-primary)]/30">
+        <!-- Done Panel - nur Kompliment, keine Buttons (Buttons sind im Player) -->
+        <div id="panel-done" class="hidden flex-1 flex flex-col items-center justify-center text-center bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)]/50 shadow-lg shadow-[#005086]/10">
           <div id="confetti-container" class="relative">
             <div class="w-16 h-16 mx-auto rounded-xl bg-[var(--color-primary)] flex items-center justify-center animate-bounce-in">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
             </div>
           </div>
-          <div>
+          <div class="mt-4">
             <h2 class="text-xl font-bold text-[var(--color-text)]">Masha'Allah!</h2>
-            <p class="text-sm text-[var(--color-text-secondary)]">E ke përfunduar Ditën {dayIndex}!</p>
-          </div>
-          <div class="flex gap-3 px-6">
-            <button id="start-quiz-btn" class="flex-1 btn btn-secondary py-3">Testo veten</button>
-            {nextDay && (
-              <a href={`/app/day/${nextDay}`} class="flex-1 btn btn-primary py-3">
-                Dita {nextDay}
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-              </a>
-            )}
+            <p class="text-sm text-[var(--color-text-secondary)] mt-1">E ke përfunduar Ditën {dayIndex}!</p>
           </div>
         </div>
 
@@ -192,11 +183,11 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
       </div>
     </main>
 
-    <!-- FIXED ACTION BAR - Above bottom nav -->
-    <div id="action-bar" class="fixed bottom-[76px] left-0 right-0 z-40">
+    <!-- FIXED ACTION BAR - Above bottom nav (76px nav + 16px gap = 92px) -->
+    <div id="action-bar" class="fixed bottom-[92px] left-0 right-0 z-40 px-4">
       
-      <!-- Glass card effect -->
-      <div class="mx-4 mb-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-[#005086]/15 border border-[var(--color-border)]/50 overflow-hidden">
+      <!-- Glass card effect with consistent spacing (16px margin like step indicator) -->
+      <div class="bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-[#005086]/15 border border-[var(--color-border)]/50 overflow-hidden">
         
         <!-- Audio Progress Bar -->
         <div class="h-1 bg-[var(--color-border)]/50">
@@ -207,15 +198,15 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
         
         <!-- LISTEN MODE (Step 1) -->
         <div id="mode-listen" class="action-mode">
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-4 h-14">
             <!-- Big Play Button - Fitts's Law -->
-            <button id="play-btn" class="w-16 h-16 rounded-xl bg-[var(--color-step-listen)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
-              <svg id="play-icon" class="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <svg id="pause-icon" class="w-7 h-7 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            <button id="play-btn" class="w-14 h-14 shrink-0 rounded-xl bg-[var(--color-step-listen)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
+              <svg id="play-icon" class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <svg id="pause-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
             </button>
             
             <!-- Progress & Info -->
-            <div class="flex-1">
+            <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between mb-1.5">
                 <span class="text-sm font-medium text-[var(--color-text)]">Dëgjo 10 herë</span>
                 <span id="listen-count" class="text-sm font-bold text-[var(--color-step-listen)]">0/10</span>
@@ -226,7 +217,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
             </div>
             
             <!-- Speed Control -->
-            <button id="speed-btn" class="w-12 h-12 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-sm font-medium text-[var(--color-text)]">
+            <button id="speed-btn" class="w-11 h-11 shrink-0 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-sm font-medium text-[var(--color-text)]">
               <span id="speed-label">1x</span>
             </button>
           </div>
@@ -234,14 +225,14 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
         
         <!-- READ MODE (Step 2) -->
         <div id="mode-read" class="action-mode hidden">
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-4 h-14">
             <!-- Tap to Count Button -->
-            <button id="read-tap-btn" class="w-16 h-16 rounded-xl bg-[var(--color-step-read)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <button id="read-tap-btn" class="w-14 h-14 shrink-0 rounded-xl bg-[var(--color-step-read)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             </button>
             
             <!-- Progress & Info -->
-            <div class="flex-1">
+            <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between mb-1.5">
                 <span class="text-sm font-medium text-[var(--color-text)]">Lexo me zë 10 herë</span>
                 <span id="read-count" class="text-sm font-bold text-[var(--color-step-read)]">0/10</span>
@@ -252,7 +243,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
             </div>
             
             <!-- Audio Play Button - Listen while reading -->
-            <button id="read-audio-btn" class="w-12 h-12 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-95 transition-all" title="Dëgjo">
+            <button id="read-audio-btn" class="w-11 h-11 shrink-0 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-95 transition-all" title="Dëgjo">
               <svg id="read-play-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <svg id="read-pause-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
             </button>
@@ -261,14 +252,14 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
         
         <!-- RECITE MODE (Step 3) -->
         <div id="mode-recite" class="action-mode hidden">
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-4 h-14">
             <!-- Tap to Count Button -->
-            <button id="recite-tap-btn" class="w-16 h-16 rounded-xl bg-[var(--color-step-recite)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+            <button id="recite-tap-btn" class="w-14 h-14 shrink-0 rounded-xl bg-[var(--color-step-recite)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
             </button>
             
             <!-- Progress & Info -->
-            <div class="flex-1">
+            <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between mb-1.5">
                 <span class="text-sm font-medium text-[var(--color-text)]">Recito nga memoria</span>
                 <span id="recite-count" class="text-sm font-bold text-[var(--color-step-recite)]">0/10</span>
@@ -279,7 +270,7 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
             </div>
             
             <!-- Audio Play Button - Check your recitation -->
-            <button id="recite-audio-btn" class="w-12 h-12 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-95 transition-all" title="Dëgjo">
+            <button id="recite-audio-btn" class="w-11 h-11 shrink-0 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-secondary)] active:scale-95 transition-all" title="Dëgjo">
               <svg id="recite-play-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <svg id="recite-pause-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
             </button>
@@ -722,10 +713,9 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
     }
   }
 
-  // Word highlighting for audio
+  // Word-by-word highlight for audio (smooth flow)
   const arabicWords = document.querySelectorAll('.arabic-word');
   const wordCount = arabicWords.length;
-  let lastHighlightedIndex = -1;
   let wordTimestamps: {word: string, start: number, end: number}[] = [];
   let timestampsReady = false;
   
@@ -737,28 +727,24 @@ const verseWordByWord = (wordByWordData as Record<string, {word: number, albania
     })
     .catch(() => {});
   
-  function getWordIndexAtTime(currentTime: number, duration: number): number {
-    if (timestampsReady && wordTimestamps.length > 0) {
-      for (let i = wordTimestamps.length - 1; i >= 0; i--) {
-        if (currentTime >= wordTimestamps[i].start - 0.1) return i;
-      }
-      return -1;
-    }
-    return duration > 0 ? Math.floor((currentTime / duration) * wordCount) : -1;
-  }
-  
   function updateHighlight(currentTime: number, duration: number) {
-    const idx = getWordIndexAtTime(currentTime, duration);
-    if (idx === lastHighlightedIndex) return;
-    lastHighlightedIndex = idx;
+    if (duration <= 0) return;
+    
+    // Calculate which word we're at based on audio progress
+    const progress = currentTime / duration;
+    const targetIndex = Math.floor(progress * wordCount);
+    
+    // Highlight all words up to current position
     arabicWords.forEach((word, i) => {
-      if (i <= idx) word.classList.add('past');
-      else word.classList.remove('past');
+      if (i <= targetIndex) {
+        word.classList.add('past');
+      } else {
+        word.classList.remove('past');
+      }
     });
   }
   
   function clearHighlights() {
-    lastHighlightedIndex = -1;
     arabicWords.forEach(word => word.classList.remove('past'));
   }
 

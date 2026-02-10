@@ -155,8 +155,8 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     <div id="player-overlay" class="fixed inset-0 z-50 hidden">
       <div class="h-screen flex flex-col bg-[var(--color-background)] overflow-hidden">
         
-        <!-- Header with gradient -->
-        <header class="bg-gradient-to-b from-[#005086] via-[#318fb5] to-[#b0cac7] text-white px-4 pt-3 pb-24 safe-top">
+        <!-- Header with gradient - extends down for card overlap -->
+        <header class="bg-gradient-to-b from-[#005086] via-[#318fb5] to-[#b0cac7] text-white px-4 pt-3 pb-16 safe-top">
           <div class="max-w-lg mx-auto flex items-center justify-between">
             <button id="player-close" class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center active:scale-95 transition-transform">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -169,26 +169,25 @@ import { MULK_VERSES } from '../../data/mulk-verses';
           </div>
         </header>
 
-        <!-- Progress Indicator - pulls up into gradient -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl mx-4 -mt-16 px-4 py-4 shadow-lg border border-[var(--color-border)]/50">
+        <!-- Step Progress Indicator - pulls up into gradient (SAME AS DAY PAGE) -->
+        <div class="bg-white/95 backdrop-blur-sm rounded-2xl mx-4 -mt-12 px-4 py-4 shadow-lg border border-[var(--color-border)]/50">
           <div class="max-w-lg mx-auto">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-sm font-medium text-[var(--color-text)]">Progresi</span>
-              <span id="progress-text" class="text-sm font-bold text-[var(--color-primary)]">1/30</span>
-            </div>
-            <div class="h-2 bg-[var(--color-border)] rounded-full overflow-hidden">
-              <div id="progress-bar" class="h-full bg-[var(--color-primary)] rounded-full transition-all duration-300" style="width: 3.3%"></div>
+            <div class="flex items-center justify-between">
+              <p class="text-base font-semibold text-[var(--color-text)]">Përsëritja <span id="current-ayah-display">1</span>/<span id="total-ayahs-display">30</span></p>
+              <div class="w-32 h-2 bg-[var(--color-border)] rounded-full overflow-hidden">
+                <div id="session-progress-bar" class="h-full bg-[var(--color-step-listen)] rounded-full transition-all duration-300" style="width: 0%"></div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Main Content - Arabic Card -->
-        <main class="flex-1 flex flex-col px-4 pt-4 pb-[140px] min-h-0 overflow-hidden">
-          <div class="max-w-lg mx-auto w-full flex-1 flex flex-col min-h-0">
+        <!-- Main Content - Arabic Card (SAME AS DAY PAGE) -->
+        <main class="flex-1 flex flex-col px-4 pt-4 pb-44 overflow-hidden">
+          <div class="max-w-lg mx-auto w-full flex-1 flex flex-col mb-5">
             <div class="flex-1 flex flex-col bg-white rounded-2xl shadow-lg shadow-[#005086]/10 border border-[var(--color-border)]/50 overflow-hidden">
               <!-- Arabic/Translation Text Container -->
-              <div class="flex-1 flex items-center justify-center p-5 overflow-y-auto min-h-0">
-                <p id="player-arabic" class="arabic text-center text-[var(--color-text)] leading-[2.2]" dir="rtl" style="word-spacing: 0.3em; font-size: 2.1rem;"></p>
+              <div class="flex-1 flex items-center justify-center p-5">
+                <p id="player-arabic" class="arabic text-center text-[var(--color-text)] leading-[2.4]" dir="rtl" style="word-spacing: 0.35em; font-size: 2.1rem;"></p>
                 <p id="player-translation" class="hidden text-center text-[var(--color-text)] leading-relaxed text-lg" dir="ltr"></p>
               </div>
               
@@ -206,24 +205,24 @@ import { MULK_VERSES } from '../../data/mulk-verses';
           </div>
         </main>
 
-        <!-- Action Bar - Fixed at bottom -->
-        <div class="fixed bottom-[88px] left-0 right-0 z-40">
-          <div class="mx-4 mb-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-[#005086]/15 border border-[var(--color-border)]/50 overflow-hidden">
+        <!-- Action Bar - Fixed at bottom (SAME AS DAY PAGE: bottom-[92px]) -->
+        <div class="fixed bottom-[92px] left-0 right-0 z-40 px-4">
+          <div class="bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-[#005086]/15 border border-[var(--color-border)]/50 overflow-hidden">
             <!-- Audio Progress -->
             <div class="h-1 bg-[var(--color-border)]/50">
               <div id="audio-progress" class="h-full bg-gradient-to-r from-[#005086] to-[#318fb5] transition-all duration-100" style="width: 0%"></div>
             </div>
             
-            <div class="max-w-lg mx-auto px-4 py-4">
-              <div class="flex items-center gap-4">
-                <!-- Play/Pause Button -->
-                <button id="player-toggle" class="w-16 h-16 rounded-xl bg-[var(--color-step-listen)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
-                  <svg id="icon-play" class="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  <svg id="icon-pause" class="w-7 h-7 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            <div class="max-w-lg mx-auto px-4 py-3">
+              <div class="flex items-center gap-4 h-14">
+                <!-- Play/Pause Button (SAME AS DAY PAGE: w-14 h-14) -->
+                <button id="player-toggle" class="w-14 h-14 shrink-0 rounded-xl bg-[var(--color-step-listen)] hover:opacity-90 flex items-center justify-center text-white active:scale-95 transition-all">
+                  <svg id="icon-play" class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  <svg id="icon-pause" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                 </button>
                 
                 <!-- Info & Progress -->
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between mb-1.5">
                     <span class="text-sm font-medium text-[var(--color-text)]">Dëgjo <span id="listen-count-display">30</span> ajete</span>
                     <span id="time-display" class="text-sm text-[var(--color-text-secondary)]">0:00</span>
@@ -233,8 +232,8 @@ import { MULK_VERSES } from '../../data/mulk-verses';
                   </div>
                 </div>
                 
-                <!-- Speed Button -->
-                <button id="speed-btn" class="w-12 h-12 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-sm font-medium text-[var(--color-text)]">
+                <!-- Speed Button (SAME AS DAY PAGE: w-11 h-11) -->
+                <button id="speed-btn" class="w-11 h-11 shrink-0 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] flex items-center justify-center text-sm font-medium text-[var(--color-text)]">
                   <span id="speed-label">1x</span>
                 </button>
               </div>
@@ -242,24 +241,24 @@ import { MULK_VERSES } from '../../data/mulk-verses';
           </div>
         </div>
 
-        <!-- Bottom Nav in Player -->
-        <nav class="fixed bottom-0 left-0 right-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 safe-bottom z-30">
+        <!-- Bottom Nav in Player (SAME AS DAY PAGE: h-[76px], w-6 h-6 icons, text-xs) -->
+        <nav class="fixed bottom-0 left-0 right-0 h-[76px] bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 z-50">
           <div class="max-w-lg mx-auto flex justify-around">
             <a href="/app" class="nav-item">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-              <span class="text-[11px]">Kryefaqja</span>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+              <span class="text-xs">Kryefaqja</span>
             </a>
             <a href="/app/repeat" class="nav-item active">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-              <span class="text-[11px] font-medium">Përsëritje</span>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              <span class="text-xs font-medium">Përsëritje</span>
             </a>
             <a href="/app/quiz" class="nav-item">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-              <span class="text-[11px]">Testi</span>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+              <span class="text-xs">Testi</span>
             </a>
             <a href="/app/settings" class="nav-item">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-              <span class="text-[11px]">Cilësimet</span>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <span class="text-xs">Cilësimet</span>
             </a>
           </div>
         </nav>
@@ -529,6 +528,8 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     document.body.style.overflow = '';
     if (audio) { audio.pause(); audio = null; }
     isPlaying = false;
+    // Clear highlights
+    document.querySelectorAll('#player-arabic .arabic-word').forEach(w => w.classList.remove('past'));
   }
   
   function playCurrentInQueue() {
@@ -552,10 +553,13 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     const translationEl = document.getElementById('player-translation');
     const toggleText = document.getElementById('translation-toggle-text');
     
-    // Update UI - always show Arabic first
+    // Update UI - render Arabic words individually for highlighting
     document.getElementById('player-ayah-num')!.textContent = String(currentAyah);
-    if (arabicEl) {
-      arabicEl.textContent = verse?.arabic || '';
+    if (arabicEl && verse) {
+      const words = verse.arabic.split(/\s+/);
+      arabicEl.innerHTML = words.map((word, i) => 
+        `<span class="arabic-word inline-block" data-word-index="${i}">${word}</span>`
+      ).join(' ');
       arabicEl.classList.remove('hidden');
     }
     if (translationEl) translationEl.classList.add('hidden');
@@ -565,12 +569,21 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     const translitEl = document.querySelector('#player-transliteration p');
     if (translitEl) translitEl.textContent = verse?.transliteration || '';
     
-    // Update progress
+    // Update progress - Step Indicator Card (top) and Action Bar (bottom)
     const progressInQueue = queueIndex + 1;
     const totalInQueue = ayahQueue.length;
-    document.getElementById('progress-text')!.textContent = `${progressInQueue}/${totalInQueue}`;
     const progressPercent = (progressInQueue / totalInQueue) * 100;
-    (document.getElementById('progress-bar') as HTMLElement).style.width = `${progressPercent}%`;
+    
+    // Update Step Indicator Card (top) - shows position in queue (1/30, 2/30, etc.)
+    const currentAyahDisplay = document.getElementById('current-ayah-display');
+    const totalAyahsDisplay = document.getElementById('total-ayahs-display');
+    const sessionProgressBar = document.getElementById('session-progress-bar') as HTMLElement;
+    
+    if (currentAyahDisplay) currentAyahDisplay.textContent = String(progressInQueue);
+    if (totalAyahsDisplay) totalAyahsDisplay.textContent = String(totalInQueue);
+    if (sessionProgressBar) sessionProgressBar.style.width = `${progressPercent}%`;
+    
+    // Update Action Bar (bottom)
     (document.getElementById('listen-bar') as HTMLElement).style.width = `${progressPercent}%`;
     
     if (audio) audio.pause();
@@ -588,6 +601,19 @@ import { MULK_VERSES } from '../../data/mulk-verses';
       const timeDisplay = document.getElementById('time-display');
       if (timeDisplay) {
         timeDisplay.textContent = formatTime(audio.currentTime / speed);
+      }
+      // Update word highlighting
+      const arabicWords = document.querySelectorAll('#player-arabic .arabic-word');
+      if (arabicWords.length > 0 && audio.duration > 0) {
+        const progress = audio.currentTime / audio.duration;
+        const targetIndex = Math.floor(progress * arabicWords.length);
+        arabicWords.forEach((word, i) => {
+          if (i <= targetIndex) {
+            word.classList.add('past');
+          } else {
+            word.classList.remove('past');
+          }
+        });
       }
     });
     
@@ -698,5 +724,6 @@ import { MULK_VERSES } from '../../data/mulk-verses';
     repeatCount = 20;
     startBtn.click();
   }
+  
 </script>
 </Layout>
