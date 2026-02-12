@@ -59,7 +59,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
           <!-- Progress Text -->
           <div class="mb-2">
             <p class="text-lg font-semibold text-[var(--color-text)]" id="progress-label">Fillimi i udhëtimit</p>
-            <p class="text-sm text-[var(--color-text-secondary)]" id="progress-subtitle">Mëso ajetin e parë të Surah Al-Mulk</p>
+            <p class="text-sm text-[var(--color-text-secondary)]" id="progress-subtitle">Mëso ajetin e parë të Sureja El-Mulk</p>
           </div>
           
           <!-- Streak Badge (if active) -->
@@ -81,7 +81,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
           </div>
         </a>
 
-        <!-- RECOMMENDED: Daily Surah Listen - 10x -->
+        <!-- RECOMMENDED: Daily Sureja Listen - 10x -->
         <a href="/app/repeat?preset=daily" class="block w-full bg-gradient-to-r from-[#005086] to-[#318fb5] text-white font-semibold py-4 px-5 rounded-2xl active:scale-[0.98] transition-all shadow-md">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -184,7 +184,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
         <!-- Motivation Quote (changes based on progress) -->
         <div id="motivation-card" class="text-center py-4">
           <p class="text-sm text-[var(--color-text-secondary)] italic" id="motivation-text">
-            "Kush lexon Surah Al-Mulk çdo natë, do të mbrohet nga dënimi i varrit."
+            "Kush lexon Sureja El-Mulk çdo natë, do të mbrohet nga dënimi i varrit."
           </p>
           <p class="text-xs text-[var(--color-text-secondary)] mt-1">— Hadith</p>
         </div>
@@ -319,7 +319,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
     
     if (completedCount === 0) {
       progressLabel.textContent = 'Fillimi i udhëtimit';
-      progressSubtitle.textContent = 'Mëso ajetin e parë të Surah Al-Mulk';
+      progressSubtitle.textContent = 'Mëso ajetin e parë të Sureja El-Mulk';
     } else if (completedCount < 7) {
       progressLabel.textContent = `${completedCount} ajete të memorizuara`;
       progressSubtitle.textContent = 'Java e parë — vazhdo kështu!';
@@ -334,7 +334,7 @@ import { SURAH_INFO, MULK_VERSES } from '../../data/mulk-verses';
       progressSubtitle.textContent = 'Fundi po afron! Vetëm pak ditë!';
     } else {
       progressLabel.textContent = 'Masha\'Allah!';
-      progressSubtitle.textContent = 'E përfundove Surah Al-Mulk!';
+      progressSubtitle.textContent = 'E përfundove Sureja El-Mulk!';
     }
 
     // Streak badge
