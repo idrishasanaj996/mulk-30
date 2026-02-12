@@ -17,8 +17,7 @@ const { title, description = 'Sfida 30-ditore e Ramazanit - Sureja El-Mulk' } = 
     <meta name="description" content={description} />
     
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#EBF4F6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#09637E" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Mulk 30" />
@@ -37,12 +36,11 @@ const { title, description = 'Sfida 30-ditore e Ramazanit - Sureja El-Mulk' } = 
     
     <title>{title} | Mulk 30</title>
     
-    <!-- Dark mode script (runs before render to prevent flash) -->
+    <!-- Light mode only - no dark mode -->
     <script is:inline>
-      const theme = localStorage.getItem('theme');
-      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      }
+      // Force light mode always
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     </script>
   </head>
   <body class="min-h-screen bg-[var(--color-background)] text-[var(--color-text)]">
